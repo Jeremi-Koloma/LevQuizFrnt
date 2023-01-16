@@ -31,8 +31,14 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": ["src/theme/variables.scss", "src/global.scss",
+                       "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+
+          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -136,7 +142,8 @@
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": "92fd33fa-3aba-42df-9c11-00d73b299f3b"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
