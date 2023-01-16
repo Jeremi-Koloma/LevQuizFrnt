@@ -1,0 +1,7 @@
+{
+  "name": "levquiz",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
