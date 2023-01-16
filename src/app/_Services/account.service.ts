@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'; // pour les requêtes http
 import { JwtHelperService } from '@auth0/angular-jwt'; // importation de JwtHelperService
 import { serverConstant } from '../_Constant/serverConstant'; // Importation de la classe Constantes
 import { PasswordChange } from '../_Models/password-change'; // Importation de la classe changPassword
