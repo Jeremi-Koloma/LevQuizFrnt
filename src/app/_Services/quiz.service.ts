@@ -9,5 +9,52 @@ import { Quiz } from '../_Models/quiz'; // Importation de la classe Quiz
 })
 export class QuizService {
   
-  constructor() { }
+  // Déclarons des variables
+  constant: serverConstant = new serverConstant();
+  // Le serve backend
+  public host = this.constant.host;
+
+  public clientHost = this.constant.client;
+  public userHost = this.constant.userPicture;
+  public quizHost = this.constant.quizPicture;
+
+  // Créeons une instance de service Http
+  constructor(private http: HttpClient) { }
+
+  // Une fonction qui permettra d'ajouter un nouveau Quiz
+  save(quiz: Quiz): Observable<Quiz> {
+    return this.http.post<Quiz>(`${this.host}/quiz/save`, quiz);
+  }
+
+
+  // Une fonction qui permettra d'avoir un quiz par son ID
+  getOneQuizById(quizId: number): Observable<Quiz> {
+    return this.http.get<Quiz>(`${this.host}/quiz/getQuizById/${quizId}`);
+  }
+
+  // Une méthode qui permettra avoir la liste des quiz d'un utilisateur par son username
+  getQuizByUsername(username: string): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(`${this.host}/quiz/getQuizByUsername/${username}`);
+  }
+
+  // Une méthode ou fonction qui permettra de supprimer un Quiz
+  delete(quizId: number): Observable<Quiz> {
+    return this.http.delete<Quiz>(`${this.host}/quiz/delete/${quizId}`);
+  }
+
+
+  // Une fonction qui permettra d'ajouter une image à un quiz
+  uploadQuizPicture(recipePicture: File) {
+    // déclarons un object javascript
+    const fd = new FormData();
+    fd.append('image', recipePicture, recipePicture.name);
+    return this.http.post(`${this.host}/quiz/photo/upload`, fd, {
+      responseType: 'text',
+      reportProgress: true,
+      observe: 'events'});
+  }
+
+
 }
+
+
