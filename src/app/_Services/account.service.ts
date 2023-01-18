@@ -21,7 +21,7 @@ export class AccountService {
   public token!: any;
   // une varibale pou déteminer le nom d'utilisateur
   public loggInUsername!: string | null;
-  // redirection
+  // redirection ou actuel url de l'utilisateur
   public redirectUrl!: string;
   // ma clé googleMapApi pour avoir la Géolocalisation
   private googleMapsAPIKey = 'AIzaSyCEqs-KvBQeWnsz9NxbVhB5W_4uXCQSKqo';

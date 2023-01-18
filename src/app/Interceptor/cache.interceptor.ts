@@ -82,6 +82,7 @@ export class CacheInterceptor implements HttpInterceptor {
       return of (cachedResponse);
     }
 
+    // Sinon si on ne trouve pas un cache, alors on crée un cache de la requête
     return next.handle(req)
     .pipe(tap(event => {
       if (event instanceof HttpResponse) {
