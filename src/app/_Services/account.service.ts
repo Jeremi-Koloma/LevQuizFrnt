@@ -19,8 +19,8 @@ export class AccountService {
   public host: string = this.constant.host;
   // une variable pour le token
   public token!: any;
-  // une varibale pou déteminer le nom d'utilisateur
-  public loggInUsername!: string | null;
+  // une varibale pour déteminer le nom d'utilisateur
+  public loggInUsername!: string;
   // redirection ou actuel url de l'utilisateur
   public redirectUrl!: string;
   // ma clé googleMapApi pour avoir la Géolocalisation

@@ -21,7 +21,6 @@ export class HomePage implements OnInit, OnDestroy  {
 
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
-
   // un object d'utilisateur
   user = new User();
   // Une variable pour la liste des Quiz
@@ -125,11 +124,11 @@ export class HomePage implements OnInit, OnDestroy  {
 
 
   // Une méthode pour Supprimer un Quiz qui va prendre ID de quiz en paramètre
-  onDelete(id: number): void {
+  onDelete(quizId: number): void {
     // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
       // on appel la méthode delete qui se trouve dans notre quizService pour supprimer l'utilisateur
-      this.quizService.delete(id).subscribe(
+      this.quizService.delete(quizId).subscribe(
         // on prend la reponse
       response => {
         // on affiche dans la reponse ou le quiz dans la console
@@ -158,10 +157,10 @@ export class HomePage implements OnInit, OnDestroy  {
 
 
   // Une function pour voir un seul Quiz qui va prendre l'ID de quiz en paramètre
-  seeOneQuiz(id:any): void {
+  seeOneQuiz(quizId:any): void {
     // on appel le path qui permet d'acceder à un seul Quiz
-    this.router.navigate(['/post', id]);
-    console.log(id);
+    this.router.navigate(['/quizdetails', quizId]);
+    console.log(quizId);
   }
 
 
