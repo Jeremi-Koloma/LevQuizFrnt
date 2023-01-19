@@ -55,6 +55,7 @@ export class RegisterPage implements OnInit, OnDestroy {
       Une fonction pour register : inscription de l'utilisateur
       Qui va prendre un user toutes ses informations
     ************************* */
+      // Quand on appel cette fonction onRegister
       onRegister(user : User): void {
         // on appel le service loadingService le chargement de la page
         this.loadingService.isLoading.next(true);

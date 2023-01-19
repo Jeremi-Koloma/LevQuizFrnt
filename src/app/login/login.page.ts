@@ -53,6 +53,7 @@ export class LoginPage implements OnInit,OnDestroy {
       Une fonction pour le Login
       Qui va prendre un user son username and password
   ************************* */
+ // Quand on appel cette fonction onLogin
    onLogin(user: User): void {
     // on appel le service loadingService le chargement de la page
     this.loadingService.isLoading.next(true);
