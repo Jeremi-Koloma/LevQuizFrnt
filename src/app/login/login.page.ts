@@ -14,6 +14,10 @@ import { User } from '../_Models/user';
 })
 export class LoginPage implements OnInit,OnDestroy {
 
+
+  
+  Registers:String = 'Register'
+
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
 
@@ -99,5 +103,15 @@ export class LoginPage implements OnInit,OnDestroy {
   ngOnDestroy(){
     this.subscriptions.forEach(sub => sub.unsubscribe);
   }
+
+
+
+
+
+  // Segment
+ 
+
+
+
 
 }

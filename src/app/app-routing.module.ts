@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'quizdetails/:quizId',
     loadChildren: () => import('./quiz-detail/quiz-detail.module').then( m => m.QuizDetailPageModule), resolve: {resolvedQuiz: QuizresolverService}, canActivate: [AuthenticationGuard]  // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier, Resolver pour s'assurer que nous avons les informations de Quiz avant de les afficher
   },
+  {
+    path: 'splash',
+    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
+  },
  
  
 ];
