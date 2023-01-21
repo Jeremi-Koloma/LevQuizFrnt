@@ -10,7 +10,7 @@
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../assets/image/bglogin.jpg);
     background-size: cover;
     width: 100%;
-    height: 35vh;
+    height: 40vh;
     margin: 0;
     padding: 0;
     position: relative;
@@ -19,27 +19,50 @@
 
 .contourLogin{
     width: 100%;
-    background: #FFFFFF;
-    border-radius: 7px;
+    background: #fff; // #939fab
+    border-radius: 25px 25px 0px 0px;
     box-shadow: 2px 1px 14px 3px rgba(0, 0, 0, 0.25);
     position: relative;
     z-index: 10;
-    margin-top: -25px;
+    margin-top: -83px;
+}
+
+ion-label{
+    color: #274F8A;
+    font-weight: 500;
+}
+
+div label{
+    color: #939fab;
+    font-size: .9rem;
 }
 
  div input{
     width: 100%;
-    background: #FEFCFC;
-    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-
+    height: 100%;
+    font-size: .9rem;
+    border: 2px solid #e7ebee;
+    border-radius: 8px;
+    padding: .4rem;
+    outline: none;
+    background: none;
+    color: #171c25;
  }
 
+
+ div input:focus{
+    border-color: #0C85F8;
+ }
+
+
  .btnLogin{
-    background: #0C85F8;
+    //background: #0C85F8; // #ebeef4
     width: 100%;
-    color: #FFFFFF;
+    color: #fff;
     font-weight: 400;
+    box-shadow: none;
+    text-transform: initial;
+    background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%);
  }
 
  .btnLogin:hover{

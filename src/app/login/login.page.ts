@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../_Services/account.service';
@@ -13,10 +13,9 @@ import { User } from '../_Models/user';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit,OnDestroy {
-
-
   
-  Registers:String = 'Register'
+  // une variable pour nos segement
+  segId='Register';
 
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
@@ -108,9 +107,10 @@ export class LoginPage implements OnInit,OnDestroy {
 
 
 
-  // Segment
- 
-
+  // Une fonction qui change de formaualire
+  segmentChanged(val:any){
+    this.segId = val.target.value;
+  }
 
 
 
