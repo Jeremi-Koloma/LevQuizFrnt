@@ -15,7 +15,7 @@ import { User } from '../_Models/user';
 export class LoginPage implements OnInit,OnDestroy {
   
   // une variable pour nos segement
-  segId='Register';
+  segId='Login';
 
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
