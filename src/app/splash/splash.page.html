@@ -1,9 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>splash</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="containerTout">
+    <div class="d-flex justify-content-center">
+      <div class="logo ">
+        <img src="../../assets/image/logo.png" alt="logo levquiz">
+      </div>
+    </div>
+    <p class="container txtDescription">
+      LevQuiz est une application permettant de faciliter le suivi de compétences des apprenants par les formateurs en rendant les tests à la fois instructifs, amusants et agréables.
+    </p>
+
+    <div class="contourwelcome">
+      <h3 class="text-uppercase text-white text-center fw-bold txtwelcome">bienvenue</h3>
+      <p class="text-uppercase text-white txtSelectProfil">merci de choisir votre profil</p>
+    </div>
+
+  </div>
+
+  <div class="container mt-4">
+    <div class="col-12 mb-2">
+      <button class="btn btnApprenant" routerLink="/login">Apprenant</button>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btnFormateur">Formateur</button>
+    </div>
+  </div>
 
 </ion-content>

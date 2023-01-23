@@ -5,6 +5,9 @@
 
   <div class="containerImg">
     <div class="bgImg"></div>
+    <div class="btnBack">
+      <i class="bi bi-arrow-left-circle" routerLink="/splash"></i>
+    </div>
   </div>
 
 
@@ -25,7 +28,7 @@
       </ion-segment>
 
 
-    <div class="container">
+    <div class="container col-offeset-md-3 col-md-6">
       <span *ngIf="segId =='Register'">
       
       <form class="mt-1">
@@ -84,7 +87,7 @@
 
 
 
-    <div class="container">
+    <div class="container col-offeset-md-3 col-md-6">
       <span *ngIf="segId =='Login'">
       
       <form class="mt-4">

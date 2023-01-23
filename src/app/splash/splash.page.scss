@@ -1,0 +1,78 @@
+* {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;1,700&display=swap%27');
+    font-family: 'Poppins', sans-serif;
+}
+
+ion-content{
+    --background: #FFFFFF;
+}
+
+.containerTout{
+    width: 100%;
+    height: 78vh;
+    background: url(../../assets/image/bgWelcome3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 0px 0px 35px 35px;
+}
+
+.logo{
+    width: 90px;
+    height: 90px;
+    top: 53px;
+    position: relative;
+}
+
+.txtDescription{
+    font-style: normal;
+    font-weight: 400;
+    font-size: .6rem;
+    line-height: 14px;
+    text-align: center;
+    color: #FFFFFF;
+    position: relative;
+    top: 15vh;
+}
+
+.contourwelcome{
+    top: 39vh;
+    position: relative;
+    color: #FFFFFF;
+
+}
+.txtwelcome{
+    font-size: 1.9rem;
+    margin: 0;
+}
+
+.txtSelectProfil{
+    font-size: .6rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.btnApprenant{
+    background: #274F8A;
+    border-radius: 7px;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+.btnApprenant:hover{
+    background: #0C85F8;
+}
+
+.btnFormateur{
+    border: 1px solid #274F8A;
+    border-radius: 7px;
+    width: 100%;
+    color: #274F8A;
+}
+
+.btnFormateur:hover{
+    background: #0C85F8;
+    border: none;
+    color: #FFFFFF;
+}
+
