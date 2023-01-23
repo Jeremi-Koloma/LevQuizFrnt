@@ -6,6 +6,7 @@ import { LoadingService } from '../_Services/loading.service';
 import { AlertType } from '../_Enum/alert-type';
 import { AlertService } from '../_Services/alert.service';
 import { User } from '../_Models/user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -20,17 +21,24 @@ export class LoginPage implements OnInit,OnDestroy {
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
 
+  private subscriptionsRegister: Subscription[] = [];
+
   // Injections des dépendances
   constructor(
     private router: Router, // pour la redirection
     private accountService: AccountService, 
     private loadingService: LoadingService,
-    private alertService: AlertService
+    private alertService: AlertService,
+
+    private accountServiceRegister: AccountService,
+    private routerRegister: Router,
+    private loadingServiceRegister: LoadingService,
+    private alertServiceRegister: AlertService
   ) {}
 
   ngOnInit() {
-     /* ***********************
-     Quand ce composant est initialiser,
+     /* *********************** LOGIN
+     Quand ce composant est initialiser, 
       Une fois que la connexion à reussi
       nous ne voulons pas qu'il reste sur la même page, on veut l'envoyé vers la page qu'il démande ou l'Accueil
      ************************* */
@@ -49,10 +57,36 @@ export class LoginPage implements OnInit,OnDestroy {
         this.router.navigateByUrl('/login');
       }
 
+
+
+
+
+        /* *********************** REGISTER
+     Quand ce composant est initialiser,
+      Une fois que la connexion à reussi
+      nous ne voulons pas qu'il reste sur la même page, on veut l'envoyé vers la page d'Accueil
+     ************************* */
+
+       // Après l'inscription, Vérifions si l'utilisateur s'est authentifier
+       if (this.accountServiceRegister.isLoggedIn()) {
+        // on le laisse aller là ou il veut
+        if (this.accountServiceRegister.redirectUrl) {
+          this.routerRegister.navigateByUrl(this.accountServiceRegister.redirectUrl);
+        } else { // sinon il s'est authentifier mais l'url n'existe pas, on le redirige à la page d'Accueil
+          this.routerRegister.navigateByUrl('/home');
+        }
+      }
+       // Sinon si la l'inscription n'a pas réussi, on le redirige vers la page de d'inscription 
+      else {
+        this.routerRegister.navigateByUrl('/login');
+      }
+
   }
 
 
-  /* ***********************
+
+
+  /* *********************** LOGIN
       Une fonction pour le Login
       Qui va prendre un user son username and password
   ************************* */
@@ -98,9 +132,77 @@ export class LoginPage implements OnInit,OnDestroy {
   }
 
 
+
+
+
+   /* *********************** REGISTER
+      Une fonction pour register : inscription de l'utilisateur
+      Qui va prendre un user toutes ses informations
+    ************************* */
+      // Quand on appel cette fonction onRegister
+      onRegister(user : User): void {
+        // on appel le service loadingService le chargement de la page
+        this.loadingServiceRegister.isLoading.next(true);
+         // Affichons les informations de  l'utilisateur dans la console
+        console.log(user);
+        // On l'ajout dans la liste de subscriptions
+        this.subscriptionsRegister.push(
+          // on envoie les informations de l'utilisateur à la méthode Register dans notre serviceAccount
+        this.accountServiceRegister.register(user).subscribe(
+          // On prend la reponse dans le body
+          response => {
+            // on stop le chargement de la page
+            this.loadingServiceRegister.isLoading.next(false);
+            // on affiche une message à l'utilisateur
+            this.alertServiceRegister.showAlert(
+              'Inscrit avec succès ! Merci de vérifier votre boîte mail.',
+              AlertType.SUCCESS
+            );
+            // Affichons la reponse dans la console
+            console.log(response);
+          },
+          // sinon s'il ya Erreur, on appel HttpErrorResponse pour vérifier si l'erreur est conforme à celui du Backend
+          (error: HttpErrorResponse) => {
+            // on affiche l'erreur dans la console
+            console.log(error);
+            // on stop l'effet de chargement de la page
+            this.loadingServiceRegister.isLoading.next(false);
+            // Déclarons une constante pour vérifier les méssages avec celui du backend
+            const errorMsg: string = error.error;
+            // vérifions si le message d'erreur correspond à usernameExist du Backend
+            if (errorMsg === 'usernameExist') {
+              this.alertServiceRegister.showAlert(
+                "Ce nom d'utilisateur existe déjà ! Veuillez essayer avec un autre nom d'utilisateur",
+                AlertType.DANGER
+              );  
+              // Sinon vérifions si le message d'erreur correspond à emailExist du Backend
+            } else if (errorMsg === 'emailExist') {
+              this.alertServiceRegister.showAlert(
+                "Cette adresse e-mail existe déjà ! Veuillez essayer avec une autre adresse e-mail",
+                AlertType.DANGER
+              );
+            } else {
+              this.alertServiceRegister.showAlert(
+                "Un problème est survenu. Veuillez réessayer !",
+                AlertType.DANGER
+              );
+            }
+          }
+        )
+        );
+      }
+
+
+
+
+
+
   // On le Désinscrit
   ngOnDestroy(){
     this.subscriptions.forEach(sub => sub.unsubscribe);
+
+    //Register
+    this.subscriptionsRegister.forEach(sub => sub.unsubscribe());
   }
 
 
