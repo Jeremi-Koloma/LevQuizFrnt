@@ -40,7 +40,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     CommonModule,
     HttpClientModule,  // Pour pouvoir utiliser les Requêtes Http
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,// pour les formulaires reactive
     IonicModule.forRoot(),
     AppRoutingModule, // Nos routagee
     NgxLoadingModule.forRoot({})

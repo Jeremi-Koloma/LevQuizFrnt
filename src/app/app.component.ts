@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy{
       setTimeout(() => {
         const element: HTMLElement = document.getElementById('dismissAlert') as HTMLElement;
         // Ajoutons évenement click à notre variable alerte recupéré
-        element.click();
+        element.click;
       }, second * 1000);
     }
 

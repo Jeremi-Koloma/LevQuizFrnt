@@ -7,6 +7,7 @@ import { AlertType } from '../_Enum/alert-type';
 import { AlertService } from '../_Services/alert.service';
 import { User } from '../_Models/user';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,15 @@ export class LoginPage implements OnInit,OnDestroy {
   
   // une variable pour nos segement
   segId='Login';
+
+  // une variable pour la validation de type FormGroup
+  loginForm!:FormGroup
+
+   // une variable pour la validation de type FormGroup
+   registerForm!:FormGroup
+
+   // C'est-à-dire que par defaut le formulaire n'est pas valider
+   submitted = false;
 
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
@@ -33,7 +43,8 @@ export class LoginPage implements OnInit,OnDestroy {
     private accountServiceRegister: AccountService,
     private routerRegister: Router,
     private loadingServiceRegister: LoadingService,
-    private alertServiceRegister: AlertService
+    private alertServiceRegister: AlertService,
+    private formBulder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -57,6 +68,17 @@ export class LoginPage implements OnInit,OnDestroy {
         this.router.navigateByUrl('/login');
       }
 
+          /* ***********************
+          validation des formulaire LOGIN
+        ************************* */
+      // Lorsque le component est initialiser, on utilise notre loginForm pour avoir accèss aux Groupe de FormBuilder qui est dans le constructeur;
+      this.loginForm = this.formBulder.group({
+        // Déclarons les champs ou validations qu'on souhaite avoir
+        // Le première validation est required
+        // maintenant d'éclarons les variables qui seront binder avec le formulaire avec formControlName puis ngClass dans le html au niveau des input
+        username: ["", Validators.required],
+        password: ["", Validators.required]
+    })
 
 
 
@@ -80,6 +102,23 @@ export class LoginPage implements OnInit,OnDestroy {
       else {
         this.routerRegister.navigateByUrl('/login');
       }
+
+
+        /* ***********************
+          validation des formulaire REGISTER
+        ************************* */
+      // Lorsque le component est initialiser, on utilise notre loginForm pour avoir accèss aux Groupe de FormBuilder qui est dans le constructeur;
+      this.registerForm = this.formBulder.group({
+          // Déclarons les champs ou validations qu'on souhaite avoir
+          // Le première validation est required
+          // maintenant d'éclarons les variables qui seront binder avec le formulaire avec formControlName puis ngClass dans le html au niveau des input
+          firstname: ["", Validators.required],
+          lastname: ["", Validators.required],
+          username: ["",  [Validators.required, Validators.minLength(4)]],
+          password: ["",  [Validators.required, Validators.minLength(8)]],
+          email: ["",  [Validators.required, Validators.email]]
+      })
+
 
   }
 
@@ -129,6 +168,22 @@ export class LoginPage implements OnInit,OnDestroy {
         }
       )
     );
+  }
+
+
+  // Boutons qui de validation login
+  onSubmitLogin(){
+      // changeons la variable de submitted à true;
+      this.submitted = true
+
+      // Vérions si les champs sont invalid
+      if(this.loginForm.invalid){
+        return
+      }
+      else{
+        // sinon si tous les champs sont remplis,
+        alert("Succes !")
+      }
   }
 
 
@@ -191,6 +246,22 @@ export class LoginPage implements OnInit,OnDestroy {
         )
         );
       }
+
+
+    // Boutons qui de validation login
+    onSubmitRegister(){
+    // changeons la variable de submitted à true;
+    this.submitted = true
+
+    // Vérions si les champs sont invalid
+    if(this.loginForm.invalid){
+      return
+    }
+    else{
+      // sinon si tous les champs sont remplis,
+      alert("Succes !")
+    }
+}
 
 
 
