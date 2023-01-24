@@ -77,8 +77,9 @@ export class LoginPage implements OnInit,OnDestroy {
         // Le première validation est required
         // maintenant d'éclarons les variables qui seront binder avec le formulaire avec formControlName puis ngClass dans le html au niveau des input
         username: ["", Validators.required],
-        password: ["", Validators.required]
+        password: ["", Validators.required],
     })
+
 
 
 
@@ -182,7 +183,8 @@ export class LoginPage implements OnInit,OnDestroy {
       }
       else{
         // sinon si tous les champs sont remplis,
-        alert("Succes !")
+        // Quand le formualire est rempli, appelons la méthode onLogin(), on passe le formulaire
+        this.onLogin(this.loginForm.value);
       }
   }
 

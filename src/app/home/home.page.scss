@@ -1,27 +1,77 @@
-#container {
-  text-align: center;
 
+ion-content{
+  --background: #274F8A;
+}
+.tout{
+  display: grid;
+  height: 100%;
+  grid-template-rows: 15%  25% 60%;
+}
+.bi-list{
+  color: #fff;
+  font-size: 2rem;
+}
+
+
+ion-icon{
+  color: #fff;
+  font-size: 2rem;
+}
+
+.notif-badge {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 5px;
+  top: 1px;
+  background: #E24C4C;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.imgQuiz,
+div img{
+  border: 1px solid #ffffff;
+  border-radius: 13px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.containerBas{
+  background: #EDECF1;
+  border-radius: 23px 23px 0px 0px;
+}
 
-  color: #8c8c8c;
+.elemScore {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.elemQuiz {
+  background: #274F8A;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+div .bi-question-circle{
+  color: #fff;
+  font-size: 2rem;
+}
+
+div .bi-star-half,
+div .bi-stopwatch
+{
+  font-size: 2rem;
+}
+
+.txtTrouverHistor{
   margin: 0;
+  font-weight: 600;
+  color: #274F8A;
 }
-
-#container a {
-  text-decoration: none;
+.containerHistorique{
+  background: #2AB599;
+  border-radius: 11px;
 }
