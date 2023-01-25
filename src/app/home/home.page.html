@@ -1,57 +1,54 @@
 <ion-content [fullscreen]="true">
+  <div class="main_content_div">
 
-  <div class="tout">
-    <div class="container">
-      <div class="row mt-5">
-        <div class="menu col-7">
-          <i class="bi bi-list"></i>
-        </div>
-        <div class="profil col-5 d-flex">
-          <img src="../../assets/image/profil 2.jpg" alt="photo de profil" class="rounded-circle" height="35"
-            width="35">
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
 
-          <ion-button fill="clear" size="small">
-            <ion-icon size="small" name="notifications"></ion-icon>
-            <ion-badge class="notif-badge text-center">15</ion-badge>
-          </ion-button>
-        </div>
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="welcome">Bonjour !</ion-label>
+        <ion-label class="username">Jeremi</ion-label>
       </div>
+      <div class="user_back" [style.backgroundImage]="'url(../..)'"></div>
     </div>
 
-    <div class="container mt-2 col-12">
-        <img src="../../assets/image/HTML-Tutorials.png" alt="">
-        <p class="text-white">Evaluation html</p>
-        <p class="text-white">Formation : Jeremi-KOLOMA</p>
-      
-      </div>
+    <div class="content_div animated bounceInUp">
+      <ion-label class="hello_label">Section Quiz</ion-label>
+      <ion-grid fixed>
+        <ion-row>
 
-    
+          <ion-col size="6" (click)="goToQuiz()">
+             <div class="col_div">
+              <p>icon</p>
+              <ion-label>Quiz</ion-label>
+             </div>
+          </ion-col>
 
-    <div class="containerBas mt-3 pb-3">
-      <div class="container">
-        <div class="row pt-3">
-          <div class="col-6">
-            <div class="elemQuiz p-3">
-              <i class="bi bi-question-circle "></i>
-              <p class="text-white">Quiz</p>
+          <ion-col size="6" (click)="goToQuiz()">
+            <div class="col_div">
+             <p>icon</p>
+             <ion-label>Quiz</ion-label>
             </div>
+         </ion-col>
+
+         <ion-col size="6" (click)="goToQuiz()">
+          <div class="col_div">
+           <p>icon</p>
+           <ion-label>Quiz</ion-label>
           </div>
-          <div class="col-6">
-            <div class="elemScore p-3">
-              <i class="bi bi-star-half"></i>
-              <p class="text-center">Scores</p>
-            </div>
-          </div>
+       </ion-col>
+
+       <ion-col size="6" (click)="goToQuiz()">
+        <div class="col_div">
+         <p class="icon">icon</p>
+         <ion-label class="quiz_titre">Quiz</ion-label>
         </div>
-        <p class="txtTrouverHistor pt-3">Trouver vos historiques</p>
-        <div class="col-12 containerHistorique p-3 ">
-          <div class="histo">
-            <i class="bi bi-stopwatch text-white"></i>
-            <p class="text-white">Historiques</p>
-          </div>
-        </div>
-      </div>
+     </ion-col>
+
+        </ion-row>
+      </ion-grid>
     </div>
+
   </div>
-
 </ion-content>

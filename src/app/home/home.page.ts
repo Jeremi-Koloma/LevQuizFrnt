@@ -8,6 +8,7 @@ import { QuizService } from '../_Services/quiz.service'; // importation de QuizS
 import { AlertType } from '../_Enum/alert-type';  // importation de AlertType Enum
 import { Quiz } from '../_Models/quiz'; // importation de Quiz le Model
 import { User } from '../_Models/user';  // importation de User le Model
+import { CustomDatePipe } from '../custom-date.pipe';
 
 
 @Component({
@@ -19,6 +20,13 @@ export class HomePage implements OnInit, OnDestroy  {
 
   // Déclarons des variables
 
+  mesSlides = {
+    slidesPerView:1,   // NOMBRE DE SLIDE PAR PAGE = 1
+    centeredSlider:true,
+    loop:true,
+    spaceBetween:10,
+    autoplay:true
+  }
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
   // un object d'utilisateur
@@ -30,8 +38,9 @@ export class HomePage implements OnInit, OnDestroy  {
   // le path de l'utilisateur
   userHost!: string;
   quizHost!: string;
+  userphoto!: string ;
+  nombreNotification!: number;
 
-  
   // Injections des dépendances
   constructor(
     private router: Router,
@@ -43,7 +52,19 @@ export class HomePage implements OnInit, OnDestroy  {
 
 
   ngOnInit() {
+    this.userphoto=this.accountService.userHost
 
+    this.loadingService.isLoading.next(true);
+    this.getUserInfo(this.accountService.loggInUsername)
+  
+    this.getUserInfo(this.accountService.loggInUsername);
+    // Appelons la fonction de la liste de tout les quiz
+    this.getQuiz();
+    
+    this.host = this.quizService.host;
+    this.userHost = this.quizService.userHost;
+    this.quizHost = this.quizService.quizHost;
+    this.loadingService.isLoading.next(false);
   }
 
 
@@ -58,6 +79,10 @@ export class HomePage implements OnInit, OnDestroy  {
       (response: User) => {
         // on affecte cet reponse à notre variable user qui represente l'utilisateur
         this.user = response;
+        // comptons le nombre de notification de l'utilisateur
+        this.nombreNotification=this.user.notificationsList.length;
+        console.log(this.user)
+        console.log(this.nombreNotification)
       },
       error => {
         // si ya erreur on affiche l'erreur dans la console
@@ -109,7 +134,7 @@ export class HomePage implements OnInit, OnDestroy  {
         // on envoie cette liste de reposonse à notre variable quizs déclaré
         this.quizs = response;
         // on affiche la liste des quizs dans la console
-        console.log("---- Liste de quiz --"+this.quizs);
+        console.log(this.quizs);
         // on stop l'effet de chargement
         this.loadingService.isLoading.next(false);
       },
@@ -161,6 +186,11 @@ export class HomePage implements OnInit, OnDestroy  {
     // on appel le path qui permet d'acceder à un seul Quiz
     this.router.navigate(['/quizdetails', quizId]);
     console.log(quizId);
+  }
+
+  //
+  goToQuiz(){
+    
   }
 
 

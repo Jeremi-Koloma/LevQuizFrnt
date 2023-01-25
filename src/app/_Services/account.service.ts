@@ -12,9 +12,12 @@ import { Observable } from 'rxjs'; // pour l'utilisation des observable
 })
 export class AccountService {
   // Déclarons des variables
-
   // Créeons un object de constante pour avoir accès aux méthodes définient dans cette classe 
+
   constant: serverConstant = new serverConstant();
+  public userHost = this.constant.userPicture;
+  public postHost = this.constant.quizPicture;
+
   // Une variable pour le host : le server backend
   public host: string = this.constant.host;
   // une variable pour le token
@@ -35,7 +38,7 @@ export class AccountService {
 
   // *****************************     LOGIN      ****************************************
   // Une fonction pour le login
-  login(user: User): Observable<HttpErrorResponse | HttpResponse<any>>  {
+  login(user: User): Observable<HttpErrorResponse | HttpResponse<any>> {
     return this.http.post<HttpErrorResponse | HttpResponse<any>>(`${this.host}/user/login`, user, { observe: 'response' });
   }
 
@@ -91,13 +94,13 @@ export class AccountService {
   getToken(): string {
     // maintenant retournons le token
     return this.token;
-   }
+  }
 
 
 
-   // *************************  VERIFIONS SI L'UTULISATEUR ARRIVE A SE CONNECTER  ********************
-   // Une pour vérifier si la connexion de l'utilisateur a réussi
-   isLoggedIn(): boolean {
+  // *************************  VERIFIONS SI L'UTULISATEUR ARRIVE A SE CONNECTER  ********************
+  // Une pour vérifier si la connexion de l'utilisateur a réussi
+  isLoggedIn(): boolean {
     // on charge son token
     this.loadToken();
     // vérifions que le token n'est pas null ou vide
@@ -132,70 +135,69 @@ export class AccountService {
   // Une fonction qui va retourner les informations sur un utilsateur
   getUserInformation(username: string): Observable<User> {
     return this.http.get<User>(`${this.host}/user/${username}`);
-}
+  }
 
 
 
-// *****************************      LISTE DE QUIZ       *******************************
-// Une fonction pour avoir la liste des Quiz
-getQuiz(): Observable<Quiz[]> {
-  return this.http.get<Quiz[]>(`${this.host}/quiz/list`);
-}
- 
-
-
-// *****************************      RECHERCHER UN UTILISATEUR       *******************************
-// Une fonction pour la la liste des utilisateurs en cas de Recherches
-searchUsers(username: string): Observable<User[]> {
-  return this.http.get<User[]>(`${this.host}/user/findByUsername/${username}`);
-}
+  // *****************************      LISTE DE QUIZ       *******************************
+  // Une fonction pour avoir la liste des Quiz
+  getQuiz(): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(`${this.host}/quiz/list`);
+  }
 
 
 
-// *****************************     GEOLOCALISATION       *******************************
-// Une fonction pour avoir la Géolocalisation de l'utlisateur
-getLocation(latitude: string, longitude: string): Observable<any> {
-  return this.http.get<any>(`${this.googleMapsAPIUrl}` + `${latitude},${longitude}&key=${
-      this.googleMapsAPIKey}`);
-    }
+  // *****************************      RECHERCHER UN UTILISATEUR       *******************************
+  // Une fonction pour la la liste des utilisateurs en cas de Recherches
+  searchUsers(username: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.host}/user/findByUsername/${username}`);
+  }
 
 
 
-// *****************************     MODIFIER UN L'UTILISATEUR   *******************************
-// Une fonction pour modifier un l'utlisateur
-updateUser(updateUser: User): Observable<User> {
-  return this.http.post<User>(`${this.host}/user/update`, updateUser);
-}
+  // *****************************     GEOLOCALISATION       *******************************
+  // Une fonction pour avoir la Géolocalisation de l'utlisateur
+  getLocation(latitude: string, longitude: string): Observable<any> {
+    return this.http.get<any>(`${this.googleMapsAPIUrl}` + `${latitude},${longitude}&key=${this.googleMapsAPIKey}`);
+  }
 
 
 
-// *****************************     CHANGER SON MOTS DE PASSE   *******************************
-// Une fonction pour changer le mots de passe de l'utilisateur
-changePassword(changePassword: PasswordChange) {
-  return this.http.post(`${this.host}/user/changePassword`, changePassword, {responseType: 'text'});
-}
+  // *****************************     MODIFIER UN L'UTILISATEUR   *******************************
+  // Une fonction pour modifier un l'utlisateur
+  updateUser(updateUser: User): Observable<User> {
+    return this.http.post<User>(`${this.host}/user/update`, updateUser);
+  }
 
 
 
-// *****************************     CHANGER SA PHOTO DE PROFIL    *******************************
-// Une fonction pour que l'utilisateur mèttre son profile à jour
-uploadeUserProfilePicture(profilePicture: File) {
-  // créeons un object javaScript
-  const fd = new FormData();
-  fd.append('image', profilePicture);
-  // Quand nous avons l'image, on l'envoi dans le server
-  return this.http
-    .post(`${this.host}/user/photo/upload`, fd, { responseType: 'text'})
-    .subscribe(
-      (response: any) => {
-        console.log(response);
-        console.log('Profile changer !. ' + response);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-}
+  // *****************************     CHANGER SON MOTS DE PASSE   *******************************
+  // Une fonction pour changer le mots de passe de l'utilisateur
+  changePassword(changePassword: PasswordChange) {
+    return this.http.post(`${this.host}/user/changePassword`, changePassword, { responseType: 'text' });
+  }
+
+
+
+  // *****************************     CHANGER SA PHOTO DE PROFIL    *******************************
+  // Une fonction pour que l'utilisateur mèttre son profile à jour
+  uploadeUserProfilePicture(profilePicture: File) {
+    // créeons un object javaScript
+    const fd = new FormData();
+    fd.append('image', profilePicture);
+    // Quand nous avons l'image, on l'envoi dans le server
+    return this.http
+      .post(`${this.host}/user/photo/upload`, fd, { responseType: 'text' })
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          console.log('Profile changer !. ' + response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
 
 
 

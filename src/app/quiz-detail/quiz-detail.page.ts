@@ -65,7 +65,7 @@ export class QuizDetailPage implements OnInit,OnDestroy {
     const resolvedQuiz: Quiz = this.route.snapshot.data['resolvedQuiz'];
     // vérifions si le quiz existe
     if (resolvedQuiz != null) {
-      console.log("--- resolvedQuiz --: " +resolvedQuiz);
+      console.log(resolvedQuiz);
       // On affecte ce resolvedQuiz à notre variable quiz
       this.quiz = resolvedQuiz;
 
@@ -89,7 +89,7 @@ export class QuizDetailPage implements OnInit,OnDestroy {
       this.accountService.getUserInformation(username).subscribe(
         (response: User) => {
           this.user = response;
-          console.log("-- user quiz ---: "+this.user);
+          console.log(this.user);
         },
         error => {
           console.log(error);
@@ -113,7 +113,7 @@ export class QuizDetailPage implements OnInit,OnDestroy {
     this.subscriptions.push(
       this.quizService.delete(quizId).subscribe(
         response => {
-          console.log('--- Quiz supprimer -- : ', response);
+          console.log(response);
           this.alertService.showAlert(
             'Quiz supprimer avec succès !',
             AlertType.SUCCESS
