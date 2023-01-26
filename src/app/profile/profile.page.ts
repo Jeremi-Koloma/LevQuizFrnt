@@ -30,6 +30,12 @@ export class ProfilePage implements OnInit, OnDestroy {
   username!: any;
   profilePictureChange!: boolean;
   profilePicture!: File;
+  userphoto!: string ;
+
+
+
+  // une variable pour nos segement
+  segId='profil';
 
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +55,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.quizHost = this.quizService.quizHost;
     this.getUserInfo(this.username);
     this.loadingService.isLoading.next(false);
+    this.userphoto=this.accountService.userHost;
   }
 
 
@@ -194,6 +201,13 @@ export class ProfilePage implements OnInit, OnDestroy {
   seeOneQuiz(quizId:any): void {
     this.router.navigate(['/post', quizId]);
     console.log(quizId);
+  }
+
+
+  
+  // Une fonction qui change de formaualire
+  segmentChanged(val:any){
+    this.segId = val.target.value;
   }
 
 

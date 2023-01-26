@@ -191,7 +191,6 @@ export class AccountService {
       .subscribe(
         (response: any) => {
           console.log(response);
-          console.log('Profile changer !. ' + response);
         },
         error => {
           console.log(error);

@@ -52,7 +52,7 @@ export class HomePage implements OnInit, OnDestroy  {
 
 
   ngOnInit() {
-    this.userphoto=this.accountService.userHost
+    this.userphoto=this.accountService.userHost;
 
     this.loadingService.isLoading.next(true);
     this.getUserInfo(this.accountService.loggInUsername)

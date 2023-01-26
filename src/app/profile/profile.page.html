@@ -1,7 +1,136 @@
 <ion-content>
-  <div class="btnBack">
-    <i class="bi bi-arrow-left-circle" routerLink="/home"></i>
+  <div class="container-fliud">
+    <div class="bgContainer px-3">
+      <div class="row align-items-center pt-4">
+        <div class="col-3 btnBack">
+          <i class="bi bi-arrow-left-circle" routerLink="/home"></i>
+        </div>
+        <div class="col-9">
+          <p class="profilTitre text-uppercase">Profil</p>
+        </div>
+      </div>
+
+      <div class="container d-flex align-items-center justify-content-center">
+        <div class="outer">
+          <img src="{{userphoto}}/{{user.id}}.png" alt="">
+          <div class="form-group">
+            <input style="display:none;" (change)="onProfilePictureSelected($event)" #fileToUpload type="file" class="form-control-file"
+            name="file" placeholder="photo" accept="image/*" required />
+            <!-- <button type="button" class="btn btn-info" (click)="fileToUpload.click()"> -->
+              <ion-icon name="camera" class="camera-icon" (click)="fileToUpload.click()"></ion-icon>
+            <!-- </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- --------------------   SEGEMENTS   ------------------------
+  ----------------------------------------------------------------------
+  -------------------------------------------------------------- -- -->
+    <ion-segment value="profil" mode="md" (ionChange)="segmentChanged($event)" class="pt-2">
+      <ion-segment-button value="profil">
+        <ion-label>Profil</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="changePassword">
+        <ion-label>Mots de passe*</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <span *ngIf="segId =='profil'">
+
+      <div class="container pt-2">
+        <form #updateProfileForm="ngForm" (ngSubmit)="onUpdateUser(updateProfileForm.value)" enctype="multipart/form-data">
+          <input type="hidden" class="form-control" name="id" ngModel="{{ user.id }}" required />
+
+          <fieldset>
+            <!-- ------------------- firstName ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group col-12">
+              <label for="firstname">Prénom</label>
+              <input ngModel="{{user.firstname}}"  type="text" name="firstname"  id="firstname" aria-describedby="firstname"/>
+            </div>
+            <!-- ------------------- lastName ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group col-12">
+              <label for="lastname">Nom de famille</label>
+              <input ngModel="{{user.lastname}}"  type="text" name="lastname"  id="lastname"/>
+            </div>
+            <!-- ------------------- UserName ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group col-12">
+              <label for="username">Nom d'utilisateur</label>
+              <input ngModel="{{user.username}}"  type="text" name="username"  id="username"/>
+            </div>
+
+
+            <!-- ------------------- Email ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group mb-1 col-12">
+              <label for="email">E-mail</label>
+              <input ngModel="{{user.email}}"  type="text" name="email"  id="email"/>
+            </div>
+
+            <!-- ------------------- Boutons S'incrire ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="col-12">
+              <button class="btn btnSave">Enregister</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </span>
+
+
+    <!-- Change Password -->
+    <span *ngIf="segId =='changePassword'">
+      
+      <div class="container pt-3">
+        <form #changePasswordForm="ngForm" (ngSubmit)="onChangePassword(changePasswordForm.value)">
+          <input type="hidden" class="form-control" name="username" placeholder="Current password" ngModel="{{ user?.username }}"
+              required />
+          <fieldset>
+            <!-- ------------------- firstName ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group mb-2 col-12">
+              <label for="currentPassword">Mots de passe actuel</label>
+              <input type="password" name="currentPassword" placeholder="Mots de passe actuel" required ngModel />
+            </div>
+            <!-- ------------------- lastName ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group mb-2 col-12">
+              <label for="newPassword">Nouveau mots de passe</label>
+              <input type="password" name="newPassword" placeholder="Nouveau mots de passe" required ngModel />
+            </div>
+            <!-- ------------------- UserName ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="form-group mb-2 col-12">
+              <label for="confirmPassword">Mots de passe confirme</label>
+              <input type="password" name="confirmPassword" placeholder="Mots de passe confirme" required ngModel />
+            </div>
+
+
+            <!-- ------------------- Boutons S'incrire ------------------------
+              ------------------------------------------------------
+          -->
+            <div class="col-12">
+              <button [disabled]="!changePasswordForm.valid" type="submit" class="btn btnSave">Enregister</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </span>
   </div>
+
+
 
 
 

@@ -8,9 +8,11 @@
     <div class="user_div">
       <div class="first_div">
         <ion-label class="welcome">Bonjour !</ion-label>
-        <ion-label class="username">Jeremi</ion-label>
+        <ion-label class="username">{{user.firstname}}</ion-label>
       </div>
-      <div class="user_back" [style.backgroundImage]="'url(../..)'"></div>
+      <div class="user_back">
+        <img src="{{userphoto}}/{{user.id}}.png" (click)="getUserProfile(user.username)">
+      </div>
     </div>
 
     <div class="content_div animated bounceInUp">
@@ -19,32 +21,32 @@
         <ion-row>
 
           <ion-col size="6" (click)="goToQuiz()">
-             <div class="col_div">
-              <p>icon</p>
-              <ion-label>Quiz</ion-label>
-             </div>
+            <div class="col_div div_question">
+              <p class="icon"><i class="bi bi-question-circle"></i></p>
+              <ion-label class="quiz_titre">Quiz</ion-label>
+            </div>
+          </ion-col>
+
+          <ion-col size="6" (click)="goToQuiz()">
+            <div class="col_div div_score">
+              <p class="icon"><i class="fa-solid fa-medal"></i></p>
+              <ion-label class="score_titre">Scores</ion-label>
+            </div>
           </ion-col>
 
           <ion-col size="6" (click)="goToQuiz()">
             <div class="col_div">
-             <p>icon</p>
-             <ion-label>Quiz</ion-label>
+              <p class="icon"><i class="fa-regular fa-clock"></i></p>
+              <ion-label class="historik_titre">Historique</ion-label>
             </div>
-         </ion-col>
+          </ion-col>
 
-         <ion-col size="6" (click)="goToQuiz()">
-          <div class="col_div">
-           <p>icon</p>
-           <ion-label>Quiz</ion-label>
-          </div>
-       </ion-col>
-
-       <ion-col size="6" (click)="goToQuiz()">
-        <div class="col_div">
-         <p class="icon">icon</p>
-         <ion-label class="quiz_titre">Quiz</ion-label>
-        </div>
-     </ion-col>
+          <ion-col size="6" (click)="goToQuiz()">
+            <div class="col_div">
+              <p class="icon"><i class="bi bi-stopwatch"></i></p>
+              <ion-label class="quiz_titre">Quiz</ion-label>
+            </div>
+          </ion-col>
 
         </ion-row>
       </ion-grid>
