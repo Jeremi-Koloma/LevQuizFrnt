@@ -1,15 +1,24 @@
 <ion-content [fullscreen]="true">
   <div class="main_content_div">
-
+  
     <ion-buttons slot="start" class="menu_btn">
-      <ion-menu-button color="light"></ion-menu-button>
+      <ion-menu-button color="light" menu="main-menu"></ion-menu-button>
     </ion-buttons>
-
+  
     <div class="user_div">
       <div class="first_div">
         <ion-label class="welcome">Bonjour !</ion-label>
         <ion-label class="username">{{user.firstname}}</ion-label>
       </div>
+
+      <div class="notification_div">
+        <ion-button fill="clear" size="small">
+          <ion-icon name="notifications"></ion-icon>
+          <ion-badge class="notif-badge text-center">{{nombreNotification}}</ion-badge>
+        </ion-button>
+      </div>
+  
+      
       <div class="user_back">
         <img src="{{userphoto}}/{{user.id}}.png" (click)="getUserProfile(user.username)">
       </div>

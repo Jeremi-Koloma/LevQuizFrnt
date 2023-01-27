@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
   },
+  {
+    path: 'ajouter-quiz',
+    loadChildren: () => import('./ajouter-quiz/ajouter-quiz.module').then( m => m.AjouterQuizPageModule)
+  },
  
  
 ];

@@ -1,0 +1,62 @@
+<ion-content>
+
+  <div class="containerImg">
+    <div class="bgImg"></div>
+    <div class="btnBack">
+      <i class="bi bi-arrow-left-circle" routerLink="/home"></i>
+    </div>
+  </div>
+
+
+  <div class="contourContenu">
+    <div class="container pt-3">
+      <div class="bgCreateSection p-2">
+        <div class="row d-flex align-items-center justify-content-center">
+          <div class="col-9 align-items-center justify-content-center">
+            <p class="titileCreate">Créer un nouveau Quiz</p>
+            <p class="txtsouTitre">Merci de cliquer sur le bouton pour ajouter un nouveu quiz</p>
+          </div>
+          <div class="col-3">
+            <div class="bouton_add d-flex align-items-center justify-content-center">
+              <ion-icon name="add-outline" class="iconAdd"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="pt-4">Liste des Quiz </h5>
+    </div>
+    <div class="container-fliud bgListeQuiz">
+      <div class="container">
+        
+        
+     <!-------------------- CARD SLIDE
+    ------------------ -->
+    <div class="container mb-2 col-12">
+
+      <ion-slides [options]="mesSlides">
+
+        <ion-slide>
+          <ion-card >
+            <img alt="Silhouette of mountains" src="../../assets/image/html-css-1.png" />
+            <ion-card-header>
+              <ion-card-title>tittre</ion-card-title>
+              <ion-card-subtitle><span class="formateurQuiz">Formateur</span> titi</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              <p>ffffffffff</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+
+      </ion-slides>
+    </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</ion-content>
