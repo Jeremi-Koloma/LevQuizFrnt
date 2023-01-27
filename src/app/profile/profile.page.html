@@ -63,7 +63,7 @@
           -->
             <div class="form-group col-12">
               <label for="username">Nom d'utilisateur</label>
-              <input ngModel="{{user.username}}"  type="text" name="username"  id="username"/>
+              <input ngModel="{{user.username}}"  type="text" name="username"  id="username" disabled/>
             </div>
 
 
@@ -92,7 +92,7 @@
       
       <div class="container pt-3">
         <form #changePasswordForm="ngForm" (ngSubmit)="onChangePassword(changePasswordForm.value)">
-          <input type="hidden" class="form-control" name="username" placeholder="Current password" ngModel="{{ user?.username }}"
+          <input type="hidden" class="form-control" name="username" placeholder="Current password" ngModel="{{ user.username }}"
               required />
           <fieldset>
             <!-- ------------------- firstName ------------------------
