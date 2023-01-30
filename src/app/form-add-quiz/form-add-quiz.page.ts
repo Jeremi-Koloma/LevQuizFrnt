@@ -33,7 +33,7 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
   userHost!: string;
   quizHost!: string;
   quizPicture!: File;
-  username!: string;
+  username!: any;
   userLoggedIn!: boolean;
   showNavbar!: boolean;
   showSuccessAlert!: boolean;
@@ -61,20 +61,15 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
     this.userHost = this.quizService.userHost;
     this.quizHost = this.quizService.quizHost;
     this.showNavbar = true;
+    if (this.accountService.isLoggedIn()) {
+      this.username = this.accountService.loggInUsername;
+      this.getUserInfo(this.username);
+      this.loadingService.isLoading.next(false);
+    } else {
+      this.showNavbar = false;
+      this.loadingService.isLoading.next(false);
+    }
     
-
-    /* ***********************
-      validation des formulaire Quiz
-    ************************* */
-    // Lorsque le component est initialiser, on utilise notre quizForm pour avoir accèss aux Groupe de FormBuilder qui est dans le constructeur;
-    this.quizForm = this.formBulder.group({
-      // Déclarons les champs ou validations qu'on souhaite avoir
-      // Le première validation est required
-      // maintenant d'éclarons les variables qui seront binder avec le formulaire avec formControlName puis ngClass dans le html au niveau des input
-      titre: ["", Validators.required],
-      description: ["", Validators.required],
-
-    });
 
   }
 
@@ -167,7 +162,7 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
      Une fonction qui sera appélér ajouter un nouveau quiz
      Qui va prendre un quiz en paramètre
    ************************* */
-  onNewPost(quiz: Quiz): void {
+    onNewQuiz(quiz: Quiz): void {
     // On mets le chargement en true
     this.loadingService.isLoading.next(true);
        // On l'ajout dans la liste de subscriptions 
@@ -178,8 +173,10 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
         (response: Quiz) => {
           // on affiche la reponse
           console.log(response);
-
-          
+          let quizId: number = response.id;
+          this.savePicture(this.quizPicture);
+          this.loadingService.isLoading.next(false);
+          this.newQuizURL = `${this.clientHost}/quiz/${quizId}`;
         },
         error => {
           console.log(error);
@@ -198,7 +195,7 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
       this.quizService.uploadQuizPicture(picture).subscribe(
         response => {
           if (response.type === HttpEventType.UploadProgress) {
-            //this.progress = (response.loaded / response.total) * 100;
+            this.progress = (response.loaded / response.total!) * 100;
           } else {
             console.log(response);
             // On appel la function OnNewQuizSuccess
@@ -240,28 +237,6 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
   }
 
 
-
-
-
-
-
-
-  // Boutons qui de validation login
-  onSubmitQuiz() {
-    // changeons la variable de submitted à true;
-    this.submitted = true
-    // Vérions si les champs sont invalid
-    if (this.quizForm.invalid) {
-      return
-    }
-    else {
-      // sinon si tous les champs sont remplis,
-      alert("Succes !")
-      // affectons le formulaire à notre fonction onNewPost
-      this.onNewPost(this.quizForm.value)
-      console.log(this.onNewPost)
-    }
-  }
 
 
 

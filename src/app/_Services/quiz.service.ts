@@ -48,7 +48,7 @@ export class QuizService {
     // déclarons un object javascript
     const fd = new FormData();
     fd.append('image', recipePicture, recipePicture.name);
-    return this.http.post(`${this.host}/quiz/photo/upload`, fd, {
+    return this.http.post(`${this.host}/quiz/photoQuiz/upload`, fd, {
       responseType: 'text',
       reportProgress: true,
       observe: 'events'});
