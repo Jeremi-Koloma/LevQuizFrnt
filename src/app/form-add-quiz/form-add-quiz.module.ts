@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -12,6 +12,7 @@ import { FormAddQuizPage } from './form-add-quiz.page';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule, // Module pour les formulaire reactive
     IonicModule,
     FormAddQuizPageRoutingModule
   ],

@@ -9,29 +9,58 @@
     <h5 class="topTextTilePage">Ajouter un nouveau Quiz</h5>
   </div>
 
+  <div *ngIf="quizFail" class="container" style="margin-top: 10px;">
+    <!-- <h1 class="mt-4 mb-3"></h1> -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">OOPSS!! <i class="fa fa-warning" aria-hidden="true"></i></h4>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p>Some error occured. Please try again.</p>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container containerForm pt-3">
-    <form>
-      <input type="hidden" class="form-control" name="id" ngModel required />
+    <form [formGroup]="quizForm" (ngSubmit)="onSubmitQuiz()" enctype="multipart/form-data">
+      
 
       <fieldset>
+        <!-- --input type="hidden" class="form-control" name="id" [(ngModel)]="username" required  /-->
         <!-- ------------------- Titre ------------------------
           ------------------------------------------------------
       -->
         <div class="form-group col-12 mb-2">
-          <label for="title">Titre quiz</label>
-          <input type="text" name="title" id="title" />
+          <label for="titre">Titre quiz</label>
+          <input type="text" formControlName="titre"
+            [ngClass]="{'is-invalid': submitted && quizForm.controls['titre'].errors}" name="titre" id="titre"
+            placeholder="votre titre ici..." />
+          <div *ngIf="submitted && quizForm.controls['titre'].errors" class="text-danger">
+            <div *ngIf="submitted && quizForm.controls['titre'].errors['required']">
+              Veillez remplir ce champs !
+            </div>
+          </div>
         </div>
         <!-- ------------------- Description Quiz ------------------------
           ------------------------------------------------------
       -->
         <div class="form-group col-12">
-          <label for="descriptionQuiz">Description</label>
-          <textarea name="descriptionQuiz" id="" cols="30" rows="10"></textarea>
+          <label for="description">Description</label>
+          <textarea formControlName="description"
+          [ngClass]="{'is-invalid': submitted && quizForm.controls['description'].errors}" name="description" id="description" cols="30" rows="10" placeholder="votre description ici..."></textarea>
+          <div *ngIf="submitted && quizForm.controls['description'].errors" class="text-danger">
+            <div *ngIf="submitted && quizForm.controls['description'].errors['required']">
+              Veillez remplir ce champs !
+            </div>
+          </div>
         </div>
 
         <div class="col-12 mt-2">
-          <button class="btn btnAjouter">Ajouter</button>
+          <button class="btn btnAjouter" [disabled]="!quizForm.valid">Ajouter</button>
         </div>
         <div class="col-12 mt-2">
           <button class="btn btnAjouterQuest" (click)="goToQuestion()">Attribuer des questions</button>
