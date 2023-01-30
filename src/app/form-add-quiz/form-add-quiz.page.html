@@ -1,0 +1,46 @@
+<ion-content>
+
+  <div class="container-fluid topbg">
+
+    <div class="btnBack">
+      <i class="bi bi-arrow-left-circle" routerLink="/form-add-quiz"></i>
+    </div>
+
+    <h5 class="topTextTilePage">Ajouter un nouveau Quiz</h5>
+  </div>
+
+
+  <div class="container containerForm pt-3">
+    <form>
+      <input type="hidden" class="form-control" name="id" ngModel required />
+
+      <fieldset>
+        <!-- ------------------- Titre ------------------------
+          ------------------------------------------------------
+      -->
+        <div class="form-group col-12 mb-2">
+          <label for="title">Titre quiz</label>
+          <input type="text" name="title" id="title" />
+        </div>
+        <!-- ------------------- Description Quiz ------------------------
+          ------------------------------------------------------
+      -->
+        <div class="form-group col-12">
+          <label for="descriptionQuiz">Description</label>
+          <textarea name="descriptionQuiz" id="" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="col-12 mt-2">
+          <button class="btn btnAjouter">Ajouter</button>
+        </div>
+        <div class="col-12 mt-2">
+          <button class="btn btnAjouterQuest" (click)="goToQuestion()">Attribuer des questions</button>
+        </div>
+
+
+      </fieldset>
+    </form>
+
+  </div>
+
+</ion-content>

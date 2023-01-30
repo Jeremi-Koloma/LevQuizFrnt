@@ -1,0 +1,92 @@
+<ion-content>
+
+
+  <div class="container-fluid topbg">
+
+    <div class="btnBack">
+      <i class="bi bi-arrow-left-circle" routerLink="/form-add-quiz"></i>
+    </div>
+
+    <h5 class="topTextTilePage">Ajouter des questions</h5>
+  </div>
+
+
+  <div class="container containerForm pt-3">
+    <form>
+      <input type="hidden" class="form-control" name="id" ngModel required />
+
+      <fieldset>
+        <!-- ------------------- Titre ------------------------
+          ------------------------------------------------------
+      -->
+        <div class="form-group col-12 mb-1">
+          <label for="title">Selectionner le quiz</label>
+          <input type="text" name="title" id="title" />
+        </div>
+
+        <!-- ------------------- QUESTION ------------------------
+          ------------------------------------------------------
+      -->
+        <div class="form-group col-12 mb-1">
+          <label for="question">Question</label>
+          <input type="text" name="question" id="question" />
+        </div>
+
+        <!-- ------------------- POINTS ------------------------
+              ------------------------------------------------------
+            -->
+        <div class="form-group col-12 mb-1">
+          <label for="points">Points de ( 1 à ...)</label>
+          <input type="number" name="points" id="points" min="1" step="1" />
+        </div>
+
+        <!-- ------------------- DUREE ------------------------
+              ------------------------------------------------------
+            -->
+        <div class="form-group col-12 mb-2">
+          <label for="duree">Durée par seconde </label>
+          <input type="number" name="duree" id="duree" min="1" step="1" />
+        </div>
+
+
+
+
+
+        <div class="col-12 mb-2">
+          <button class="btn btnAjouter">Ajouter</button>
+        </div>
+
+        <div class="col-12">
+          <button class="btn btnAjouterReponse" (click)="goToResponse()">Attribuer des reponses</button>
+        </div>
+
+
+      </fieldset>
+    </form>
+
+    <!--div class="checkboxx">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+          checked>
+        <label class="form-check-label" for="exampleRadios1">
+            Default radio
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+      </div>
+    </div-->
+
+  </div>
+
+
+
+
+
+
+
+
+</ion-content>

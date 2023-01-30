@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajouter-quiz',
@@ -13,13 +14,18 @@ export class AjouterQuizPage implements OnInit {
     slidesPerView:1,   // NOMBRE DE SLIDE PAR PAGE = 1
     centeredSlider:true,
     loop:true,
-    spaceBetween:10,
+    spaceBetween:5,
     autoplay:true
   }
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
+  }
+
+
+  goToAddQuizForm(){
+    this.router.navigate(['form-add-quiz'])
   }
 
 }

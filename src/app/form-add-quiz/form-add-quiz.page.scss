@@ -1,0 +1,91 @@
+ion-content{
+    overflow: hidden;
+    --background: #fff;
+}
+
+.topbg{
+    background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%);
+    height: 45vh;
+    z-index: 10;
+}
+
+.topTextTilePage{
+    color: #fff;
+    position: relative;
+    text-align: center;
+    font-weight: 600;
+    top: 35vh;
+    font-size: 1.2rem;
+}
+
+.containerForm{
+    background: #fff;
+}
+
+  /* ************************   BOUTON BACK     *****************
+******************************************************** */
+.btnBack{
+    z-index: 100;
+    color: #fff;
+    position: absolute;
+    top: 40px;
+    font-size: 1.5rem;
+    margin-left: 8px;
+ }
+ 
+
+
+div label{
+    color: #505358;
+    font-size: .9rem;
+}
+
+ div input{
+    width: 100%;
+    height: 100%;
+    font-size: .9rem;
+    border: 2px solid #e7ebee;
+    border-radius: 8px;
+    padding: .4rem;
+    outline: none;
+    background: none;
+    color: #171c25;
+ }
+
+ div textarea {
+    width: 100%;
+    border: 2px solid #e7ebee;
+    padding: .4rem;
+    height: 100px;
+    resize: none;
+    font-size: .9rem;
+    color: #171c25;
+    outline: none;
+    border-radius: 8px;
+    background: transparent;
+ }
+
+ div input:focus {
+    border-color: #0C85F8;
+ }
+
+ div textarea:focus{
+    border-color: #0C85F8;
+    border: 2px solid #0C85F8;
+ }
+
+ .btnAjouter{
+    background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%);
+    width: 100%;
+    color: #fff;
+    font-weight: 500;
+ }
+
+ .btnAjouterQuest{
+    width: 100%;
+    color: #505358;
+    border: 1px solid rgb(117, 116, 116);
+    font-weight: 500;
+ }
+
+

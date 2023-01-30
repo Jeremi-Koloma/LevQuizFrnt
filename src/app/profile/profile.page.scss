@@ -1,19 +1,22 @@
   /* ************************   BOUTON BACK     *****************
 ******************************************************** */
 
- 
+
  div .bi-arrow-left-circle{
     color:#fff;
     font-size: 1.5rem;
  }
 
  .profilTitre{
-   font-size: 2rem;
+   font-size: 1.7rem;
    color: #fff;
+   font-weight: 600;
+   margin-left: 15px;
  }
 
  .bgContainer{
-   background: #274F8A;
+   //background: #274F8A;
+   background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%);
  }
 
  div img{

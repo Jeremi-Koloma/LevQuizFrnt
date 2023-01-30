@@ -42,7 +42,15 @@ const routes: Routes = [
   },
   {
     path: 'ajouter-quiz',
-    loadChildren: () => import('./ajouter-quiz/ajouter-quiz.module').then( m => m.AjouterQuizPageModule)
+    loadChildren: () => import('./ajouter-quiz/ajouter-quiz.module').then( m => m.AjouterQuizPageModule), canActivate:[AuthenticationGuard]   // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
+  },
+  {
+    path: 'form-add-quiz',
+    loadChildren: () => import('./form-add-quiz/form-add-quiz.module').then( m => m.FormAddQuizPageModule), canActivate:[AuthenticationGuard]   // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
+  },
+  {
+    path: 'form-add-question',
+    loadChildren: () => import('./form-add-question/form-add-question.module').then( m => m.FormAddQuestionPageModule) , canActivate:[AuthenticationGuard]   // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
   },
  
  

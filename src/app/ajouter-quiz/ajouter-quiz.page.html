@@ -10,14 +10,14 @@
 
   <div class="contourContenu">
     <div class="container pt-3">
-      <div class="bgCreateSection p-2">
+      <div class="bgCreateSection p-3">
         <div class="row d-flex align-items-center justify-content-center">
           <div class="col-9 align-items-center justify-content-center">
             <p class="titileCreate">Créer un nouveau Quiz</p>
             <p class="txtsouTitre">Merci de cliquer sur le bouton pour ajouter un nouveu quiz</p>
           </div>
           <div class="col-3">
-            <div class="bouton_add d-flex align-items-center justify-content-center">
+            <div class="bouton_add d-flex align-items-center justify-content-center" (click)="goToAddQuizForm()">
               <ion-icon name="add-outline" class="iconAdd"></ion-icon>
             </div>
           </div>
@@ -28,33 +28,99 @@
     </div>
     <div class="container-fliud bgListeQuiz">
       <div class="container">
-        
-        
-     <!-------------------- CARD SLIDE
+        <!-------------------- CARD SLIDE
     ------------------ -->
-    <div class="container mb-2 col-12">
+        <div class="container mb-2 col-12">
 
-      <ion-slides [options]="mesSlides">
+          <ion-slides [options]="mesSlides">
 
-        <ion-slide>
-          <ion-card >
-            <img alt="Silhouette of mountains" src="../../assets/image/html-css-1.png" />
-            <ion-card-header>
-              <ion-card-title>tittre</ion-card-title>
-              <ion-card-subtitle><span class="formateurQuiz">Formateur</span> titi</ion-card-subtitle>
-            </ion-card-header>
 
-            <ion-card-content>
-              <p>ffffffffff</p>
-            </ion-card-content>
-          </ion-card>
-        </ion-slide>
+            <ion-slide>
+              <ion-card>
+                <img alt="Silhouette of mountains" src="../../assets/image/html-css-1.png" />
+                <ion-card-header>
+                  <ion-card-title>Quiz HTML</ion-card-title>
+                  <ion-card-subtitle><span class="formateurQuiz">Formateur</span> Jeremi KOLOMA</ion-card-subtitle>
+                </ion-card-header>
 
-      </ion-slides>
-    </div>
+                <ion-card-content>
+                  <p>Evaluation en html</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
 
+            <ion-slide>
+              <ion-card>
+                <img alt="Silhouette of mountains" src="../../assets/image/HTML-Tutorials.png" />
+                <ion-card-header>
+                  <ion-card-title>Quiz CSS</ion-card-title>
+                  <ion-card-subtitle><span class="formateurQuiz">Formateur</span>Hawa COULIBALY</ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content>
+                  <p>Evaluation en css</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+
+
+          </ion-slides>
+        </div>
       </div>
     </div>
+
+    <div class="container">
+      <h5 class="pt-3">Vos propre Quiz </h5>
+      <div class="row">
+        <div class="col-6">
+          <div class="contenu">
+            <div class="image">
+              <img src="../../assets/image/HTML-Tutorials.png" alt="">
+            </div>
+            <p class="titleOwnerQuiz">Quiz css</p>
+            <p class="descriptiponOwnerQuiz">Je suis une desciption d'un quiz</p>
+            <div class="updateContour mx-3">
+              <div class="row">
+                <div class="col-6">
+                  <div class="modifier d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="supprimer d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="contenu">
+            <div class="image">
+              <img src="../../assets/image/HTML-Tutorials.png" alt="">
+            </div>
+            <p class="titleOwnerQuiz">Quiz css</p>
+            <p class="descriptiponOwnerQuiz">Je suis une desciption d'un quiz</p>
+            <div class="updateContour mx-3">
+              <div class="row">
+                <div class="col-6">
+                  <div class="modifier d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="supprimer d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </div>
 

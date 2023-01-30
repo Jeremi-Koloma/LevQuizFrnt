@@ -18,15 +18,6 @@ import { CustomDatePipe } from '../custom-date.pipe';
 })
 export class HomePage implements OnInit, OnDestroy  {
 
-  // Déclarons des variables
-
-  mesSlides = {
-    slidesPerView:1,   // NOMBRE DE SLIDE PAR PAGE = 1
-    centeredSlider:true,
-    loop:true,
-    spaceBetween:10,
-    autoplay:true
-  }
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
   // un object d'utilisateur
@@ -188,9 +179,9 @@ export class HomePage implements OnInit, OnDestroy  {
     console.log(quizId);
   }
 
-  //
+  // une méthode qui pour nous rediriger ver la page Quiz
   goToQuiz(){
-    
+    this.router.navigate(['/ajouter-quiz']);
   }
 
 

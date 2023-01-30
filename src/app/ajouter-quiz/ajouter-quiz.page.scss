@@ -4,7 +4,7 @@
 }
 
 .bgImg{
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../assets/image/bglogin.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../assets/image/image15.jpg);
     background-size: cover;
     width: 100%;
     height: 40vh;
@@ -20,7 +20,8 @@
    color: #fff;
    position: absolute;
    top: 40px;
-   margin-left: 6px;
+   font-size: 1.5rem;
+   margin-left: 16px;
 }
 
 
@@ -48,7 +49,7 @@
 
 .txtsouTitre{
     color: #414141;
-    font-size: .8rem;
+    font-size: .6rem;
     margin-bottom: 3px;
 }
 
@@ -67,8 +68,60 @@
 h5{
     color: #274F8A;
     font-weight: 600;
+    font-size: 1.2rem;
 }
 
 .bgListeQuiz{
     background: #ECECEC;
 }
+
+
+
+/* ************** Propre Quiz ***** */
+
+.contenu{
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.titleOwnerQuiz{
+    color: #414141;
+    font-size: .9rem;
+    margin-left: 9px;
+    font-weight: 600;
+    position: relative;
+    top: 6px;
+}
+
+
+.descriptiponOwnerQuiz{
+    color: #414141;
+    font-size: .7rem;
+    margin-left: 9px;
+    position: relative;
+    top: -10px;
+    margin-bottom: 0;
+}
+
+.updateContour{
+    padding-bottom: 10px;
+}
+
+.modifier {
+    background: #274F8A;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.supprimer {
+    background: #E24C4C;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+
+.fa-pen-to-square,
+.fa-trash-can{
+    color: #fff;
+}
+
