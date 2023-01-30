@@ -12,61 +12,61 @@
 
 
   <div class="container containerForm pt-3">
-    <form>
-      <input type="hidden" class="form-control" name="id" ngModel required />
+    <form #questionForm="ngForm" (ngSubmit)="onNewQuestion()">
+      <!-- <input type="hidden" class="form-control" name="id" ngModel required /> -->
 
-      <fieldset>
-        <!-- ------------------- Titre ------------------------
+      <!-- ------------------- Titre ------------------------
           ------------------------------------------------------
       -->
-        <div class="form-group col-12 mb-1">
-          <label for="title">Selectionner le quiz</label>
-          <select class="form-select" aria-label="Selectionner le quiz">
-            <option selected>Selectionner le quiz</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
+      <div class="form-group col-12 mb-1">
+        <label for="title">Selectionner le quiz</label>
+        <select class="form-select" aria-label="Selectionner le quiz" [(ngModel)]="quizId" name="quizId">
+          <option selected>Selectionner le quiz</option>
+          <option *ngFor="let quiz of quizs">{{quiz.titre}}</option>
+        </select>
+      </div>
 
-        <!-- ------------------- QUESTION ------------------------
+      <!-- ------------------- QUESTION ------------------------
           ------------------------------------------------------
       -->
-        <div class="form-group col-12 mb-1">
-          <label for="question">Question</label>
-          <input type="text" name="question" id="question" />
-        </div>
+      <div class="form-group col-12 mb-1">
+        <label for="question">Question</label>
+        <input [(ngModel)]="question.question" type="text" name="question" id="question"
+          placeholder="question titre ici..." required />
+      </div>
 
-        <!-- ------------------- POINTS ------------------------
+      <!-- ------------------- POINTS ------------------------
               ------------------------------------------------------
             -->
-        <div class="form-group col-12 mb-1">
-          <label for="points">Points de ( 1 à ...)</label>
-          <input type="number" name="points" id="points" min="1" step="1" />
-        </div>
+      <div class="form-group col-12 mb-1">
+        <label for="points">Points de ( 1 à ...)</label>
+        <input [(ngModel)]="question.points" type="number" name="points" id="points" min="1" step="1" id="points"
+          placeholder="100" required />
+      </div>
 
-        <!-- ------------------- DUREE ------------------------
+      <!-- ------------------- DUREE ------------------------
               ------------------------------------------------------
             -->
-        <div class="form-group col-12 mb-2">
-          <label for="duree">Durée par seconde </label>
-          <input type="number" name="duree" id="duree" min="1" step="1" />
-        </div>
+      <div class="form-group col-12 mb-2">
+        <label for="duree">Durée par seconde </label>
+        <input [(ngModel)]="question.duree" type="number" name="duree" id="duree" min="1" step="1" class="form-control"
+          id="duree" placeholder="15" required />
+      </div>
 
 
 
 
 
-        <div class="col-12 mb-2">
-          <button class="btn btnAjouter">Ajouter</button>
-        </div>
+      <div class="col-12 mb-2">
+        <button type="submit" class="btn btnAjouter">Ajouter</button>
+      </div>
 
-        <div class="col-12">
-          <button class="btn btnAjouterReponse" (click)="goToResponse()">Attribuer des reponses</button>
-        </div>
+      <div class="col-12">
+        <button class="btn btnAjouterReponse">Attribuer des reponses</button>
+      </div>
 
 
-      </fieldset>
+
     </form>
 
     <!--div class="checkboxx">

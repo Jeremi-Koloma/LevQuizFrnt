@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { AjouterQuizPageRoutingModule } from './ajouter-quiz-routing.module';
 
 import { AjouterQuizPage } from './ajouter-quiz.page';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    NgxPaginationModule, // pour la pagination
     IonicModule,
     AjouterQuizPageRoutingModule
   ],

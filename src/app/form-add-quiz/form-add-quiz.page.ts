@@ -19,7 +19,7 @@ import { Quiz } from '../_Models/quiz';
   templateUrl: './form-add-quiz.page.html',
   styleUrls: ['./form-add-quiz.page.scss'],
 })
-export class FormAddQuizPage implements OnInit,OnDestroy {
+export class FormAddQuizPage implements OnInit, OnDestroy {
 
   // une variable pour la validation de type FormGroup
   quizForm!: FormGroup
@@ -45,13 +45,12 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
 
 
   constructor(
-     private router: Router,
-     private formBulder: FormBuilder,
-     private alertService: AlertService,
-     private accountService: AccountService,
-     private quizService: QuizService,
-     private loadingService: LoadingService
-     ) { }
+    private router: Router,
+    private alertService: AlertService,
+    private accountService: AccountService,
+    private quizService: QuizService,
+    private loadingService: LoadingService
+  ) { }
 
   ngOnInit() {
 
@@ -69,71 +68,71 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
       this.showNavbar = false;
       this.loadingService.isLoading.next(false);
     }
-    
+
 
   }
 
 
 
-   /* *********************** USER INFO
-     Une fonction pour recuperer les information de l'utilisateur
-     Qui va prendre un username en paramètre
-   ************************* */
+  /* *********************** USER INFO
+    Une fonction pour recuperer les information de l'utilisateur
+    Qui va prendre un username en paramètre
+  ************************* */
   getUserInfo(username: string): void {
     // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
       // on envoie le username à méthode getUserInformation dans notre serviceAccount
       this.accountService.getUserInformation(username).subscribe(
-         // Quand on trouve une reponse de type User
-      (response: User) => {
-        // on affecte cet reponse à notre variable user qui represente l'utilisateur
-        this.user = response;
-        // On change maintenant userLoggedIn à true sa connexion
-        this.userLoggedIn = true;
-        this.showNavbar = false;
-      },
-      error => {
-        console.log(error);
-        this.userLoggedIn = false;
-      }
-    ));
+        // Quand on trouve une reponse de type User
+        (response: User) => {
+          // on affecte cet reponse à notre variable user qui represente l'utilisateur
+          this.user = response;
+          // On change maintenant userLoggedIn à true sa connexion
+          this.userLoggedIn = true;
+          this.showNavbar = false;
+        },
+        error => {
+          console.log(error);
+          this.userLoggedIn = false;
+        }
+      ));
   }
 
 
 
-   /* *********************** SEARCH USER
-     Une fonction qui sera appélér quand tu click sur le bouton search
-     pour rechercher un l'utilisateur
-     Qui va prendre un event en paramètre qui correspond à ce que vous tapez
-   ************************* */
-  onSearchUsers(event:any) {
+  /* *********************** SEARCH USER
+    Une fonction qui sera appélér quand tu click sur le bouton search
+    pour rechercher un l'utilisateur
+    Qui va prendre un event en paramètre qui correspond à ce que vous tapez
+  ************************* */
+  onSearchUsers(event: any) {
     console.log(event);
     // on recupère le username dans cet event 
     const username = event;
-     // On l'ajout dans la liste de subscriptions
+    // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
       // on envoie la recherche à méthode searchUsers dans notre serviceAccount
       this.accountService.searchUsers(username).subscribe(
         // quand on a une reponse, ça retourne une liste d'utilisateur avec ce nom
-      (response: User[]) => {
-        console.log(response);
-        // on affecte cette reponse à notre variable searchedUser déclarer
-        this.searchedUser = response;
-      },
-      error => {
-        console.log(error);
-        return this.searchedUser = [];
-      }
-    ));
+        (response: User[]) => {
+          console.log(response);
+          // on affecte cette reponse à notre variable searchedUser déclarer
+          this.searchedUser = response;
+        },
+        error => {
+          console.log(error);
+          return this.searchedUser = [];
+        }
+      ));
   }
 
-  
-  
-   /* *********************** SEARCH USER PROFIL
-     Une fonction qui sera appélér quand tu click sur le profil d'un user lors de search
-     pour rechercher un l'utilisateur
-     Qui va prendre un event en paramètre qui correspond à ce que vous tapez
-   ************************* */
+
+
+  /* *********************** SEARCH USER PROFIL
+    Une fonction qui sera appélér quand tu click sur le profil d'un user lors de search
+    pour rechercher un l'utilisateur
+    Qui va prendre un event en paramètre qui correspond à ce que vous tapez
+  ************************* */
   getSearchUserProfile(username: string): void {
     const element: HTMLElement = document.getElementById(
       'closeSearchModal'
@@ -158,14 +157,14 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
 
 
 
-   /* *********************** AJOUTER UN NOUVEAU QUIZ
-     Une fonction qui sera appélér ajouter un nouveau quiz
-     Qui va prendre un quiz en paramètre
-   ************************* */
-    onNewQuiz(quiz: Quiz): void {
+  /* *********************** AJOUTER UN NOUVEAU QUIZ
+    Une fonction qui sera appélér ajouter un nouveau quiz
+    Qui va prendre un quiz en paramètre
+  ************************* */
+  onNewQuiz(quiz: Quiz): void {
     // On mets le chargement en true
     this.loadingService.isLoading.next(true);
-       // On l'ajout dans la liste de subscriptions 
+    // On l'ajout dans la liste de subscriptions 
     this.subscriptions.push(
       // on appel la méthode save dans notre quizService pour enregistrer le quiz
       this.quizService.save(quiz).subscribe(
@@ -173,15 +172,24 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
         (response: Quiz) => {
           // on affiche la reponse
           console.log(response);
-          let quizId: number = response.id;
+
+          let id: number = response.id;
           this.savePicture(this.quizPicture);
           this.loadingService.isLoading.next(false);
-          this.newQuizURL = `${this.clientHost}/quiz/${quizId}`;
+          this.newQuizURL = `${this.clientHost}/quiz/${id}`;
         },
         error => {
           console.log(error);
-          this.quizFail = true;
-          this.loadingService.isLoading.next(false);
+          // vérifions si le message d'erreur correspond à usernameExist du Backend
+          const errorMsg = error.error;
+          // vérifions si le message d'erreur correspond à QuizExist du Backend
+          if (errorMsg === 'QuizExist') {
+            this.alertService.showAlert(
+              "Oups ! Cet Quiz existe déjà !",
+              AlertType.DANGER
+            );
+            this.loadingService.isLoading.next(false);
+          }
         }
       )
     );
@@ -210,7 +218,7 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
   }
 
 
-  OnNewQuizSuccess(second: number): void{
+  OnNewQuizSuccess(second: number): void {
     this.showSuccessAlert = true;
     setTimeout(() => {
       this.showSuccessAlert = false;
@@ -220,9 +228,9 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
 
 
 
-     /* *********************** LOGOUT
-     Une fonction qui sera appélér la Déconnexion
-   ************************* */
+  /* *********************** LOGOUT
+  Une fonction qui sera appélér la Déconnexion
+************************* */
   logOut(): void {
     this.loadingService.isLoading.next(true);
     // On appel la méthode logout() dans notre accountService qui va supprimer le token dans le client
@@ -236,13 +244,6 @@ export class FormAddQuizPage implements OnInit,OnDestroy {
     );
   }
 
-
-
-
-
-  goToQuestion() {
-    this.router.navigate(['form-add-question'])
-  }
 
 
   ngOnDestroy() {

@@ -35,30 +35,17 @@
           <ion-slides [options]="mesSlides">
 
 
-            <ion-slide>
+            <ion-slide *ngFor="let quiz of quizs">
               <ion-card>
                 <img alt="Silhouette of mountains" src="../../assets/image/html-css-1.png" />
                 <ion-card-header>
-                  <ion-card-title>Quiz HTML</ion-card-title>
-                  <ion-card-subtitle><span class="formateurQuiz">Formateur</span> Jeremi KOLOMA</ion-card-subtitle>
+                  <ion-card-title>{{quiz.titre}}</ion-card-title>
+                  <ion-card-subtitle><span class="formateurQuiz">Formateur</span> {{quiz.username}}</ion-card-subtitle>
                 </ion-card-header>
 
                 <ion-card-content>
-                  <p>Evaluation en html</p>
-                </ion-card-content>
-              </ion-card>
-            </ion-slide>
-
-            <ion-slide>
-              <ion-card>
-                <img alt="Silhouette of mountains" src="../../assets/image/HTML-Tutorials.png" />
-                <ion-card-header>
-                  <ion-card-title>Quiz CSS</ion-card-title>
-                  <ion-card-subtitle><span class="formateurQuiz">Formateur</span>Hawa COULIBALY</ion-card-subtitle>
-                </ion-card-header>
-
-                <ion-card-content>
-                  <p>Evaluation en css</p>
+                  <p>{{quiz.quizDate|  date:"dd/MM/yyyy"}} </p>
+                  <p>{{quiz.description}}</p>
                 </ion-card-content>
               </ion-card>
             </ion-slide>
@@ -72,36 +59,13 @@
     <div class="container">
       <h5 class="pt-3">Vos propre Quiz </h5>
       <div class="row">
-        <div class="col-6">
-          <div class="contenu">
+        <div class="col-6" *ngFor="let quiz of quizListe | paginate: {itemsPerPage:4, currentPage:p}">
+          <div class="contenu mb-4">
             <div class="image">
               <img src="../../assets/image/HTML-Tutorials.png" alt="">
             </div>
-            <p class="titleOwnerQuiz">Quiz css</p>
-            <p class="descriptiponOwnerQuiz">Je suis une desciption d'un quiz</p>
-            <div class="updateContour mx-3">
-              <div class="row">
-                <div class="col-6">
-                  <div class="modifier d-flex align-items-center justify-content-center">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="supprimer d-flex align-items-center justify-content-center">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="contenu">
-            <div class="image">
-              <img src="../../assets/image/HTML-Tutorials.png" alt="">
-            </div>
-            <p class="titleOwnerQuiz">Quiz css</p>
-            <p class="descriptiponOwnerQuiz">Je suis une desciption d'un quiz</p>
+            <p class="titleOwnerQuiz">{{quiz.titre}}</p>
+            <p class="descriptiponOwnerQuiz">{{quiz.description}}</p>
             <div class="updateContour mx-3">
               <div class="row">
                 <div class="col-6">
@@ -119,6 +83,7 @@
           </div>
         </div>
       </div>
+      <pagination-controls (pageChange)="p = $event" ></pagination-controls>
     </div>
 
 

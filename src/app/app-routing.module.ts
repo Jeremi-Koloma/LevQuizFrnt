@@ -51,7 +51,11 @@ const routes: Routes = [
   {
     path: 'form-add-question',
     loadChildren: () => import('./form-add-question/form-add-question.module').then( m => m.FormAddQuestionPageModule) , canActivate:[AuthenticationGuard]   // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
+  },  {
+    path: 'game-quiz',
+    loadChildren: () => import('./game-quiz/game-quiz.module').then( m => m.GameQuizPageModule)
   },
+
  
  
 ];

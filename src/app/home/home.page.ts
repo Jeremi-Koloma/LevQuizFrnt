@@ -16,7 +16,7 @@ import { CustomDatePipe } from '../custom-date.pipe';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy  {
+export class HomePage implements OnInit, OnDestroy {
 
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
@@ -29,7 +29,7 @@ export class HomePage implements OnInit, OnDestroy  {
   // le path de l'utilisateur
   userHost!: string;
   quizHost!: string;
-  userphoto!: string ;
+  userphoto!: string;
   nombreNotification!: number;
 
   // Injections des dépendances
@@ -39,19 +39,15 @@ export class HomePage implements OnInit, OnDestroy  {
     private quizService: QuizService,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
 
   ngOnInit() {
-    this.userphoto=this.accountService.userHost;
-
+    this.userphoto = this.accountService.userHost;
     this.loadingService.isLoading.next(true);
     this.getUserInfo(this.accountService.loggInUsername)
-  
-    this.getUserInfo(this.accountService.loggInUsername);
     // Appelons la fonction de la liste de tout les quiz
     this.getQuiz();
-    
     this.host = this.quizService.host;
     this.userHost = this.quizService.userHost;
     this.quizHost = this.quizService.quizHost;
@@ -67,24 +63,24 @@ export class HomePage implements OnInit, OnDestroy  {
       // on envoie l'utilisateur à méthode getUserInformation dans notre serviceAccount
       this.accountService.getUserInformation(username).subscribe(
         // on retourne une reponse de type User
-      (response: User) => {
-        // on affecte cet reponse à notre variable user qui represente l'utilisateur
-        this.user = response;
-        // comptons le nombre de notification de l'utilisateur
-        this.nombreNotification=this.user.notificationsList.length;
-        console.log(this.user)
-        console.log(this.nombreNotification)
-      },
-      error => {
-        // si ya erreur on affiche l'erreur dans la console
-        console.log(error);
-        //this.user = null;
-        // on appel la fonction logOut() pour déconnecter l'utilisateur
-        this.logOut();
-        // et on le redirige vers la page de connexion
-        this.router.navigateByUrl('/login');
-      }
-    ));
+        (response: User) => {
+          // on affecte cet reponse à notre variable user qui represente l'utilisateur
+          this.user = response;
+          // comptons le nombre de notification de l'utilisateur
+          this.nombreNotification = this.user.notificationsList.length;
+          console.log(this.user)
+          console.log(this.nombreNotification)
+        },
+        error => {
+          // si ya erreur on affiche l'erreur dans la console
+          console.log(error);
+          //this.user = null;
+          // on appel la fonction logOut() pour déconnecter l'utilisateur
+          this.logOut();
+          // et on le redirige vers la page de connexion
+          this.router.navigateByUrl('/login');
+        }
+      ));
   }
 
 
@@ -109,32 +105,32 @@ export class HomePage implements OnInit, OnDestroy  {
     // on appel le path qui permettre d'acceder au profil avec le nom d'utilisateur en paramètre
     this.router.navigate(['/profile', username]);
     // On affiche l'utilisateur dans la console
-    console.log("Nom d'utilisateur : "+username);
+    console.log("Nom d'utilisateur : " + username);
   }
 
 
 
   // Une fonctions pour avoir la liste de tout les quiz
   getQuiz(): void {
-     // On l'ajout dans la liste de subscriptions
+    // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
       // on appel la méthode getQuiz dans notre serviceAccount qui va retourné la liste des Quizs
       this.accountService.getQuiz().subscribe(
         // on va avoir une liste de reponse
-      (response: Quiz[]) => {
-        // on envoie cette liste de reposonse à notre variable quizs déclaré
-        this.quizs = response;
-        // on affiche la liste des quizs dans la console
-        console.log(this.quizs);
-        // on stop l'effet de chargement
-        this.loadingService.isLoading.next(false);
-      },
-      error => {
-        // s'il ya erreur, on affiche l'erreur dans la console
-        console.log(error);
-        this.loadingService.isLoading.next(false);
-      }
-    ));
+        (response: Quiz[]) => {
+          // on envoie cette liste de reposonse à notre variable quizs déclaré
+          this.quizs = response;
+          // on affiche la liste des quizs dans la console
+          console.log(this.quizs);
+          // on stop l'effet de chargement
+          this.loadingService.isLoading.next(false);
+        },
+        error => {
+          // s'il ya erreur, on affiche l'erreur dans la console
+          console.log(error);
+          this.loadingService.isLoading.next(false);
+        }
+      ));
   }
 
 
@@ -146,48 +142,48 @@ export class HomePage implements OnInit, OnDestroy  {
       // on appel la méthode delete qui se trouve dans notre quizService pour supprimer l'utilisateur
       this.quizService.delete(quizId).subscribe(
         // on prend la reponse
-      response => {
-        // on affiche dans la reponse ou le quiz dans la console
-        console.log('Quiz supprimer: ', response);
-        // on l'affiche un message
-        this.alertService.showAlert(
-          'Quiz supprimer avec succès !.',
-          AlertType.SUCCESS
-        );
-        // on appel la fonction qui retourne la liste de toute les Quiz
-        this.getQuiz();
-      },
-      // SI ya erreur, on affiche erreur dans la console
-      error => {
-        console.log(error);
-        // Si ya erreur on affiche un message d'erreur à l'utilisateur
-        this.alertService.showAlert(
-          'Quiz non supprimer, veuillez ressayer encore !',
-          AlertType.DANGER
-        );
-        this.getQuiz();
-      }
-    ));
+        response => {
+          // on affiche dans la reponse ou le quiz dans la console
+          console.log('Quiz supprimer: ', response);
+          // on l'affiche un message
+          this.alertService.showAlert(
+            'Quiz supprimer avec succès !.',
+            AlertType.SUCCESS
+          );
+          // on appel la fonction qui retourne la liste de toute les Quiz
+          this.getQuiz();
+        },
+        // SI ya erreur, on affiche erreur dans la console
+        error => {
+          console.log(error);
+          // Si ya erreur on affiche un message d'erreur à l'utilisateur
+          this.alertService.showAlert(
+            'Quiz non supprimer, veuillez ressayer encore !',
+            AlertType.DANGER
+          );
+          this.getQuiz();
+        }
+      ));
   }
 
 
 
   // Une function pour voir un seul Quiz qui va prendre l'ID de quiz en paramètre
-  seeOneQuiz(quizId:any): void {
+  seeOneQuiz(quizId: any): void {
     // on appel le path qui permet d'acceder à un seul Quiz
     this.router.navigate(['/quizdetails', quizId]);
     console.log(quizId);
   }
 
   // une méthode qui pour nous rediriger ver la page Quiz
-  goToQuiz(){
+  goToQuiz() {
     this.router.navigate(['/ajouter-quiz']);
   }
 
 
 
   // On Desinscrit en parcourant la liste des subscriptions
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
