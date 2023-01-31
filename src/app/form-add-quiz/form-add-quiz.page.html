@@ -36,7 +36,7 @@
         <!-- ------------------- Quiz Imaga------------------------
               ------------------------------------------------------
             -->
-        <div class="form-group">
+        <div class="form-group mb-3 pt-2">
           <input style="display:none;" #fileToUpload (change)="onFileSelected($event)" type="file"
             class="form-control-file" name="photo" placeholder="photo" accept="image/*" ngModel required
             #fileInput="ngModel" />
@@ -48,9 +48,9 @@
         <!-- ------------------- Titre ------------------------
           ------------------------------------------------------
       -->
-        <div class="form-group col-12 mb-2">
+        <div class="form-group col-12 mb-3">
           <label for="titre">Titre quiz</label>
-          <input type="text" class="form-control" name="titre" id="titre" placeholder="votre titre ici..." required
+          <input type="text" name="titre" id="titre" placeholder="votre titre ici..." required
             ngModel />
         </div>
 
@@ -59,13 +59,13 @@
       -->
         <div class="form-group col-12">
           <label for="description">Description</label>
-          <textarea class="form-control" name="description" id="description" cols="30" rows="10"
+          <textarea name="description" id="description" cols="30" rows="10"
             placeholder="votre description ici..." required ngModel>
           </textarea>
 
         </div>
 
-        <div class="col-12 mt-2">
+        <div class="col-12 pt-3 mb-2">
           <button class="btn btnAjouter" [disabled]="!quizForm.valid || fileInput.invalid">Ajouter</button>
         </div>
         <div class="col-12 mt-2">

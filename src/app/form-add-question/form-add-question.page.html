@@ -1,6 +1,4 @@
 <ion-content>
-
-
   <div class="container-fluid topbg">
 
     <div class="btnBack">
@@ -52,38 +50,21 @@
         <input [(ngModel)]="question.duree" type="number" name="duree" id="duree" min="1" step="1" class="form-control"
           id="duree" placeholder="15" required />
       </div>
-
-
-
-
+      
+      <!-- ------------------- BOUTTONS ------------------------
+              ------------------------------------------------------
+            -->
 
       <div class="col-12 mb-2">
-        <button type="submit" class="btn btnAjouter">Ajouter</button>
+        <button type="submit" class="btn btnAjouter" [disabled]="!questionForm.valid">Ajouter</button>
       </div>
 
       <div class="col-12">
-        <button class="btn btnAjouterReponse">Attribuer des reponses</button>
+        <button class="btn btnAjouterReponse" routerLink="/add-reponse">Attribuer des reponses</button>
       </div>
-
-
 
     </form>
 
-    <!--div class="checkboxx">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-          checked>
-        <label class="form-check-label" for="exampleRadios1">
-            Default radio
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-      </div>
-    </div-->
 
   </div>
 

@@ -261,7 +261,7 @@ export class LoginPage implements OnInit, OnDestroy {
     }
     else {
       // sinon si tous les champs sont remplis,
-      alert("Succes !")
+      // alert("Succes !")
     }
   }
 

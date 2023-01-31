@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlertType } from '../_Enum/alert-type';
 import { Questions } from '../_Models/questions';
@@ -13,9 +13,10 @@ import { QuestionService } from '../_Services/question.service';
   templateUrl: './form-add-question.page.html',
   styleUrls: ['./form-add-question.page.scss'],
 })
-export class FormAddQuestionPage implements OnInit {
+export class FormAddQuestionPage implements OnInit , OnDestroy {
 
   private subscriptions: Subscription[] = [];
+
   question = new Questions();
 
   quizs !: Quiz[]
@@ -26,13 +27,8 @@ export class FormAddQuestionPage implements OnInit {
 
 
   host!: string;
-  userHost!: string;
-  quizHost!: string;
+ 
 
-
-  userLoggedIn!: boolean;
-
-  clientHost!: string;
 
 
   constructor(
@@ -88,22 +84,23 @@ export class FormAddQuestionPage implements OnInit {
     this.loadingService.isLoading.next(true);
     // On l'ajout dans la liste de subscriptions 
     this.subscriptions.push(
-
       // on appel la méthode save dans notre quizService pour enregistrer le quiz
-
-
-
       this.questionService.save(this.question, this.quizIdGeter).subscribe(
         // Quand on a une reponse de type Quiz
         (response: Questions) => {
           // on affiche la reponse
           console.log(response);
+          this.loadingService.isLoading.next(false);
+          this.alertService.showAlert(
+            "Question ajouter !",
+            AlertType.SUCCESS
+          );
         },
         error => {
           console.log(error);
-          // vérifions si le message d'erreur correspond à usernameExist du Backend
+          // vérifions si le message d'erreur correspond à QuestionExist du Backend
           const errorMsg = error.error;
-          // vérifions si le message d'erreur correspond à QuizExist du Backend
+          // vérifions si le message d'erreur correspond à QuestionExist du Backend
           if (errorMsg === 'QuestionExist') {
             this.alertService.showAlert(
               "Oups ! Question existe déjà !",
@@ -118,12 +115,11 @@ export class FormAddQuestionPage implements OnInit {
 
 
 
-
-
-
-
-  goToResponse() {
-
+   // On Desinscrit en parcourant la liste des subscriptions
+   ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
+
+
 
 }
