@@ -1,0 +1,71 @@
+ion-content {
+    --background: #274F8A;
+}
+
+.start_btn,
+.info_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*  *************   Commencer Quiz Buttons      *********************/
+.start_btn button {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 10px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #0C85F8;
+    background: #fff;
+    cursor: pointer;
+
+}
+
+.info_box{
+    background: #fff;
+    border-radius: 5px;
+}
+
+.info_box .info_title{
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.info_box .info_list{
+    padding: 15px 30px;
+}
+
+.info_box .info_list .info{
+    margin: 5px 0;
+    font-size: 17px;
+}
+
+.info_box .info_list .info span{
+    font-weight: 600;
+    color: #0C85F8;
+}
+
+.info_box .buttons{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 35px;
+    border-top: 1px solid lightgrey; ;
+}
+
+.info_box .buttons button{
+    margin: 0 15px;
+    height: 40px;
+    width: 100px;
+}
