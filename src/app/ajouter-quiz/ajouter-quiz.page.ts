@@ -28,12 +28,13 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   user!: User;
   username!: any;
   quizId!: number;
-
+  role!: any;
   // une variable pour le nom de serveur
   host!: string;
   // le path de l'utilisateur
   userHost!: string;
   quizHost!: string;
+  showOwnerQuiz!: any;
 
   // Déclarons des variables
   mesSlides = {
@@ -112,9 +113,34 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
         (response: User) => {
           // on affecte cet reponse à notre variable user qui represente l'utilisateur
           this.user = response;
+          console.log(this.user);
+
+          // **********  Cette boucle marche ***
+
+          // for(let i=0; i<this.user.userRoles.length; i++){
+          //   if(this.user.userRoles[i].role.name==="FORMATEUR"){
+          //     this.role=this.user.userRoles[i].role
+          //   }
+          // }
+
+          // Vérifions si l'utilisateur a un compte Formateur, il peut faire des Ajout
+          for (let i = 0; i < this.user.userRoles.length; i++) {
+            if (this.user.userRoles[i].role.name.includes("FORMATEUR")) {
+              this.showOwnerQuiz = true;
+              console.log("---- Compte Formateur ----")
+            }
+            // Sinon si l'utilisateur a un compte Apprenant, on caches les Ajouts
+            else {
+              this.showOwnerQuiz = false;
+              console.log("--- Compte Apprenant ------")
+            }
+          }
+          console.log(this.role)
           this.quizListe = response.quizList
           // on appel la fontions qui retourne la liste de tout les quiz d'un utilisateur
           this.getQuizsByUsername(this.user.username);
+
+
         },
         error => {
           console.log(error);

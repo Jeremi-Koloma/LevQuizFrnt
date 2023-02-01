@@ -133,7 +133,7 @@ export class LoginPage implements OnInit, OnDestroy {
   // Quand on appel cette fonction onLogin
   onLogin(user: User): void {
     // on appel le service loadingService le chargement de la page
-    this.loadingService.isLoading.next(true);
+    this.loadingService.presentLoading();
     // Affichons les informations de l'utilisateur dans la console
     console.log(user);
     // On l'ajout dans la liste de subscriptions
