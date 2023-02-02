@@ -19,8 +19,8 @@
       <div class="form-group col-12 mb-1">
         <label for="title">Selectionner le quiz</label>
         <select class="form-select" aria-label="Selectionner le quiz" [(ngModel)]="quizId" name="quizId">
-          <option selected>Selectionner le quiz</option>
-          <option *ngFor="let quiz of quizs">{{quiz.titre}}</option>
+          <option [ngValue]="null" >Selectionner le quiz</option>
+          <option   *ngFor="let quiz of quizs; let i = index" [ngValue]="quizselect"  [selected]="quizselect">{{quiz.titre}}</option>
         </select>
       </div>
 

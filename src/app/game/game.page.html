@@ -2,19 +2,19 @@
   <div class="content_page">
     <div class="question_box">
       <div class="question">
-        <p>{{curQuesion.title}}</p>
+        <p>titre</p>
       </div>
-      <div class="time">{{timeLeft}}</div>
+      <div class="time">15</div>
     </div>
     <div class="answers">
-      <div *ngFor="let answer of curQuesion.answer ; let n = index" class="answer" (click)="doAnswer(answer)" >
+      <div class="answer" >
         <div class="ion-activatable ion-focusable hydrated">
-          <span class="number">{{n + 1}}</span>
-          <span class="answer_text">{{answer.description}}</span>
+          <span class="number">1</span>
+          <span class="answer_text">descriptio,</span>
         </div>
       </div>
     </div>
-    <div class="info" *ngIf="prizeInfo">
+    <!-- <div class="info" *ngIf="prizeInfo">
       <button class="btn btnQuit">
         {{prizeInfo.wrongAnswer}}
       </button>
@@ -25,7 +25,7 @@
       <button class="btn quitbtn">
         {{prizeInfo.quit}}
       </button>
-    </div>
+    </div> -->
 
 
     <button class="btn btnStart">Commencer</button>

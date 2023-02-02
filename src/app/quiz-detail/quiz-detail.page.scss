@@ -1,0 +1,102 @@
+* {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;1,700&display=swap%27');
+    font-family: 'Poppins', sans-serif;
+}
+
+.bgImg {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../assets/image/image16.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 40vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* ************************   BOUTON BACK     *****************
+******************************************************** */
+.btnBack {
+    z-index: 100;
+    color: #fff;
+    position: absolute;
+    top: 40px;
+    font-size: 1.5rem;
+    margin-left: 16px;
+}
+
+
+.contourContenu {
+    width: 100%;
+    background: #fff; // #939fab
+    border-radius: 25px 25px 0px 0px;
+    position: relative;
+    z-index: 10;
+    margin-top: -83px;
+}
+
+.sectn{
+    //box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.NombrContanier {
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    //background: #27507B;
+    border-radius: 13px;
+    //color: #fff;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    background: #0C85F8;
+    border-radius: 100%;
+}
+
+.icon .bi-question-square {
+    color: #fff;
+    font-size: 1.7rem;
+}
+
+.bi-bi-person-fill-bi-person-fill-check-square {
+    color: #fff;
+    font-size: 1.7rem;
+}
+
+
+.questionCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+
+.nmbr{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #274F8A;
+    margin-bottom: 0;
+}
+.formateur{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #274F8A;
+    margin-bottom: 0;
+}
+
+.txtQuest{
+    margin-bottom: 10px;
+}
+
+
+.description{
+    color: #274F8A;
+    padding-top: 12px;
+}
+
+.txtDescription{
+    font-size: 1rem;
+}

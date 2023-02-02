@@ -173,12 +173,11 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
 
 
   // Une function pour voir un seul Quiz qui va prendre l'ID de quiz en paramètre
-  seeOneQuiz(quizId: any): void {
+  seeOneQuiz(quizId: number): void {
     // on appel le path qui permet d'acceder à un seul Quiz
     this.router.navigate(['/quizdetails', quizId]);
     console.log(quizId);
   }
-
 
 
 
@@ -213,6 +212,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
       ));
   }
 
+  
 
 
 

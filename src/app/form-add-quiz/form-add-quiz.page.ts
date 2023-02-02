@@ -42,6 +42,9 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
   newQuizURL!: any;
   clientHost!: string;
   quizFail!: boolean;
+  quizId!: number;
+  // btn aller question
+  isclick=false
 
 
   constructor(
@@ -87,6 +90,9 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
         (response: User) => {
           // on affecte cet reponse à notre variable user qui represente l'utilisateur
           this.user = response;
+          // Recupérer le dernier quiz ajouter
+          this.quizId = this.user.quizList[this.user.quizList.length -1].id
+          console.log("------------Quiz id------------" + this.quizId)
           // On change maintenant userLoggedIn à true sa connexion
           this.userLoggedIn = true;
           this.showNavbar = false;
@@ -172,11 +178,13 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
         (response: Quiz) => {
           // on affiche la reponse
           console.log(response);
-
           let id: number = response.id;
           this.savePicture(this.quizPicture);
           this.loadingService.isLoading.next(false);
           this.newQuizURL = `${this.clientHost}/quiz/${id}`;
+          this.isclick=true
+          this.ngOnInit()
+
         },
         error => {
           console.log(error);
@@ -217,6 +225,10 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
     );
   }
 
+  GoToQuestionPage(): void {
+    this.router.navigate(['/form-add-question', this.quizId]);
+    console.log(this.quizId);
+  }
 
   OnNewQuizSuccess(second: number): void {
     this.showSuccessAlert = true;

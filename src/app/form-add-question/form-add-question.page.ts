@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertType } from '../_Enum/alert-type';
 import { Questions } from '../_Models/questions';
@@ -25,8 +26,13 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
 
   quizIdGeter !: any
 
+  quizselect!:any
+
+  // id de quiz qui sera dans le path
+  idQuiz: any;
 
   host!: string;
+ 
  
 
 
@@ -35,12 +41,14 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
     private loadingService: LoadingService,
     private questionService: QuestionService,
     private alertService: AlertService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.loadingService.isLoading.next(true);
     this.host = this.questionService.host;
+    this.idQuiz=this.route.snapshot.params["id"]
     this.getQuiz()
   }
 
@@ -54,6 +62,13 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
         (response: Quiz[]) => {
           // on envoie cette liste de reposonse à notre variable quizs déclaré
           this.quizs = response;
+
+          for(let i=0; i < this.quizs.length; i++){
+            if(this.quizs[i].id === this.idQuiz){
+              this.quizselect = this.quizs[i]
+            }
+          }
+
           // on affiche la liste des quizs dans la console
           console.log(this.quizs);
           // on stop l'effet de chargement
@@ -78,6 +93,9 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
       if (this.quizs[i].titre == this.quizId) {
         this.quizIdGeter = this.quizs[i].id
         console.log(this.quizIdGeter)
+      }
+      else{
+        this.quizIdGeter= this.idQuiz
       }
     }
     // On mets le chargement en true

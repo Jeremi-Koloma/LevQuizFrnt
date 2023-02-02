@@ -37,12 +37,11 @@
               ------------------------------------------------------
             -->
         <div class="form-group mb-3 pt-2">
-          <input style="display:none;" #fileToUpload (change)="onFileSelected($event)" type="file"
+          <label for="img" class="form-label"> Ajouter une image</label>
+          <input #fileToUpload (change)="onFileSelected($event)" type="file"
             class="form-control-file" name="photo" placeholder="photo" accept="image/*" ngModel required
             #fileInput="ngModel" />
-          <button type="button" class="btn btn-primary bt btn-sm" (click)="fileToUpload.click()">
-            Ajouter une image : {{ photoName }}
-          </button>
+             {{ photoName }}
         </div>
 
         <!-- ------------------- Titre ------------------------
@@ -69,7 +68,7 @@
           <button class="btn btnAjouter" [disabled]="!quizForm.valid || fileInput.invalid">Ajouter</button>
         </div>
         <div class="col-12 mt-2">
-          <button class="btn btnAjouterQuest" routerLink='/form-add-question'>Attribuer des questions</button>
+          <button class="btn btnAjouterQuest" [disabled]="isclick==false" (click)="GoToQuestionPage()">Attribuer des questions</button>
         </div>
 
 

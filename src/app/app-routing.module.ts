@@ -33,7 +33,7 @@ const routes: Routes = [
     loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
   {
-    path: 'quizdetails/:quizId',
+    path: 'quizdetails/:id',
     loadChildren: () => import('./quiz-detail/quiz-detail.module').then( m => m.QuizDetailPageModule), resolve: {resolvedQuiz: QuizresolverService}, canActivate: [AuthenticationGuard]  // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier, Resolver pour s'assurer que nous avons les informations de Quiz avant de les afficher
   },
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
     loadChildren: () => import('./form-add-quiz/form-add-quiz.module').then( m => m.FormAddQuizPageModule), canActivate:[AuthenticationGuard]   // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
   },
   {
-    path: 'form-add-question',
+    path: 'form-add-question/:id',
     loadChildren: () => import('./form-add-question/form-add-question.module').then( m => m.FormAddQuestionPageModule) , canActivate:[AuthenticationGuard]   // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
   },
  

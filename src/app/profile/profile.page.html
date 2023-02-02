@@ -29,11 +29,11 @@
   -------------------------------------------------------------- -- -->
     <ion-segment value="profil" mode="md" (ionChange)="segmentChanged($event)" class="pt-2">
       <ion-segment-button value="profil">
-        <ion-label>Profil</ion-label>
+        <ion-label><i class="bi bi-person-fill"></i> Profil</ion-label>
       </ion-segment-button>
 
       <ion-segment-button value="changePassword">
-        <ion-label>Mots de passe*</ion-label>
+        <ion-label><i class="bi bi-key-fill"></i> Mots de passe*</ion-label>
       </ion-segment-button>
     </ion-segment>
 
@@ -47,21 +47,21 @@
             <!-- ------------------- firstName ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group col-12">
+            <div class="form-group col-12 mb-3 pt-2">
               <label for="firstname">Prénom</label>
               <input ngModel="{{user.firstname}}"  type="text" name="firstname"  id="firstname" aria-describedby="firstname"/>
             </div>
             <!-- ------------------- lastName ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group col-12">
+            <div class="form-group col-12 mb-3">
               <label for="lastname">Nom de famille</label>
               <input ngModel="{{user.lastname}}"  type="text" name="lastname"  id="lastname"/>
             </div>
             <!-- ------------------- UserName ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group col-12">
+            <div class="form-group col-12 mb-3">
               <label for="username">Nom d'utilisateur</label>
               <input ngModel="{{user.username}}"  type="text" name="username"  id="username" disabled/>
             </div>
@@ -70,7 +70,7 @@
             <!-- ------------------- Email ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group mb-1 col-12">
+            <div class="form-group mb-2 col-12">
               <label for="email">E-mail</label>
               <input ngModel="{{user.email}}"  type="text" name="email"  id="email"/>
             </div>
@@ -79,7 +79,7 @@
               ------------------------------------------------------
           -->
             <div class="col-12">
-              <button class="btn btnSave">Enregister</button>
+              <button class="btn btnSave" [disabled]="!updateProfileForm.valid" >Enregister</button>
             </div>
           </fieldset>
         </form>
@@ -98,21 +98,21 @@
             <!-- ------------------- firstName ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group mb-2 col-12">
+            <div class="form-group mb-3 col-12">
               <label for="currentPassword">Mots de passe actuel</label>
               <input type="password" name="currentPassword" placeholder="Mots de passe actuel" required ngModel />
             </div>
             <!-- ------------------- lastName ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group mb-2 col-12">
+            <div class="form-group mb-3 col-12">
               <label for="newPassword">Nouveau mots de passe</label>
               <input type="password" name="newPassword" placeholder="Nouveau mots de passe" required ngModel />
             </div>
             <!-- ------------------- UserName ------------------------
               ------------------------------------------------------
           -->
-            <div class="form-group mb-2 col-12">
+            <div class="form-group mb-3 col-12">
               <label for="confirmPassword">Mots de passe confirme</label>
               <input type="password" name="confirmPassword" placeholder="Mots de passe confirme" required ngModel />
             </div>
