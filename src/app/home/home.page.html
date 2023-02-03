@@ -1,10 +1,10 @@
 <ion-content [fullscreen]="true">
   <div class="main_content_div">
-  
+
     <ion-buttons slot="start" class="menu_btn">
       <ion-menu-button color="light" menu="main-menu"></ion-menu-button>
     </ion-buttons>
-  
+
     <div class="user_div">
       <div class="first_div">
         <ion-label class="welcome">Bonjour !</ion-label>
@@ -17,15 +17,15 @@
           <ion-badge class="notif-badge text-center">{{nombreNotification}}</ion-badge>
         </ion-button>
       </div>
-  
-      
+
+
       <div class="user_back">
         <img src="{{userphoto}}/{{user.id}}.png" (click)="getUserProfile(user.username)">
       </div>
     </div>
 
     <div class="content_div animated bounceInUp">
-      <ion-label class="hello_label">Section Quiz</ion-label>
+      <ion-label class="hello_label text-upperscase">LevQuiz</ion-label>
       <ion-grid fixed>
         <ion-row>
 

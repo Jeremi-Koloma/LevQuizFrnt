@@ -15,7 +15,8 @@ ion-content{
 
 ion-label{
   display: block;
-  color: orangered;
+  color: rgb(50,50,61);
+  font-size: 1.3rem;
   text-align: center;
 }
 
@@ -78,6 +79,7 @@ ion-icon {
   //border-top-left-radius: 75px;
   margin-top: -90px;
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .hello_label{
