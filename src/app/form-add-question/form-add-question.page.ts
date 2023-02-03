@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertType } from '../_Enum/alert-type';
 import { Questions } from '../_Models/questions';
@@ -32,6 +32,7 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
   idQuiz: any;
 
   host!: string;
+  questionId!: number;
  
  
 
@@ -42,6 +43,7 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
     private questionService: QuestionService,
     private alertService: AlertService,
     private accountService: AccountService,
+    private router:Router,
     private route:ActivatedRoute
   ) { }
 
@@ -52,6 +54,12 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
     this.getQuiz()
   }
 
+    
+  GotoReponse(){
+    this.router.navigate(['/add-reponse',this.questionId])
+  }
+
+  
   // Une fonctions pour avoir la liste de tout les quiz
   getQuiz(): void {
     // On l'ajout dans la liste de subscriptions
@@ -87,50 +95,55 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
      Une fonction qui sera appélér ajouter un nouveau quiz
      Qui va prendre un quiz en paramètre
    ************************* */
-  onNewQuestion(): void {
+     onNewQuestion(): void {
 
-    for (let i = 0; i < this.quizs.length; i++) {
-      if (this.quizs[i].titre == this.quizId) {
-        this.quizIdGeter = this.quizs[i].id
-        console.log(this.quizIdGeter)
-      }
-      else{
-        this.quizIdGeter= this.idQuiz
-      }
-    }
-    // On mets le chargement en true
-    this.loadingService.isLoading.next(true);
-    // On l'ajout dans la liste de subscriptions 
-    this.subscriptions.push(
-      // on appel la méthode save dans notre quizService pour enregistrer le quiz
-      this.questionService.save(this.question, this.quizIdGeter).subscribe(
-        // Quand on a une reponse de type Quiz
-        (response: Questions) => {
-          // on affiche la reponse
-          console.log(response);
-          this.loadingService.isLoading.next(false);
-          this.alertService.showAlert(
-            "Question ajouter !",
-            AlertType.SUCCESS
-          );
-        },
-        error => {
-          console.log(error);
-          // vérifions si le message d'erreur correspond à QuestionExist du Backend
-          const errorMsg = error.error;
-          // vérifions si le message d'erreur correspond à QuestionExist du Backend
-          if (errorMsg === 'QuestionExist') {
-            this.alertService.showAlert(
-              "Oups ! Question existe déjà !",
-              AlertType.DANGER
-            );
-            this.loadingService.isLoading.next(false);
-          }
+      for (let i = 0; i < this.quizs.length; i++) {
+        if (this.quizs[i].titre == this.quizId) {
+          this.quizIdGeter = this.quizs[i].id
+          // this.questionId= this.quizs[i].questionsList[this.quizs[i].questionsList.length].id
+          console.log(this.questionId)
+          console.log(this.quizIdGeter)
         }
-      )
-    );
-  }
+        else{
+          this.quizIdGeter= this.idQuiz
+        }
+      }
 
+      // On mets le chargement en true
+      this.loadingService.isLoading.next(true);
+      // On l'ajout dans la liste de subscriptions 
+      this.subscriptions.push(
+        // on appel la méthode save dans notre quizService pour enregistrer le quiz
+        this.questionService.save(this.question, this.quizIdGeter).subscribe(
+          // Quand on a une reponse de type Quiz
+          (response: Questions) => {
+            // on affiche la reponse
+            console.log(response);
+            this.questionId=response.id
+            this.loadingService.isLoading.next(false);
+            this.alertService.showAlert(
+              "Question ajouter !",
+              AlertType.SUCCESS
+            );
+          },
+          error => {
+            console.log(error);
+            // vérifions si le message d'erreur correspond à QuestionExist du Backend
+            const errorMsg = error.error;
+            // vérifions si le message d'erreur correspond à QuestionExist du Backend
+            if (errorMsg === 'QuestionExist') {
+              this.alertService.showAlert(
+                "Oups ! Question existe déjà !",
+                AlertType.DANGER
+              );
+              this.loadingService.isLoading.next(false);
+            }
+          }
+        )
+      );
+    }
+
+  
 
 
    // On Desinscrit en parcourant la liste des subscriptions

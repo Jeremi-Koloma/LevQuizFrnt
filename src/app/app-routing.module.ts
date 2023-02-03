@@ -54,11 +54,11 @@ const routes: Routes = [
   },
  
   {
-    path: 'add-reponse',
+    path: 'add-reponse/:id',
     loadChildren: () => import('./add-reponse/add-reponse.module').then( m => m.AddReponsePageModule) , canActivate:[AuthenticationGuard] // On Active AuthenticationGuard pour vérifier si l'utilisateur s'est authentifier
   },
   {
-    path: 'game',
+    path: 'game/:id',
     loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
   },
 

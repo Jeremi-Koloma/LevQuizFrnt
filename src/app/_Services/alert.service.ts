@@ -19,7 +19,9 @@ export class AlertService {
     const toast = await this.toastController.create({
       message: msg,
       duration: 3000,
-      color:type
+      color:type,
+      position: 'top'
+      
     });
     toast.present();
   }

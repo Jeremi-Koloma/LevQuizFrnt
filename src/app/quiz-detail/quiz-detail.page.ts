@@ -38,6 +38,8 @@ export class QuizDetailPage implements OnInit,OnDestroy {
   listQuestions: Array<object> = [];
   // un object quiz
   quiz: Quiz = new Quiz();
+
+  quizId!: any
  
 
   // Injections des dépendances
@@ -55,9 +57,10 @@ export class QuizDetailPage implements OnInit,OnDestroy {
   ngOnInit() {
     this.loadingService.isLoading.next(true);
     this.resolveQuiz();
+    this.quizId = this.route.snapshot.params["id"]
   }
 
-
+ 
   // Recuperons les informations dans la méthode resolveQuiz()
   // qui va s'assurer d'avoir charger les information de quiz dans la base  avant de les afficher dans app
   resolveQuiz(): void {
@@ -106,6 +109,11 @@ export class QuizDetailPage implements OnInit,OnDestroy {
     console.log(username);
   }
 
+
+  GoToGamePage(): void{
+    this.router.navigate(['/game', this.quizId]);
+    console.log(this.quizId);
+  }
 
 
   // Une fonction pour supprimer un Quiz

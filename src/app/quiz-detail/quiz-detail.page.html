@@ -4,7 +4,7 @@
     <div class="btnBack">
       <i class="bi bi-arrow-left-circle" routerLink="/ajouter-quiz"></i>
     </div>
-    <h3>Quiz titre</h3>
+    <h3 class="quizTitre">{{quiz.titre}}</h3>
   </div>
 
 
@@ -16,7 +16,7 @@
             <div class="icon d-flex justify-content-center align-items-center">
               <i class="bi bi-question-square "></i>
             </div>
-            <p class="nmbr ">20</p>
+            <p class="nmbr ">{{quiz.questionsList.length}}</p>
             <p class="txtQuest">Questions</p>
           </div>
         </div>
@@ -26,7 +26,7 @@
               <i class="bi bi-person-fill-check"></i>
             </div>
             <p class="formateur ">Formateur</p>
-            <p class="txtQuest">jk.koloma</p>
+            <p class="txtQuest">{{quiz.username}}</p>
           </div>
         </div>
       </div>
@@ -36,9 +36,10 @@
     <div class="container px-3 ">
       <h3 class="description">Description</h3>
       <p class="txtDescription">
-        On sait depuis longtemps que travailler avec du texte lisible et contenant du sens
-
+        {{quiz.description}}
       </p>
+
+      <button class="btn btnPays" (click)="GoToGamePage()">Jouer le Quiz</button>
     </div>
 
 

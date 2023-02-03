@@ -33,7 +33,7 @@ export class AuthenticationGuard implements CanActivate {
     this.accountService.redirectUrl = url;
     this.router.navigate(['/login']);
     // On l'envoie un message d'Erreur
-    this.alertService.showAlert("Veuillez vous s'authentifer !", AlertType.DANGER);
+    this.alertService.showAlert("Veuillez vous authentifier !", AlertType.DANGER);
     return false;
   }
 

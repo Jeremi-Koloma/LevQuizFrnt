@@ -16,7 +16,7 @@
       <!-- ------------------- Titre ------------------------
           ------------------------------------------------------
       -->
-      <div class="form-group col-12 mb-1">
+      <div class="form-group col-12 mb-2">
         <label for="title">Selectionner le quiz</label>
         <select class="form-select" aria-label="Selectionner le quiz" [(ngModel)]="quizId" name="quizId">
           <option [ngValue]="null" >Selectionner le quiz</option>
@@ -27,7 +27,7 @@
       <!-- ------------------- QUESTION ------------------------
           ------------------------------------------------------
       -->
-      <div class="form-group col-12 mb-1">
+      <div class="form-group col-12 mb-2">
         <label for="question">Question</label>
         <input [(ngModel)]="question.question" type="text" name="question" id="question"
           placeholder="question titre ici..." required />
@@ -36,7 +36,7 @@
       <!-- ------------------- POINTS ------------------------
               ------------------------------------------------------
             -->
-      <div class="form-group col-12 mb-1">
+      <div class="form-group col-12 mb-2">
         <label for="points">Points de ( 1 à ...)</label>
         <input [(ngModel)]="question.points" type="number" name="points" id="points" min="1" step="1" id="points"
           placeholder="100" required />
@@ -55,12 +55,12 @@
               ------------------------------------------------------
             -->
 
-      <div class="col-12 mb-2">
+      <div class="col-12 mb-2 mt-3">
         <button type="submit" class="btn btnAjouter" [disabled]="!questionForm.valid">Ajouter</button>
       </div>
 
       <div class="col-12">
-        <button class="btn btnAjouterReponse" routerLink="/add-reponse">Attribuer des reponses</button>
+        <button class="btn btnAjouterReponse" (click)="GotoReponse()">Attribuer des reponses</button>
       </div>
 
     </form>

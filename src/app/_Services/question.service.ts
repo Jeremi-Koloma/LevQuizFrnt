@@ -36,6 +36,13 @@ export class QuestionService {
 
 
 
+     // *****************************      AVOIR UNE QUESTION       *******************************
+    // Une fonction qui permettra d'avoir un quiz par son ID
+    getOneQuestionById(questionId: number): Observable<Questions> {
+      return this.http.get<Questions>(`${this.host}/Questions/getQuestionById/${questionId}`);
+    }
+
+
 
 
 }

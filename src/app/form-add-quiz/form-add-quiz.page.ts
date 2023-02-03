@@ -35,7 +35,6 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
   quizPicture!: File;
   username!: any;
   userLoggedIn!: boolean;
-  showNavbar!: boolean;
   showSuccessAlert!: boolean;
   photoName!: string;
   progress!: number | undefined;
@@ -62,13 +61,11 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
     this.clientHost = this.quizService.clientHost;
     this.userHost = this.quizService.userHost;
     this.quizHost = this.quizService.quizHost;
-    this.showNavbar = true;
     if (this.accountService.isLoggedIn()) {
       this.username = this.accountService.loggInUsername;
       this.getUserInfo(this.username);
       this.loadingService.isLoading.next(false);
     } else {
-      this.showNavbar = false;
       this.loadingService.isLoading.next(false);
     }
 
@@ -95,7 +92,6 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
           console.log("------------Quiz id------------" + this.quizId)
           // On change maintenant userLoggedIn à true sa connexion
           this.userLoggedIn = true;
-          this.showNavbar = false;
         },
         error => {
           console.log(error);
@@ -224,6 +220,8 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
       )
     );
   }
+
+
 
   GoToQuestionPage(): void {
     this.router.navigate(['/form-add-question', this.quizId]);

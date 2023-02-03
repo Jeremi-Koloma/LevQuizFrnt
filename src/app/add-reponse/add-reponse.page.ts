@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertType } from '../_Enum/alert-type';
 import { Questions } from '../_Models/questions';
@@ -28,10 +29,17 @@ export class AddReponsePage implements OnInit, OnDestroy {
   // une variable pour la liste des listes
   questionList !: Questions[]
 
+  question = new Questions();
+
   // id de la question
   questionId !: any;
 
   questionIdGeter !: any
+
+   // id de question qui sera dans le path
+   idQuestin!: any;
+
+   questionSelect!: any
 
   // Une variable pour vérifier le choix de la reponse
   correctAnswer!: string
@@ -43,12 +51,19 @@ export class AddReponsePage implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private questionService: QuestionService,
     private alertService: AlertService,
-    private reponseService: ReponseService
+    private reponseService: ReponseService,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.loadingService.isLoading.next(true);
     this.host = this.questionService.host;
+    this.idQuestin=this.route.snapshot.params["id"]
+
+     this.questionService.getOneQuestionById(this.idQuestin).subscribe( data=>{
+      this.questionSelect= data.question
+      console.log("-----questid id --"+ data)
+     })
     this.getQuestionList()
   }
 
@@ -67,8 +82,15 @@ export class AddReponsePage implements OnInit, OnDestroy {
         (response: Questions[]) => {
           // on envoie cette liste de reposonse à notre variable questionList déclaré
           this.questionList = response;
+          
           // on affiche la liste des Questions dans la console
           console.log(this.questionList);
+
+          for(let i=0; i < this.questionList.length; i++){
+            if(this.questionList[i].id === this.idQuestin){
+              this.questionSelect = this.questionList[i]
+            }
+          }
           // on stop l'effet de chargement
           this.loadingService.isLoading.next(false);
         },
@@ -92,6 +114,9 @@ export class AddReponsePage implements OnInit, OnDestroy {
       if (this.questionList[i].question == this.questionId) {
         this.questionIdGeter = this.questionList[i].id
         console.log(this.questionIdGeter)
+      }
+      else{
+        this.questionIdGeter = this.idQuestin;
       }
     }
     // On mets le chargement en true
