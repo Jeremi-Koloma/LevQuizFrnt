@@ -33,7 +33,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   host!: string;
   // le path de l'utilisateur
   userHost!: string;
-  quizHost!: string;
+  quizHost!: any;
   showOwnerQuiz!: any;
 
   // Déclarons des variables

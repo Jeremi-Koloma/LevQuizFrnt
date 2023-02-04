@@ -3,6 +3,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
+ion-toolbar{
+    --background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%)
+  }
+ 
+ ion-back-button{
+    --color: #ffffff;
+  }
+
 .bgImg{
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../assets/image/image15.jpg);
     background-size: cover;
@@ -15,14 +23,14 @@
 
   /* ************************   BOUTON BACK     *****************
 ******************************************************** */
-.btnBack{
-   z-index: 100;
-   color: #fff;
-   position: absolute;
-   top: 40px;
-   font-size: 1.5rem;
-   margin-left: 16px;
-}
+// .btnBack{
+//    z-index: 100;
+//    color: #fff;
+//    position: absolute;
+//    top: 40px;
+//    font-size: 1.5rem;
+//    margin-left: 16px;
+// }
 
 
 .contourContenu{

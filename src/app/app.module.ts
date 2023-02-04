@@ -44,7 +44,8 @@ import { CustomDatePipe } from './custom-date.pipe';
     ReactiveFormsModule,// pour les formulaires reactive
     IonicModule.forRoot(),
     AppRoutingModule, // Nos routagee
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    RouterModule.forChild([])
   ],
   
   providers: [

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormAddQuizPageRoutingModule } from './form-add-quiz-routing.module';
 
 import { FormAddQuizPage } from './form-add-quiz.page';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { FormAddQuizPage } from './form-add-quiz.page';
     FormsModule,
     ReactiveFormsModule, // Module pour les formulaire reactive
     IonicModule,
-    FormAddQuizPageRoutingModule
+    FormAddQuizPageRoutingModule,
+    RouterModule.forChild([])
   ],
   declarations: [FormAddQuizPage]
 })

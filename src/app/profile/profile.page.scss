@@ -1,5 +1,13 @@
   /* ************************   BOUTON BACK     *****************
 ******************************************************** */
+ion-toolbar{
+  --background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%)
+}
+
+ion-back-button{
+  --color: #ffffff;
+}
+
 
 ion-label{
   font-size: .9rem;

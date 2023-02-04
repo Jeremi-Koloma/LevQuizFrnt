@@ -1,10 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
   <div class="containerImg">
     <div class="bgImg"></div>
-    <div class="btnBack">
+    <!-- <div class="btnBack">
       <i class="bi bi-arrow-left-circle" routerLink="/home"></i>
-    </div>
+    </div> -->
   </div>
 
 
@@ -38,6 +46,7 @@
             <ion-slide *ngFor="let quiz of quizs">
               <ion-card>
                 <img alt="Silhouette of mountains" src="../../assets/image/html-css-1.png" />
+                <!-- <img alt="image quiz" src="{{quizHost}}/{{quiz.imageName}}.png"  /> -->
                 <ion-card-header>
                   <ion-card-title>{{quiz.titre}}</ion-card-title>
                   <ion-card-subtitle><span class="formateurQuiz">Formateur</span> {{quiz.username}}</ion-card-subtitle>

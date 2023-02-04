@@ -1,23 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <div class="container-fliud">
     <div class="bgContainer px-3">
-      <div class="row align-items-center pt-4">
-        <div class="col-3 btnBack">
-          <i class="bi bi-arrow-left-circle" routerLink="/home"></i>
-        </div>
-        <div class="col-9">
-          <p class="profilTitre text-uppercase">Profil</p>
-        </div>
-      </div>
-
       <div class="container d-flex align-items-center justify-content-center">
         <div class="outer">
           <img src="{{userphoto}}/{{user.id}}.png" alt="">
           <div class="form-group">
-            <input style="display:none;" (change)="onProfilePictureSelected($event)" #fileToUpload type="file" class="form-control-file"
-            name="file" placeholder="photo" accept="image/*" required />
+            <input style="display:none;" (change)="onProfilePictureSelected($event)" #fileToUpload type="file"
+              class="form-control-file" name="file" placeholder="photo" accept="image/*" required />
             <!-- <button type="button" class="btn btn-info" (click)="fileToUpload.click()"> -->
-              <ion-icon name="camera" class="camera-icon" (click)="fileToUpload.click()"></ion-icon>
+            <ion-icon name="camera" class="camera-icon" (click)="fileToUpload.click()"></ion-icon>
             <!-- </button> -->
           </div>
         </div>
@@ -40,7 +39,8 @@
     <span *ngIf="segId =='profil'">
 
       <div class="container pt-2">
-        <form #updateProfileForm="ngForm" (ngSubmit)="onUpdateUser(updateProfileForm.value)" enctype="multipart/form-data">
+        <form #updateProfileForm="ngForm" (ngSubmit)="onUpdateUser(updateProfileForm.value)"
+          enctype="multipart/form-data">
           <input type="hidden" class="form-control" name="id" ngModel="{{ user.id }}" required />
 
           <fieldset>
@@ -49,21 +49,22 @@
           -->
             <div class="form-group col-12 mb-3 pt-2">
               <label for="firstname">Prénom</label>
-              <input ngModel="{{user.firstname}}"  type="text" name="firstname"  id="firstname" aria-describedby="firstname"/>
+              <input ngModel="{{user.firstname}}" type="text" name="firstname" id="firstname"
+                aria-describedby="firstname" />
             </div>
             <!-- ------------------- lastName ------------------------
               ------------------------------------------------------
           -->
             <div class="form-group col-12 mb-3">
               <label for="lastname">Nom de famille</label>
-              <input ngModel="{{user.lastname}}"  type="text" name="lastname"  id="lastname"/>
+              <input ngModel="{{user.lastname}}" type="text" name="lastname" id="lastname" />
             </div>
             <!-- ------------------- UserName ------------------------
               ------------------------------------------------------
           -->
             <div class="form-group col-12 mb-3">
               <label for="username">Nom d'utilisateur</label>
-              <input ngModel="{{user.username}}"  type="text" name="username"  id="username" disabled/>
+              <input ngModel="{{user.username}}" type="text" name="username" id="username" disabled />
             </div>
 
 
@@ -72,14 +73,14 @@
           -->
             <div class="form-group mb-2 col-12">
               <label for="email">E-mail</label>
-              <input ngModel="{{user.email}}"  type="text" name="email"  id="email"/>
+              <input ngModel="{{user.email}}" type="text" name="email" id="email" />
             </div>
 
             <!-- ------------------- Boutons S'incrire ------------------------
               ------------------------------------------------------
           -->
             <div class="col-12">
-              <button class="btn btnSave" [disabled]="!updateProfileForm.valid" >Enregister</button>
+              <button class="btn btnSave" [disabled]="!updateProfileForm.valid">Enregister</button>
             </div>
           </fieldset>
         </form>
@@ -89,11 +90,11 @@
 
     <!-- Change Password -->
     <span *ngIf="segId =='changePassword'">
-      
+
       <div class="container pt-3">
         <form #changePasswordForm="ngForm" (ngSubmit)="onChangePassword(changePasswordForm.value)">
-          <input type="hidden" class="form-control" name="username" placeholder="Current password" ngModel="{{ user.username }}"
-              required />
+          <input type="hidden" class="form-control" name="username" placeholder="Current password"
+            ngModel="{{ user.username }}" required />
           <fieldset>
             <!-- ------------------- firstName ------------------------
               ------------------------------------------------------

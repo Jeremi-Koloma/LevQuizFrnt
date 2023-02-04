@@ -3,11 +3,26 @@ ion-content {
     --color: black;
 }
 
+ion-toolbar{
+    --background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%)
+  }
+ 
+ ion-back-button{
+    --color: #ffffff;
+  }
+ 
+
 .content_page {
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+.titleQuiz{
+    background: #0C85F8;
+    color: #fff;
+    padding: 10px;
 }
 
 .question_box {

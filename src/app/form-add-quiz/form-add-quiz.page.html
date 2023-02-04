@@ -1,10 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-content>
+
 
   <div class="container-fluid topbg">
 
-    <div class="btnBack">
+    <!-- <div class="btnBack">
       <i class="bi bi-arrow-left-circle" routerLink="/ajouter-quiz"></i>
-    </div>
+    </div> -->
 
     <h5 class="topTextTilePage">Ajouter un nouveau Quiz</h5>
   </div>
@@ -37,10 +47,9 @@
             -->
         <div class="form-group mb-1 pt-2">
           <label for="img" class="form-label"> Ajouter une image</label>
-          <input #fileToUpload (change)="onFileSelected($event)" type="file"
-            class="form-control-file" name="photo" placeholder="photo" accept="image/*" ngModel required
-            #fileInput="ngModel" />
-             {{ photoName }}
+          <input #fileToUpload (change)="onFileSelected($event)" type="file" class="form-control-file" name="photo"
+            placeholder="photo" accept="image/*" ngModel required #fileInput="ngModel" />
+          {{ photoName }}
         </div>
 
         <!-- ------------------- Titre ------------------------
@@ -48,8 +57,7 @@
       -->
         <div class="form-group col-12 mb-3">
           <label for="titre">Titre quiz</label>
-          <input type="text" name="titre" id="titre" placeholder="votre titre ici..." required
-            ngModel />
+          <input type="text" name="titre" id="titre" placeholder="votre titre ici..." required ngModel />
         </div>
 
         <!-- ------------------- Description Quiz ------------------------
@@ -57,8 +65,8 @@
       -->
         <div class="form-group col-12">
           <label for="description">Description</label>
-          <textarea name="description" id="description" cols="30" rows="10"
-            placeholder="votre description ici..." required ngModel>
+          <textarea name="description" id="description" cols="30" rows="10" placeholder="votre description ici..."
+            required ngModel>
           </textarea>
 
         </div>
@@ -67,7 +75,8 @@
           <button class="btn btnAjouter" [disabled]="!quizForm.valid || fileInput.invalid">Ajouter</button>
         </div>
         <div class="col-12 mt-2">
-          <button class="btn btnAjouterQuest" [disabled]="isclick==false" (click)="GoToQuestionPage()">Attribuer des questions</button>
+          <button class="btn btnAjouterQuest" [disabled]="isclick==false" (click)="GoToQuestionPage()">Attribuer des
+            questions</button>
         </div>
 
 

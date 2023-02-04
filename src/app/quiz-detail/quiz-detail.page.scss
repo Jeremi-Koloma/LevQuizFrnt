@@ -15,15 +15,23 @@
 
 /* ************************   BOUTON BACK     *****************
 ******************************************************** */
-.btnBack {
-    z-index: 100;
-    color: #fff;
-    position: absolute;
-    top: 40px;
-    font-size: 1.5rem;
-    margin-left: 16px;
-}
+// .btnBack {
+//     z-index: 100;
+//     color: #fff;
+//     position: absolute;
+//     top: 40px;
+//     font-size: 1.5rem;
+//     margin-left: 16px;
+// }
 
+ion-toolbar{
+    --background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%)
+  }
+ 
+ ion-back-button{
+    --color: #ffffff;
+  }
+ 
 
 .contourContenu {
     width: 100%;

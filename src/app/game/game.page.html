@@ -1,8 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <div class="content_page">
+    <div class="container titleQuiz">
+      <h4 class="text-center text-uppercase">{{quiz.titre}}</h4>
+    </div>
     <div class="question_box">
       <div class="question">
-        <p>titre</p>
+        <p>{{quiz.questionsList[1].question}}</p>
       </div>
       <div class="time">15</div>
     </div>
@@ -10,24 +21,22 @@
       <div class="answer" >
         <div class="ion-activatable ion-focusable hydrated">
           <span class="number">1</span>
-          <span class="answer_text">descriptio,</span>
+          <span class="answer_text">{{quiz.questionsList[0].responseList[0].reponse}}</span>
+        </div>
+      </div>
+      <div class="answer" >
+        <div class="ion-activatable ion-focusable hydrated">
+          <span class="number">2</span>
+          <span class="answer_text">{{quiz.questionsList[0].responseList[1].reponse}}</span>
+        </div>
+      </div>
+      <div class="answer" >
+        <div class="ion-activatable ion-focusable hydrated">
+          <span class="number">3</span>
+          <span class="answer_text">{{quiz.questionsList[0].responseList[2].reponse}}</span>
         </div>
       </div>
     </div>
-    <!-- <div class="info" *ngIf="prizeInfo">
-      <button class="btn btnQuit">
-        {{prizeInfo.wrongAnswer}}
-      </button>
-      <button class="btn btnContinue">
-        {{prizeInfo.correctAnswer}}
-      </button>
-
-      <button class="btn quitbtn">
-        {{prizeInfo.quit}}
-      </button>
-    </div> -->
-
-
     <button class="btn btnStart">Commencer</button>
 
   </div>

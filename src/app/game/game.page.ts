@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment';
-
-import { PrizeInfo } from '../_Models/prize-info';
-import { QuestAnswer, QuestTest } from '../_Models/quest-test';
 import { Questions } from '../_Models/questions';
+
 import { Quiz } from '../_Models/quiz';
-import { LoadingService } from '../_Services/loading.service';
-import { QuestionService } from '../_Services/question.service';
+import { Reponses } from '../_Models/reponses';
+
 import { QuizService } from '../_Services/quiz.service';
 
 @Component({
@@ -27,6 +23,19 @@ export class GamePage implements OnInit {
   // une variable pour recupérer l'id qui sera dans le param
   quizId!: number
 
+  question:[] = []
+
+  unereponse = new Reponses()
+
+  // Liste de question
+  questionArray !: any
+
+  // Liste de reponse
+  reponseArray !:any
+
+  // correctAnswer
+  correctAnswer !: boolean
+
 
 
 
@@ -36,11 +45,23 @@ export class GamePage implements OnInit {
   ) { }
 
 
-
-
-
   ngOnInit() {
     this.getOneQuiz(this.quizId = this.route.snapshot.params["id"])
+    console.log(this.quiz)
+
+    this.questionArray = this.quiz.questionsList
+    console.log(this.questionArray)
+
+    
+
+
+
+
+
+    // this.reponseArray = this.quiz.questionsList[this.question.length].responseList
+    // console.log(this.reponseArray)
+
+   
   }
 
 
