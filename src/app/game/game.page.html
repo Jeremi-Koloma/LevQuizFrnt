@@ -8,36 +8,65 @@
 
 <ion-content>
   <div class="content_page">
-    <div class="container titleQuiz">
-      <h4 class="text-center text-uppercase">{{quiz.titre}}</h4>
-    </div>
-    <div class="question_box">
-      <div class="question">
-        <p>{{quiz.questionsList[1].question}}</p>
+
+    <ng-container *ngIf="!isQuizCompleted">
+      <div class="container titleQuiz">
+        <h4 class="text-center text-uppercase">{{quiz.titre}}</h4>
       </div>
-      <div class="time">15</div>
-    </div>
-    <div class="answers">
-      <div class="answer" >
+      <div>
+        <div class="d-flex justify-content-between p-3 text-white">
+          <div class="score"> {{points}} points </div>
+          <div class="quest-remain">Question {{currentQuestion+1}} /{{questionList.length}}</div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+            [ngStyle]="{'width':progress +'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="question_box">
+          <div class="question">
+            <!-- <p>{{quiz.questionsList[1].question}}</p> -->
+            <!-- <p>{{curQuestion.question}}</p> -->
+            <p>{{questionList[currentQuestion]?.questionText}}</p>
+          </div>
+          <!-- <div class="time"><p>{{curQuestion.duree}}</p></div> -->
+          <div class="time">
+            <p>{{counter}}</p>
+          </div>
+        </div>
+        <div class="answers">
+          <!-- <div (click)="doAnswer(reponse)"  *ngFor="let reponse of curQuestion.responseList; let i = index" class="answer" >
         <div class="ion-activatable ion-focusable hydrated">
-          <span class="number">1</span>
-          <span class="answer_text">{{quiz.questionsList[0].responseList[0].reponse}}</span>
+          <span class="number">{{i+1}}</span>
+          <span class="answer_text">{{quiz.questionsList[0].responseList[0].reponse}}</span> 
+          <span class="answer_text">{{reponse.reponse}}</span>
+        </div>
+      </div> -->
+          <div appChangeBackgroundcolor [isCorrect]="option.correct" (click)="answer(currentQuestion+1, option)"
+            *ngFor="let option of questionList[currentQuestion]?.options ; let i = index" class="answer">
+            <span class="number">{{i+1}}</span>
+            <span class="answer_text">{{option.text}}</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button [disabled]="currentQuestion===0" class="btn btnNext" (click)="previousQuestion()"><i
+              class="fa fa-chevron-left" aria-hidden="true"></i></button>
+          <button class="btn btnNext" (click)="nextQuestion()"><i class="fa fa-chevron-right"
+              aria-hidden="true"></i></button>
         </div>
       </div>
-      <div class="answer" >
-        <div class="ion-activatable ion-focusable hydrated">
-          <span class="number">2</span>
-          <span class="answer_text">{{quiz.questionsList[0].responseList[1].reponse}}</span>
+    </ng-container>
+
+    <ng-container *ngIf="isQuizCompleted">
+      <div class="row d-flex justify-content-between">
+        <div class="result text-center">
+          <h4>Félicitation !</h4>
+          <p>Total des question: {{questionList.length}}</p>
+          <p>Bonnes Reponses: {{correctAnswer}}</p>
+          <p>Mauvaises Reponses: {{incorrectAnswer}}</p>
+          <p>SCORES: {{points}} points</p>
         </div>
       </div>
-      <div class="answer" >
-        <div class="ion-activatable ion-focusable hydrated">
-          <span class="number">3</span>
-          <span class="answer_text">{{quiz.questionsList[0].responseList[2].reponse}}</span>
-        </div>
-      </div>
-    </div>
-    <button class="btn btnStart">Commencer</button>
+    </ng-container>
 
   </div>
 </ion-content>

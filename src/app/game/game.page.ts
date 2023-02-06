@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { Questions } from '../_Models/questions';
+import { interval, Observable, Subscription } from 'rxjs';
 
 import { Quiz } from '../_Models/quiz';
-import { Reponses } from '../_Models/reponses';
+import { QuestionService } from '../_Services/question.service';
 
 import { QuizService } from '../_Services/quiz.service';
 
@@ -18,55 +17,53 @@ export class GamePage implements OnInit {
 
   // Déclarons les variables
   private subscriptions: Subscription[] = [];
-  // Instance qe Quiz
-  quiz = new Quiz()
   // une variable pour recupérer l'id qui sera dans le param
   quizId!: number
+  // Instance qe Quiz
+  quiz = new Quiz()
 
-  question:[] = []
 
-  unereponse = new Reponses()
 
-  // Liste de question
-  questionArray !: any
-
-  // Liste de reponse
-  reponseArray !:any
-
-  // correctAnswer
-  correctAnswer !: boolean
+  // Une variable pour soctker la liste des questions
+  public questionList: any = [];
+  // une variable pour recuperer une question dans la liste de questions 
+  public currentQuestion: number = 0;
+  // Une variable pour recuperer le nombre de points par question
+  public points: number = 0;
+  // Une variable pour la durée
+  counter = 60;
+  // Une variable pour stocker la bonne reponse
+  correctAnswer: number = 0;
+  // une variable pour stocker les mauvaises reponse
+  incorrectAnswer: number = 0;
+  // Une variable interval ecouler le compteur
+  interval$: any;
+  // une variable pour niveau de progresse bar
+  progress: string = "0";
+  // une variable pour voir si le quiz est fini
+  isQuizCompleted: boolean = false;
 
 
 
 
   constructor(
     private quizService: QuizService,
+    private questionService: QuestionService,
     private route: ActivatedRoute
   ) { }
 
 
   ngOnInit() {
     this.getOneQuiz(this.quizId = this.route.snapshot.params["id"])
-    console.log(this.quiz)
 
-    this.questionArray = this.quiz.questionsList
-    console.log(this.questionArray)
+    this.getAllQuestions()
 
-    
+    this.startCounter()
 
-
-
-
-
-    // this.reponseArray = this.quiz.questionsList[this.question.length].responseList
-    // console.log(this.reponseArray)
-
-   
   }
 
 
 
-  
   /* *********************** 
     RECUPERER UN SEUL QUIZ
   ************************* */
@@ -94,9 +91,168 @@ export class GamePage implements OnInit {
 
 
 
+  // All Question
+  getAllQuestions() {
+    this.questionService.getQuestionJson().subscribe(response => {
+      // Socker la liste de question dans la reponse
+      this.questionList = response.questions;
+      console.log(this.questionList);
+    })
+  }
+
+
+  // Une fonction pour aller à la question suivante
+  nextQuestion() {
+    // Incrimenter la question pour aller à la question suivante[1]
+    this.currentQuestion++;
+  }
+
+
+
+  // Une fonction pour retourner à la question précedante
+  previousQuestion() {
+    // Decrémenter la question pour retourner à la precédante
+    this.currentQuestion--;
+  }
+
+
+
+  // Une fonction pour le click de la  reponse
+  answer(currentQuestNumber: number, option: any) {
+    // vérifions si la liste de question prend fin
+    if (currentQuestNumber === this.questionList.length) {
+      // on met fin au quiz
+      this.isQuizCompleted = true;
+      // on appel la fonction pour stoper le compteur
+      this.stopCounter()
+    }
+    // Vérifions si la reponse est correct
+    if (option.correct) {
+      // si la reponse est correct, on gagne le point
+      this.points += 10
+      // this.points = this.points + 10
+      // Si la reponse est correct incremente la bonne reponse
+      this.correctAnswer++;
+      // Avant d'aller à la question suivante, utilisons setTimeOut pour voir le change de backgound
+      setTimeout(() => {
+        // En suite on part à la question suivante
+        this.currentQuestion++;
+        // On appel la fonction pour renitailiser le compteur
+        this.resetCounter();
+        // on appel la fonction qui donne le niveau de progressbar
+        this.getProgressPourcent();
+
+      }, 1000) // 1s avant go to next quest
+    }
+    else {
+      setTimeout(() => {
+        // Et on part à la question suivante encore
+        this.currentQuestion++;
+        // on incremente ses mauvaises reponses
+        this.incorrectAnswer++;
+        // On appel la fonction pour renitailiser le compteur
+        this.resetCounter();
+        // on appel la fonction qui donne le niveau de progressbar
+        this.getProgressPourcent();
+
+      }, 1000)
+
+      // Si la reponse est incorrecte, on enlève -10 points au points de l'utilisateur
+      this.points -= 10;
+
+    }
+
+  }
+
+
+
+  // Une fonction pour lancer le conter
+  startCounter() {
+    // cet interval sera interval de type rxjs
+    this.interval$ = interval(1000).subscribe(val => {
+      // Quand le conter est lancer, on le Décrement
+      this.counter--;
+      // Vérifions si le conter reviens à 0, on passe directement à la question suivante
+      if (this.counter === 0) {
+        // on part à la question suivante
+        this.currentQuestion++;
+        // on renitailise le conter
+        this.counter = 60;
+        // On enlève -10 points au points de l'utilisateur
+        this.points -= 10;
+      }
+    });
+    // Stoper automatiquement le counter après 10 minutes 
+    setTimeout(() => {
+      this.interval$.unsubscribe()
+    }, 6000000);
+  }
+
+
+  // Une fonction pour Arrêter le counter
+  stopCounter() {
+    this.interval$.unsubscribe()
+    this.counter = 0
+  }
+
+
+  // Une fonction pour Renitialiser le counter
+  resetCounter() {
+    // on appel la fonction qui stop de counter
+    this.stopCounter();
+    // on affecte à nouveau 60s
+    this.counter = 60;
+    // on appel notre fonction startCounter pour déclancher le counter
+    this.startCounter()
+  }
+
+
+  // Unefonction pour Renitialiser le Quiz en entier
+  resetQuiz() {
+    // on appel la function qui renitialise le counter
+    this.resetCounter();
+    // on appel la liste des questions
+    this.getAllQuestions();
+    // on renitialise le points à 0
+    this.points = 0;
+    // on met le nombre des question à 0
+    this.currentQuestion = 0;
+    // on mets le progress bar à 0
+    this.progress = "0";
+  }
+
+
+
+  // Une fonction pour le niveau de pourcentagede progress bar
+  getProgressPourcent() {
+    this.progress = ((this.currentQuestion / this.questionList.length) * 100).toString();
+    return this.progress;
+  }
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

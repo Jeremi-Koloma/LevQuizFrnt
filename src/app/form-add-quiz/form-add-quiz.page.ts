@@ -225,7 +225,6 @@ export class FormAddQuizPage implements OnInit, OnDestroy {
 
   GoToQuestionPage(): void {
     this.router.navigate(['/form-add-question', this.quizId]);
-    console.log(this.quizId);
   }
 
   OnNewQuizSuccess(second: number): void {

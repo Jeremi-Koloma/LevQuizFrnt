@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { GamePageRoutingModule } from './game-routing.module';
 
 import { GamePage } from './game.page';
+import { ChangeBackgroundcolorDirective } from '../change-backgroundcolor.directive';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GamePageRoutingModule
+    GamePageRoutingModule,
   ],
-  declarations: [GamePage]
+  declarations: [GamePage,
+    ChangeBackgroundcolorDirective
+  ]
 })
 export class GamePageModule {}

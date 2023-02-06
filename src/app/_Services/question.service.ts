@@ -45,6 +45,12 @@ export class QuestionService {
 
 
 
+    // Recuperer le JSON dans Asset
+    getQuestionJson(){
+      return this.http.get<any>("../../assets/questions.json")
+    }
+
+
 }
 
 

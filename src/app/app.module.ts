@@ -28,6 +28,7 @@ import { CacheInterceptor } from './Interceptor/cache.interceptor';
 // external modules
 import { NgxLoadingModule } from 'ngx-loading';
 import { CustomDatePipe } from './custom-date.pipe';
+import { ChangeBackgroundcolorDirective } from './change-backgroundcolor.directive';
 
 
 
