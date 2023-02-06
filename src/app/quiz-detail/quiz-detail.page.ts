@@ -20,6 +20,16 @@ export class QuizDetailPage implements OnInit,OnDestroy {
 
   // Déclarons nos variables
 
+    // Déclarons des variables
+    mesSlides = {
+      slidesPerView: 2,   // NOMBRE DE SLIDE PAR PAGE = 1
+      centeredSlider: true,
+      //loop: true,
+      spaceBetween: 5,
+      autoplay: true
+    }
+  
+
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
   // un Object d'utilisateur
@@ -112,6 +122,11 @@ export class QuizDetailPage implements OnInit,OnDestroy {
 
   GoToGamePage(): void{
     this.router.navigate(['/game', this.quizId]);
+    console.log(this.quizId);
+  }
+
+  GoToAssignePage(): void{
+    this.router.navigate(['/assigner-apprenant', this.quizId]);
     console.log(this.quizId);
   }
 

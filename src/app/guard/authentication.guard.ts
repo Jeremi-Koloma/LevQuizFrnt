@@ -13,14 +13,16 @@ export class AuthenticationGuard implements CanActivate {
   // Créeons une instance de notre accountService pour avoir accès à la méthode qui permet de vérifier si l'utilisateur s'est connecter ou pas avant d'acceder à une ressource
   // Créeons une instance de la classe alertserivce pour le message d'alert
   // Injectons encore le Service Router pour la Redirection
-  constructor(private accountService: AccountService, private alertService: AlertService,
-    private router: Router) {}
+  constructor(private accountService: AccountService,
+    private alertService: AlertService,
+    private router: Router
+  ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // On retoune notre fonction
-      return this.isLoggedIn(state.url);
+    // On retoune notre fonction
+    return this.isLoggedIn(state.url);
   }
 
   // Une variable pour vérifier si l'utilisateur s'est authentifier
@@ -37,5 +39,5 @@ export class AuthenticationGuard implements CanActivate {
     return false;
   }
 
-  
+
 }

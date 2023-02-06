@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
- 
+
 import { AccountService } from '../_Services/account.service';
 import { QuizService } from '../_Services/quiz.service';
 import { LoadingService } from '../_Services/loading.service';
@@ -30,12 +30,12 @@ export class ProfilePage implements OnInit, OnDestroy {
   username!: any;
   profilePictureChange!: boolean;
   profilePicture!: File;
-  userphoto!: string ;
+  userphoto!: string;
 
 
 
   // une variable pour nos segement
-  segId='profil';
+  segId = 'profil';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +44,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Quand le composant est initialiser
@@ -55,7 +55,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.quizHost = this.quizService.quizHost;
     this.getUserInfo(this.username);
     this.loadingService.isLoading.next(false);
-    this.userphoto=this.accountService.userHost;
+    this.userphoto = this.accountService.userHost;
   }
 
 
@@ -63,9 +63,9 @@ export class ProfilePage implements OnInit, OnDestroy {
   getUserInfo(username: string): void {
     // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
-        // on envoie l'utilisateur à méthode getUserInformation dans notre serviceAccount
+      // on envoie l'utilisateur à méthode getUserInformation dans notre serviceAccount
       this.accountService.getUserInformation(username).subscribe(
-           // on retourne une reponse de type User
+        // on retourne une reponse de type User
         (response: User) => {
           // on affecte cet reponse à notre variable user qui represente l'utilisateur
           this.user = response;
@@ -83,9 +83,9 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   // une fontion qui va retourner tout les Quiz d'un utilisateur
   getQuizsByUsername(username: string): void {
-     // On l'ajout dans la liste de subscriptions
+    // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
-       // on envoie l'utilisateur à méthode getQuizByUsername dans notre serviceAccount
+      // on envoie l'utilisateur à méthode getQuizByUsername dans notre serviceAccount
       this.quizService.getQuizByUsername(username).subscribe(
         // on retourne une liste de reponses
         (response: Quiz[]) => {
@@ -113,7 +113,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   }
 
 
-  
+
   // Une fonction quand utilisateur change ses informations
   onUpdateUser(updatedUser: User): void {
     this.loadingService.isLoading.next(true);
@@ -198,15 +198,15 @@ export class ProfilePage implements OnInit, OnDestroy {
 
 
   // une fonction pour voir un seul Quiz
-  seeOneQuiz(quizId:any): void {
+  seeOneQuiz(quizId: any): void {
     this.router.navigate(['/post', quizId]);
     console.log(quizId);
   }
 
 
-  
+
   // Une fonction qui change de formaualire
-  segmentChanged(val:any){
+  segmentChanged(val: any) {
     this.segId = val.target.value;
   }
 

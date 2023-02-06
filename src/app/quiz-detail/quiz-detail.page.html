@@ -16,7 +16,7 @@
   </div>
 
 
-  <div class="contourContenu">
+  <div class="contourContenu mb-3">
     <div class="container NombrContanier pt-3">
       <div class="row">
         <div class="col-6">
@@ -47,8 +47,44 @@
         {{quiz.description}}
       </p>
 
-      <button class="btn btnPays" (click)="GoToGamePage()">Jouer le Quiz</button>
+      <button class="btn btnPays mb-2" (click)="GoToGamePage()">Jouer le Quiz</button>
     </div>
+
+    <div class="container">
+
+      <ion-slides [options]="mesSlides">
+        <ion-slide>
+          <ion-card>
+            <img alt="Silhouette of mountains"src="../../assets/image/profil 2.jpg"  />
+            <ion-card-content>
+              <p>Jeremi KOLOMA</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+
+        <ion-slide>
+          <ion-card>
+            <img alt="Silhouette of mountains" src="../../assets/image/profil 2.jpg"  />
+            <ion-card-content>
+              <p>Jeremi KOLOMA</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+        
+        <ion-slide>
+          <ion-card>
+            <img alt="Silhouette of mountains" src="../../assets/image/profil 2.jpg" />
+            <ion-card-content>
+              <p>Jeremi KOLOMA</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+
+      </ion-slides>
+
+      <button class="btn btnPays" (click)="GoToAssignePage()" >Assigner un Apprenant</button>
+    </div>
+
 
 
   </div>

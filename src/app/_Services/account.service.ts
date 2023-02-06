@@ -199,5 +199,11 @@ export class AccountService {
   }
 
 
+   //  La méthode qui nous permet d'afficher la liste des employés
+   getUserList() : Observable<User[]>{
+    return this.http.get<User[]>(`${this.host}/user/listUsers`);
+  }
+
+
 
 }

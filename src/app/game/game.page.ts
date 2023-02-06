@@ -25,13 +25,16 @@ export class GamePage implements OnInit {
 
 
   // Une variable pour soctker la liste des questions
-  public questionList: any = [];
+  public questionListe: any = [];
   // une variable pour recuperer une question dans la liste de questions 
   public currentQuestion: number = 0;
   // Une variable pour recuperer le nombre de points par question
   public points: number = 0;
+
+  // Une variable pour recuperer le nombre de points par question
+   public totalPoints: number = 0;
   // Une variable pour la durée
-  counter = 60;
+  counter : any = [];
   // Une variable pour stocker la bonne reponse
   correctAnswer: number = 0;
   // une variable pour stocker les mauvaises reponse
@@ -43,12 +46,13 @@ export class GamePage implements OnInit {
   // une variable pour voir si le quiz est fini
   isQuizCompleted: boolean = false;
 
+  i!: number;
+
 
 
 
   constructor(
     private quizService: QuizService,
-    private questionService: QuestionService,
     private route: ActivatedRoute
   ) { }
 
@@ -56,9 +60,13 @@ export class GamePage implements OnInit {
   ngOnInit() {
     this.getOneQuiz(this.quizId = this.route.snapshot.params["id"])
 
-    this.getAllQuestions()
+    // Appelons la fonctions qui nous permette d'avoir la liste des quiz
+    this.getAllQuestion()
 
+    // Appelons la fonction pour lancer le conter
     this.startCounter()
+
+
 
   }
 
@@ -90,15 +98,24 @@ export class GamePage implements OnInit {
 
 
 
+  getAllQuestion() {
+    for (let i = 0; i < this.quiz.questionsList.length; i++) {
+      this.i=i;
+      this.counter.push(this.quiz.questionsList[i].duree)
+      this.questionListe.push(this.quiz.questionsList[i]);
+      console.log(this.questionListe)
+    }
 
-  // All Question
-  getAllQuestions() {
-    this.questionService.getQuestionJson().subscribe(response => {
-      // Socker la liste de question dans la reponse
-      this.questionList = response.questions;
-      console.log(this.questionList);
-    })
   }
+
+  // // All Question
+  // getAllQuestions() {
+  //   this.questionService.getQuestionJson().subscribe(response => {
+  //     // Socker la liste de question dans la reponse
+  //     this.questionList = response.questions;
+  //     console.log(this.questionList);
+  //   })
+  // }
 
 
   // Une fonction pour aller à la question suivante
@@ -106,7 +123,6 @@ export class GamePage implements OnInit {
     // Incrimenter la question pour aller à la question suivante[1]
     this.currentQuestion++;
   }
-
 
 
   // Une fonction pour retourner à la question précedante
@@ -118,18 +134,21 @@ export class GamePage implements OnInit {
 
 
   // Une fonction pour le click de la  reponse
-  answer(currentQuestNumber: number, option: any) {
+  answer(currentQuestNumber: number, reponse: any) {
     // vérifions si la liste de question prend fin
-    if (currentQuestNumber === this.questionList.length) {
+    if (currentQuestNumber === this.questionListe.length) {
       // on met fin au quiz
       this.isQuizCompleted = true;
       // on appel la fonction pour stoper le compteur
       this.stopCounter()
     }
     // Vérifions si la reponse est correct
-    if (option.correct) {
+    if (reponse.iscorrect) {
       // si la reponse est correct, on gagne le point
-      this.points += 10
+      if(this.i>1){
+        console.log(this.i)
+        this.totalPoints +=  this.questionListe[this.i-1].points
+      }
       // this.points = this.points + 10
       // Si la reponse est correct incremente la bonne reponse
       this.correctAnswer++;
@@ -166,18 +185,70 @@ export class GamePage implements OnInit {
 
 
 
+    // // Une fonction pour le click de la  reponse
+    // answer(currentQuestNumber: number, option: any) {
+    //   // vérifions si la liste de question prend fin
+    //   if (currentQuestNumber === this.questionListe.length) {
+    //     // on met fin au quiz
+    //     this.isQuizCompleted = true;
+    //     // on appel la fonction pour stoper le compteur
+    //     this.stopCounter()
+    //   }
+    //   // Vérifions si la reponse est correct
+    //   if (option.correct) {
+    //     // si la reponse est correct, on gagne le point
+    //     this.points += 10
+    //     // this.points = this.points + 10
+    //     // Si la reponse est correct incremente la bonne reponse
+    //     this.correctAnswer++;
+    //     // Avant d'aller à la question suivante, utilisons setTimeOut pour voir le change de backgound
+    //     setTimeout(() => {
+    //       // En suite on part à la question suivante
+    //       this.currentQuestion++;
+    //       // On appel la fonction pour renitailiser le compteur
+    //       this.resetCounter();
+    //       // on appel la fonction qui donne le niveau de progressbar
+    //       this.getProgressPourcent();
+  
+    //     }, 1000) // 1s avant go to next quest
+    //   }
+    //   else {
+    //     setTimeout(() => {
+    //       // Et on part à la question suivante encore
+    //       this.currentQuestion++;
+    //       // on incremente ses mauvaises reponses
+    //       this.incorrectAnswer++;
+    //       // On appel la fonction pour renitailiser le compteur
+    //       this.resetCounter();
+    //       // on appel la fonction qui donne le niveau de progressbar
+    //       this.getProgressPourcent();
+  
+    //     }, 1000)
+  
+    //     // Si la reponse est incorrecte, on enlève -10 points au points de l'utilisateur
+    //     this.points -= 10;
+  
+    //   }
+  
+    // }
+
+
+
   // Une fonction pour lancer le conter
   startCounter() {
     // cet interval sera interval de type rxjs
     this.interval$ = interval(1000).subscribe(val => {
       // Quand le conter est lancer, on le Décrement
-      this.counter--;
+      this.counter[this.i]--;
       // Vérifions si le conter reviens à 0, on passe directement à la question suivante
-      if (this.counter === 0) {
+      if (this.counter[this.i] === 0) {
         // on part à la question suivante
-        this.currentQuestion++;
+        if(this.currentQuestion < this.questionListe[this.questionListe.length].i -1){
+          this.currentQuestion++;
         // on renitailise le conter
-        this.counter = 60;
+        this.counter[this.i] = this.counter[this.i+1];
+        }
+        
         // On enlève -10 points au points de l'utilisateur
         this.points -= 10;
       }
@@ -212,7 +283,7 @@ export class GamePage implements OnInit {
     // on appel la function qui renitialise le counter
     this.resetCounter();
     // on appel la liste des questions
-    this.getAllQuestions();
+    this.getAllQuestion();
     // on renitialise le points à 0
     this.points = 0;
     // on met le nombre des question à 0
@@ -225,7 +296,7 @@ export class GamePage implements OnInit {
 
   // Une fonction pour le niveau de pourcentagede progress bar
   getProgressPourcent() {
-    this.progress = ((this.currentQuestion / this.questionList.length) * 100).toString();
+    this.progress = ((this.currentQuestion / this.questionListe.length) * 100).toString();
     return this.progress;
   }
 

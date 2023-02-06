@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar placeholder="Rechercher ..."></ion-searchbar>
+
+  <div class="container-fluid container background p-3">
+    <div *ngFor="let user of userList" class="contourBg mb-3 p-2">
+      <div class="row  justify-content-center align-items-center">
+        <div class="col-8">
+          <div class="d-flex justify-content-center align-items-center">
+            <img src="{{userphoto}}/{{user.id}}.png" alt="" class="justify-content-center align-items-center">
+            <p class="justify-content-center align-items-center m-0  username">{{user.firstname +' '+user.lastname}}</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary" (click)="AddQuizToQuiz(user.username)">Assigner</button>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</ion-content>

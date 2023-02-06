@@ -40,7 +40,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   mesSlides = {
     slidesPerView: 1,   // NOMBRE DE SLIDE PAR PAGE = 1
     centeredSlider: true,
-    loop: true,
+    //loop: true,
     spaceBetween: 5,
     autoplay: true
   }

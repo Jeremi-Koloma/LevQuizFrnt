@@ -61,6 +61,11 @@ const routes: Routes = [
     path: 'game/:id',
     loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
   },
+  {
+    path: 'assigner-apprenant/:id',
+    loadChildren: () => import('./assigner-apprenant/assigner-apprenant.module').then( m => m.AssignerApprenantPageModule)
+  },
+
 
 
  

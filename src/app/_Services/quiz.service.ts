@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable } from 'rxjs'; // pour l'utilisation des observable
 import { serverConstant } from '../_Constant/serverConstant'; // Importation de la classe Constantes
 import { Quiz } from '../_Models/quiz'; // Importation de la classe Quiz
+import { User } from '../_Models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,14 @@ export class QuizService {
       responseType: 'text',
       reportProgress: true,
       observe: 'events'});
+  }
+
+
+  
+  // *****************************      AFFECTER UN QUIZ A UN UTILISATEUR   ******************************
+  // Une fonction qui va te permettre d'affecter un quiz un utilsateur
+  addQuizToSutudent(quizId: number, username: string): Observable<any> {
+     return this.http.post<any>(`${this.host}/quiz/addQuizToStudent/${quizId}/${username}`,null);
   }
 
 
