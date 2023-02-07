@@ -9,6 +9,8 @@ import { User } from '../_Models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+type NewType = any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -77,7 +79,7 @@ export class LoginPage implements OnInit, OnDestroy {
       // Le première validation est required
       // maintenant d'éclarons les variables qui seront binder avec le formulaire avec formControlName puis ngClass dans le html au niveau des input
       username: ["", Validators.required],
-      password: ["", Validators.required],
+      password: ["", Validators.required]
     })
 
 
@@ -256,12 +258,14 @@ export class LoginPage implements OnInit, OnDestroy {
     this.submitted = true
 
     // Vérions si les champs sont invalid
-    if (this.loginForm.invalid) {
+    if (this.registerForm.invalid) {
       return
     }
     else {
       // sinon si tous les champs sont remplis,
       // alert("Succes !")
+        // Quand le formualire est rempli, appelons la méthode onLogin(), on passe le formulaire
+        this.onRegister(this.registerForm.value);
     }
   }
 

@@ -4,14 +4,30 @@
       <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
+
+  <form #searchUsersForm="ngForm" class="form-signin">
+    <ion-searchbar 
+      placeholder="Rechercher ..." (ngModelChange)="onSearchUsers($event)"  name="username" required ngModel>
+    </ion-searchbar>
+  </form>
+  
+  
 </ion-header>
 
 <ion-content>
-
-  <ion-searchbar placeholder="Rechercher ..."></ion-searchbar>
+ 
+  <div class="">
+    <p class="text-primary text-center" *ngIf="searchUsersForm?.value.length > 0">List Of Users Found</p>
+    <div *ngFor="let userSearch of searchedUser" class="list-group">
+      <a (click)="getSearchUserProfile(userSearch.username)" class="list-group-item list-group-item-action">
+        <img class="rounded-circle" width="45" src="{{ userphoto }}/{{ userSearch.id }}.png" />
+        {{ userSearch.username }}
+      </a>
+    </div>
+  </div>
 
   <div class="container-fluid container background p-3">
-    <div *ngFor="let user of userList" class="contourBg mb-3 p-2">
+    <div *ngFor="let user of userList ;let i=index" class="contourBg mb-3 p-2">
       <div class="row  justify-content-center align-items-center">
         <div class="col-8">
           <div class="d-flex justify-content-center align-items-center">
@@ -20,7 +36,7 @@
           </div>
         </div>
         <div class="col-4">
-          <button class="btn btn-primary" (click)="AddQuizToQuiz(user.username)">Assigner</button>
+          <button class="btn btn-success" (click)="AddQuizToQuiz(user.username)" [disabled]="getUserAssigner(i)">Assigner</button>
         </div>
       </div>
     </div>

@@ -48,10 +48,11 @@
       </p>
 
       <button class="btn btnPays mb-2" (click)="GoToGamePage()">Jouer le Quiz</button>
+
     </div>
 
-    <div class="container">
 
+    <div class="container" *ngIf="showbtnAddQuizToStudent">
       <ion-slides [options]="mesSlides">
         <ion-slide>
           <ion-card>
@@ -82,7 +83,7 @@
 
       </ion-slides>
 
-      <button class="btn btnPays" (click)="GoToAssignePage()" >Assigner un Apprenant</button>
+      <button class="btn btnPays" (click)="GoToAssignePage()">Assigner un Apprenant</button>
     </div>
 
 

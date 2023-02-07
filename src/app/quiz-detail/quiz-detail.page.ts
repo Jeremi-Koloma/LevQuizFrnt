@@ -50,6 +50,10 @@ export class QuizDetailPage implements OnInit,OnDestroy {
   quiz: Quiz = new Quiz();
 
   quizId!: any
+
+  // Pour cacher le boutons Assigner quand on a un compte Apprenant
+  showbtnAddQuizToStudent!: any;
+
  
 
   // Injections des dépendances
@@ -103,6 +107,18 @@ export class QuizDetailPage implements OnInit,OnDestroy {
         (response: User) => {
           this.user = response;
           console.log(this.user);
+
+          // Vérifions si l'utilisateur a un Role Formateur, il peut faire des Ajout
+          for (let i = 0; i < this.user.userRoles.length; i++) {
+            if (this.user.userRoles[i].role.name.includes("FORMATEUR")) {
+              this.showbtnAddQuizToStudent = true;
+            }
+            // Sinon si l'utilisateur a un compte Apprenant, on caches les Ajouts
+            else {
+              this.showbtnAddQuizToStudent = false;
+            }
+          }
+
         },
         error => {
           console.log(error);

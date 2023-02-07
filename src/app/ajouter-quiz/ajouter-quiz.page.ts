@@ -26,14 +26,19 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   quizListe!: Quiz[];
 
   user!: User;
+  
   username!: any;
+
   quizId!: number;
+
   role!: any;
   // une variable pour le nom de serveur
   host!: string;
   // le path de l'utilisateur
   userHost!: string;
+
   quizHost!: any;
+  
   showOwnerQuiz!: any;
 
   // Déclarons des variables
