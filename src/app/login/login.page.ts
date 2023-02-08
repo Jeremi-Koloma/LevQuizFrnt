@@ -9,7 +9,6 @@ import { User } from '../_Models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-type NewType = any;
 
 @Component({
   selector: 'app-login',
@@ -252,7 +251,7 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
 
-  // Boutons qui de validation login
+  // Boutons qui de validation Inscription
   onSubmitRegister() {
     // changeons la variable de submitted à true;
     this.submitted = true

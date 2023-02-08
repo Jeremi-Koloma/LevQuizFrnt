@@ -65,6 +65,10 @@ const routes: Routes = [
     path: 'assigner-apprenant/:id',
     loadChildren: () => import('./assigner-apprenant/assigner-apprenant.module').then( m => m.AssignerApprenantPageModule)
   },
+  {
+    path: 'register-formateur',
+    loadChildren: () => import('./register-formateur/register-formateur.module').then( m => m.RegisterFormateurPageModule)
+  },
 
 
 

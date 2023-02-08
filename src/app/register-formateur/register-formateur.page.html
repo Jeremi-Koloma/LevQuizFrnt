@@ -1,0 +1,160 @@
+<ion-content>
+  <!-- --------------------   Background image     ------------------------
+  ----------------------------------------------------------------------
+  -------------------------------------------------------------- -- -->
+
+  <div class="containerImg">
+    <div class="bgImg"></div>
+    <div class="btnBack">
+      <i class="bi bi-arrow-left-circle" routerLink="/splash"></i>
+    </div>
+  </div>
+
+
+  <div class="contourLogin">
+
+    <div class="container col-offeset-md-3 col-md-6">
+      
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()" class="mt-1">
+          <fieldset>
+            <h4 class="text-dark text-center p-3">INSCRIPTION - FORMATEUR</h4>
+            <!-- ------------------- firstName ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group col-12">
+              <label for="firstname"> Prénom</label>
+              <input type="text" formControlName="firstname"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls['firstname'].errors}"  id="firstname" name="firstname" placeholder="Prénon" />
+              <div *ngIf="submitted && registerForm.controls['firstname'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['firstname'].errors['required']">
+                  Veillez remplir ce champs !
+                </div>
+              </div>
+            </div>
+            <!-- ------------------- lastName ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group col-12">
+              <label for="lastname"> Nom de famille</label>
+              <input type="text" formControlName="lastname"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls['lastname'].errors}" id="lastname" name="lastname" placeholder="Nom" />
+              <div *ngIf="submitted && registerForm.controls['lastname'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['lastname'].errors['required']">
+                  Veillez remplir ce champs !
+                </div>
+              </div>
+            </div>
+            <!-- ------------------- UserName ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group mb-2 col-12">
+              <label for="username"> Nom d'utilisateur</label>
+              <input type="text" formControlName="username"
+                [ngClass]="{'is-invalid': submitted && registerForm.controls['username'].errors}" id="username"
+                name="username" placeholder="Votre nom d'utilisateur" />
+              <div *ngIf="submitted && registerForm.controls['username'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['username'].errors['required']">
+                  Veillez remplir ce champs !
+                </div>
+                <div *ngIf="submitted && registerForm.controls['username'].errors['minlength']">
+                  4 caractères maxi !
+                </div>
+              </div>
+            </div>
+
+            <!-- ------------------- Mots de passe ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group mb-2 col-12">
+              <label for="password"> Mots de passe*</label>
+              <input formControlName="password"
+                [ngClass]="{'is-invalid': submitted && registerForm.controls['password'].errors}" type="password"
+                class="form-control" id="password" name="password" placeholder="mots de passe *" />
+              <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['password'].errors['required']">
+                  Veillez remplir ce champs!
+                </div>
+                <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                  8 caractères maxi !
+                </div>
+              </div>
+            </div>
+
+            <!-- ------------------- Email ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group mb-2 col-12">
+              <label for="email"> E-mail</label>
+              <input formControlName="email"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls['email'].errors}" type="email" id="email" name="email" placeholder="Votre mail" />
+              <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['email'].errors['required']">
+                  Veillez remplir ce champs!
+                </div>
+                <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                  e-mail invalide !
+                </div>
+              </div>
+            </div>
+
+             <!-- ------------------- Spécialité ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group col-12 mb-2">
+              <label for="specialite"> Spécialité</label>
+              <input type="text" formControlName="specialite"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls['specialite'].errors}" id="specialite" name="specialite" placeholder="Développeur" />
+              <div *ngIf="submitted && registerForm.controls['specialite'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['specialite'].errors['required']">
+                  Veillez remplir ce champs !
+                </div>
+              </div>
+            </div>
+              <!-- ------------------- Entreprise ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group col-12 mb-2">
+              <label for="entreprise"> Entréprise</label>
+              <input type="text" formControlName="entreprise"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls['entreprise'].errors}" id="entreprise" name="entreprise" placeholder="Orange Mali" />
+              <div *ngIf="submitted && registerForm.controls['entreprise'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['entreprise'].errors['required']">
+                  Veillez remplir ce champs !
+                </div>
+              </div>
+            </div>
+
+            <!-- ------------------- Localité ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="form-group col-12 mb-2">
+              <label for="localite"> Localité</label>
+              <input type="text" formControlName="localite"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls['localite'].errors}" id="localite" name="localite" placeholder="Bamako-Mali" />
+              <div *ngIf="submitted && registerForm.controls['localite'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['localite'].errors['required']">
+                  Veillez remplir ce champs !
+                </div>
+              </div>
+            </div>
+
+            <!-- ------------------- Boutons S'incrire ------------------------
+                ------------------------------------------------------
+            -->
+            <div class="col-12">
+              <button class="btn btnRegister">S'inscrire</button>
+            </div>
+            <p class="compteDeja">Avez-vous un compte déjà ?<span routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> Se connecter</span></p>
+          </fieldset>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</ion-content>
