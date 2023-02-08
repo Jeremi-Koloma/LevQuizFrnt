@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertType } from '../_Enum/alert-type';
 import { User } from '../_Models/user';
+import { UserFormateur } from '../_Models/user-formateur';
 import { AccountService } from '../_Services/account.service';
 import { AlertService } from '../_Services/alert.service';
 import { LoadingService } from '../_Services/loading.service';
@@ -62,7 +63,7 @@ export class RegisterFormateurPage implements OnInit {
    Qui va prendre un user toutes ses informations
  ************************* */
   // Quand on appel cette fonction onRegister
-  onRegister(user: User): void {
+  onRegister(user: UserFormateur): void {
     // on appel le service loadingService le chargement de la page
     this.loadingServiceRegister.isLoading.next(true);
     // Affichons les informations de  l'utilisateur dans la console
@@ -70,7 +71,7 @@ export class RegisterFormateurPage implements OnInit {
     // On l'ajout dans la liste de subscriptions
     this.subscriptionsRegister.push(
       // on envoie les informations de l'utilisateur à la méthode Register dans notre serviceAccount
-      this.accountServiceRegister.register(user).subscribe(
+      this.accountServiceRegister.registerForamteur(user).subscribe(
         // On prend la reponse dans le body
         response => {
           // on stop le chargement de la page

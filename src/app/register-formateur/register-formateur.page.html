@@ -17,8 +17,9 @@
       
         <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()" class="mt-1">
           <fieldset>
-            <h4 class="text-dark text-center p-3">INSCRIPTION - FORMATEUR</h4>
-            <!-- ------------------- firstName ------------------------
+            <h4 class="text-dark text-center p-3">FORMATEUR</h4>
+            <div class="forContentScoll">
+              <!-- ------------------- firstName ------------------------
                 ------------------------------------------------------
             -->
             <div class="form-group col-12">
@@ -145,6 +146,7 @@
               <button class="btn btnRegister">S'inscrire</button>
             </div>
             <p class="compteDeja">Avez-vous un compte déjà ?<span routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> Se connecter</span></p>
+            </div>
           </fieldset>
         </form>
     </div>

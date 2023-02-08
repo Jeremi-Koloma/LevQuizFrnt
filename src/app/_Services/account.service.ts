@@ -6,6 +6,7 @@ import { PasswordChange } from '../_Models/password-change'; // Importation de l
 import { Quiz } from '../_Models/quiz'; // Importation de la classe Quiz
 import { User } from '../_Models/user'; // Importation de la classe User
 import { Observable } from 'rxjs'; // pour l'utilisation des observable
+import { UserFormateur } from '../_Models/user-formateur';
 
 @Injectable({
   providedIn: 'root'
@@ -44,11 +45,20 @@ export class AccountService {
 
 
 
-  // *****************************      INSCRIPTION        ******************************* 
+  // *****************************      INSCRIPTION APPRENANT       ******************************* 
   // Une fonction pour le le Register
   register(user: User): Observable<User | HttpErrorResponse> {
     return this.http.post<User>(`${this.host}/user/register`, user);
   }
+
+
+
+   // *****************************      INSCRIPTION FORMATEUR        ******************************* 
+  // Une fonction pour le le Register
+  registerForamteur(userFormateur: UserFormateur): Observable<User | HttpErrorResponse> {
+    return this.http.post<User>(`${this.host}/user/registerFormateur`, userFormateur);
+  }
+
 
 
 

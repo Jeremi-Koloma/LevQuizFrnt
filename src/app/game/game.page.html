@@ -51,15 +51,19 @@
     </ng-container>
 
     <ng-container *ngIf="isQuizCompleted">
+     <div class="finQuiz">
       <div class="row d-flex justify-content-between">
         <div class="result text-center">
-          <h4>Félicitation !</h4>
-          <p>Total des question: {{questionListe.length}}</p>
-          <p>Bonnes Reponses: {{correctAnswer}}</p>
-          <p>Mauvaises Reponses: {{incorrectAnswer}}</p>
-          <p>SCORES: {{totalPoints}} points</p>
+          <h4 class="titleResultat display-4 text-uppercase">Résultat</h4>
+          <p><i class="bi bi-trophy-fill"></i></p>
+          <p><span class="scorePiont">{{totalPoints}} </span>points</p>
+          <p><i class="bi bi-question-circle"></i> Total des question: {{questionListe.length}}</p>
+          <p><i class="bi bi-check-circle"></i> Bonnes Reponses: {{correctAnswer}}</p>
+          <p><i class="bi bi-x-square"></i> Mauvaises Reponses: {{incorrectAnswer}}</p>
+      
         </div>
       </div>
+     </div>
     </ng-container>
 
   </div>

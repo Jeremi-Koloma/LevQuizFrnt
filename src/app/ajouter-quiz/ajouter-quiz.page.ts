@@ -31,7 +31,6 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
 
   quizId!: number;
 
-  role!: any;
   // une variable pour le nom de serveur
   host!: string;
   // le path de l'utilisateur
@@ -140,7 +139,6 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
               console.log("--- Compte Apprenant ------")
             }
           }
-          console.log(this.role)
           this.quizListe = response.quizList
           // on appel la fontions qui retourne la liste de tout les quiz d'un utilisateur
           this.getQuizsByUsername(this.user.username);

@@ -65,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
     this.userphoto = this.accountService.userHost;
 
-    this.getUserInfo(this.accountService.loggInUsername)
+    // this.getUserInfo(this.accountService.loggInUsername)
 
   }
 
@@ -94,31 +94,31 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
 
-   // Une fonctions qui va retourné les informations d'un utilisateur qui va prendre le nom de user en param
-   getUserInfo(username: string): void {
-    // On l'ajout dans la liste de subscriptions
-    this.subscriptions.push(
-      // on envoie l'utilisateur à méthode getUserInformation dans notre serviceAccount
-      this.accountService.getUserInformation(username).subscribe(
-        // on retourne une reponse de type User
-        (response: User) => {
-          // on affecte cet reponse à notre variable user qui represente l'utilisateur
-          this.user = response;
-          // comptons le nombre de notification de l'utilisateur
-          this.nombreNotification = this.user.notificationsList.length;
-          console.log(this.user)
-          console.log(this.nombreNotification)
-        },
-        error => {
-          // si ya erreur on affiche l'erreur dans la console
-          console.log(error);
-          // on appel la fonction logOut() pour déconnecter l'utilisateur
-          this.logOut();
-          // et on le redirige vers la page de connexion
-          this.router.navigateByUrl('/login');
-        }
-      ));
-  }
+  //  // Une fonctions qui va retourné les informations d'un utilisateur qui va prendre le nom de user en param
+  //  getUserInfo(username: string): void {
+  //   // On l'ajout dans la liste de subscriptions
+  //   this.subscriptions.push(
+  //     // on envoie l'utilisateur à méthode getUserInformation dans notre serviceAccount
+  //     this.accountService.getUserInformation(username).subscribe(
+  //       // on retourne une reponse de type User
+  //       (response: User) => {
+  //         // on affecte cet reponse à notre variable user qui represente l'utilisateur
+  //         this.user = response;
+  //         // comptons le nombre de notification de l'utilisateur
+  //         this.nombreNotification = this.user.notificationsList.length;
+  //         console.log(this.user)
+  //         console.log(this.nombreNotification)
+  //       },
+  //       error => {
+  //         // si ya erreur on affiche l'erreur dans la console
+  //         console.log(error);
+  //         // on appel la fonction logOut() pour déconnecter l'utilisateur
+  //         this.logOut();
+  //         // et on le redirige vers la page de connexion
+  //         this.router.navigateByUrl('/login');
+  //       }
+  //     ));
+  // }
 
 
 

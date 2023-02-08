@@ -29,9 +29,6 @@ export class GamePage implements OnInit {
   // une variable pour recuperer une question dans la liste de questions 
   public currentQuestion: number = 0;
   // Une variable pour recuperer le nombre de points par question
-  public points: number = 0;
-
-  // Une variable pour recuperer le nombre de points par question
    public totalPoints: number = 0;
   // Une variable pour la durée
   counter : any = [];
@@ -47,6 +44,7 @@ export class GamePage implements OnInit {
   isQuizCompleted: boolean = false;
 
   i!: number;
+  j!: number;
 
 
 
@@ -99,8 +97,9 @@ export class GamePage implements OnInit {
 
 
   getAllQuestion() {
+    console.log(this.quiz.questionsList.length);
     for (let i = 0; i < this.quiz.questionsList.length; i++) {
-      this.i=i;
+      this.i = i;
       this.counter.push(this.quiz.questionsList[i].duree)
       this.questionListe.push(this.quiz.questionsList[i]);
       console.log(this.questionListe)
@@ -145,12 +144,7 @@ export class GamePage implements OnInit {
     // Vérifions si la reponse est correct
     if (reponse.iscorrect) {
       // si la reponse est correct, on gagne le point
-      if(this.i>1){
-        console.log(this.i)
-        this.totalPoints +=  this.questionListe[this.i-1].points
-      }
-      // this.points = this.points + 10
-      // Si la reponse est correct incremente la bonne reponse
+      this.totalPoints +=  this.questionListe[currentQuestNumber-1].points
       this.correctAnswer++;
       // Avant d'aller à la question suivante, utilisons setTimeOut pour voir le change de backgound
       setTimeout(() => {
@@ -176,8 +170,6 @@ export class GamePage implements OnInit {
 
       }, 1000)
 
-      // Si la reponse est incorrecte, on enlève -10 points au points de l'utilisateur
-      this.points -= 10;
 
     }
 
@@ -248,9 +240,7 @@ export class GamePage implements OnInit {
         // on renitailise le conter
         this.counter[this.i] = this.counter[this.i+1];
         }
-        
-        // On enlève -10 points au points de l'utilisateur
-        this.points -= 10;
+
       }
     });
     // Stoper automatiquement le counter après 10 minutes 
@@ -284,8 +274,6 @@ export class GamePage implements OnInit {
     this.resetCounter();
     // on appel la liste des questions
     this.getAllQuestion();
-    // on renitialise le points à 0
-    this.points = 0;
     // on met le nombre des question à 0
     this.currentQuestion = 0;
     // on mets le progress bar à 0

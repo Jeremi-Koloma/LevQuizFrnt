@@ -8,6 +8,7 @@ import { AlertService } from '../_Services/alert.service';
 import { User } from '../_Models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserFormateur } from '../_Models/user-formateur';
 
 
 @Component({
@@ -28,6 +29,11 @@ export class LoginPage implements OnInit, OnDestroy {
 
   // C'est-à-dire que par defaut le formulaire n'est pas valider
   submitted = false;
+
+  // un Object d'utilisateur
+  user = new User();
+
+  persoconnecter: any;
 
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
@@ -147,16 +153,45 @@ export class LoginPage implements OnInit, OnDestroy {
           const token: any = response.headers.get('Authorization');
           // on appel la méthode saveToken dans le serviceAccount pour enregister le token dans app front
           this.accountService.saveToken(token);
-          // On vérifie s'il a un bon url de la page qu'il veut acceder et que l'authentification a réussi
-          if (this.accountService.redirectUrl) {
-            // on le redirige vers la page demande si elle existe
-            this.router.navigateByUrl(this.accountService.redirectUrl);
-          }
-          // Sinon on le redirige vers la page d'Accueil si l'authentification a réussi
-          else {
-            this.router.navigateByUrl('/home');
-          }
-          this.loadingService.isLoading.next(false);
+          this.accountService.getUserInformation(user.username).subscribe(data => {
+            this.persoconnecter = data;
+            console.log("--- User Recupérer ---")
+            console.log(this.persoconnecter)
+            // Vérifier si l'utilisateur a un compte formateur et si son status est activé
+            if (this.persoconnecter.status == true) {
+              // On vérifie s'il a un bon url de la page qu'il veut acceder et que l'authentification a réussi
+              if (this.accountService.redirectUrl) {
+                // on le redirige vers la page demande si elle existe
+                this.router.navigateByUrl(this.accountService.redirectUrl);
+              }
+              // Sinon on le redirige vers la page d'Accueil si l'authentification a réussi
+              else {
+                this.router.navigateByUrl('/home');
+              }
+              this.loadingService.isLoading.next(false);
+
+            }
+            // Sinon si l'utilisateur a un compte APPRENANT
+            else {
+              // Parcourons les roles de user
+              for (let j = 0; j < this.persoconnecter.userRoles.length; j++) {
+                if (this.persoconnecter.userRoles[j].role.name.includes("APPRENANT")) {
+                  // On vérifie s'il a un bon url de la page qu'il veut acceder et que l'authentification a réussi
+                  if (this.accountService.redirectUrl) {
+                    // on le redirige vers la page demande si elle existe
+                    this.router.navigateByUrl(this.accountService.redirectUrl);
+                  }
+                  // Sinon on le redirige vers la page d'Accueil si l'authentification a réussi
+                  else {
+                    this.router.navigateByUrl('/home');
+                  }
+                  this.loadingService.isLoading.next(false);
+                }
+              }
+
+            }
+          });
+
         },
         error => {
           // sinon s'il ya erreur, on l'affiche dans la console
@@ -170,6 +205,10 @@ export class LoginPage implements OnInit, OnDestroy {
         }
       )
     );
+
+
+
+
   }
 
 
@@ -188,6 +227,7 @@ export class LoginPage implements OnInit, OnDestroy {
       this.onLogin(this.loginForm.value);
     }
   }
+
 
 
 
@@ -263,8 +303,8 @@ export class LoginPage implements OnInit, OnDestroy {
     else {
       // sinon si tous les champs sont remplis,
       // alert("Succes !")
-        // Quand le formualire est rempli, appelons la méthode onLogin(), on passe le formulaire
-        this.onRegister(this.registerForm.value);
+      // Quand le formualire est rempli, appelons la méthode onLogin(), on passe le formulaire
+      this.onRegister(this.registerForm.value);
     }
   }
 
