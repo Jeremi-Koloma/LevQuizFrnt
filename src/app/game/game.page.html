@@ -52,15 +52,20 @@
 
     <ng-container *ngIf="isQuizCompleted">
      <div class="finQuiz">
-      <div class="row d-flex justify-content-between">
-        <div class="result text-center">
-          <h4 class="titleResultat display-4 text-uppercase">Résultat</h4>
-          <p><i class="bi bi-trophy-fill"></i></p>
+      <div class="row">
+        <div class="imageCintainer">
+          <img src="../../assets/image/Winners-rafiki.png" alt="">
+        </div>
+        <div class="contenu text-center">
+          <h4 class="titleResultat display-4 text-uppercase">scores</h4>
+          <hr>
           <p><span class="scorePiont">{{totalPoints}} </span>points</p>
-          <p><i class="bi bi-question-circle"></i> Total des question: {{questionListe.length}}</p>
-          <p><i class="bi bi-check-circle"></i> Bonnes Reponses: {{correctAnswer}}</p>
-          <p><i class="bi bi-x-square"></i> Mauvaises Reponses: {{incorrectAnswer}}</p>
-      
+          <p><i class="bi bi-question-circle"></i> Total des questions <span class="totlquestion">{{questionListe.length}}</span></p>
+          <p><i class="bi bi-check-circle"></i> Bonnes réponses <span class="bonneReponse">{{correctAnswer}}</span></p>
+          <p><i class="bi bi-x-square"></i> Mauvaises réponses <span class="mavsReponse">{{incorrectAnswer}}</span></p>
+          <div class="col-12 pt-2">
+            <button class="btn btnQuiter" routerLink="/home">Quitter</button>
+          </div>
         </div>
       </div>
      </div>

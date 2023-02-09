@@ -123,11 +123,29 @@ div .answer:hover{
 //
 .finQuiz{
     padding: 10px;
+    //overflow-y: scroll;
     background: #fff;
+}
+
+.imageCintainer img{
+    height: 45vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.contenu{
+    height: 55vh;
+}
+
+.contenu p{
+    margin-bottom: 3px;
 }
 
 .titleResultat{
     color: #274F8A;
+    margin: 0;
+    font-weight: 600;
 }
 .scorePiont{
     font-size: 2.2rem;
@@ -138,4 +156,53 @@ div .answer:hover{
     font-size: 4rem;
     color: orange;
     margin: 0;
+}
+
+.bi-question-circle{
+    color: #217aff;
+    font-size: 1.2rem;
+}
+
+.bi-check-circle{
+    color: #178f3d;
+    font-size: 1.2rem;
+}
+
+.bi-x-square{
+    color: #b62626;
+    font-size: 1.1rem;
+}
+
+.totlquestion{
+    color: #fff;
+    background: #217aff;
+    padding: 5px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.bonneReponse{
+    color: #fff;
+    background: #178f3d;
+    padding: 5px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.mavsReponse{
+    color: #fff;
+    background: #b62626;
+    padding: 5px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.btnQuiter{
+    background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%);
+    color: #fff;
+    width: 100%;
+    border-radius: 7px;
 }
