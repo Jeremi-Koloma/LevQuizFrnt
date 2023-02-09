@@ -62,7 +62,7 @@ export class GamePage implements OnInit {
     this.getAllQuestion()
 
     // Appelons la fonction pour lancer le conter
-    this.startCounter()
+    this.startCounter(this.currentQuestion)
 
 
 
@@ -227,18 +227,19 @@ export class GamePage implements OnInit {
 
 
   // Une fonction pour lancer le conter
-  startCounter() {
+  startCounter(j:number) {
     // cet interval sera interval de type rxjs
     this.interval$ = interval(1000).subscribe(val => {
       // Quand le conter est lancer, on le Décrement
-      this.counter[this.i]--;
+      this.counter[j]--;
       // Vérifions si le conter reviens à 0, on passe directement à la question suivante
-      if (this.counter[this.i] === 0) {
+      if (this.counter[this.currentQuestion] === 0) {
+        this.currentQuestion++;
+
         // on part à la question suivante
         if(this.currentQuestion < this.questionListe[this.questionListe.length].i -1){
-          this.currentQuestion++;
         // on renitailise le conter
-        this.counter[this.i] = this.counter[this.i+1];
+        this.counter[j] = this.counter[j];
         }
 
       }
@@ -262,9 +263,10 @@ export class GamePage implements OnInit {
     // on appel la fonction qui stop de counter
     this.stopCounter();
     // on affecte à nouveau 60s
-    this.counter = 60;
+    this.counter[this.currentQuestion] = this.counter[this.i-1];
+console.log(this.counter[this.currentQuestion]);
     // on appel notre fonction startCounter pour déclancher le counter
-    this.startCounter()
+    this.startCounter(this.counter[this.currentQuestion])
   }
 
 
