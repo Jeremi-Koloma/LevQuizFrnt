@@ -49,26 +49,76 @@
         </div>
       </div>
     </ng-container>
-
+  
     <ng-container *ngIf="isQuizCompleted">
-     <div class="finQuiz">
-      <div class="row">
-        <div class="imageCintainer">
-          <img src="../../assets/image/Winners-rafiki.png" alt="">
+      <div class="container-fluid bgTop">
+        <div class="imageCintainer mb-4">
+          <img src="../../assets/image/pngegg.png" alt="">
         </div>
-        <div class="contenu text-center">
-          <h4 class="titleResultat display-4 text-uppercase">scores</h4>
-          <hr>
-          <p><span class="scorePiont">{{totalPoints}} </span>points</p>
-          <p><i class="bi bi-question-circle"></i> Total des questions <span class="totlquestion">{{questionListe.length}}</span></p>
-          <p><i class="bi bi-check-circle"></i> Bonnes réponses <span class="bonneReponse">{{correctAnswer}}</span></p>
-          <p><i class="bi bi-x-square"></i> Mauvaises réponses <span class="mavsReponse">{{incorrectAnswer}}</span></p>
-          <div class="col-12 pt-2">
-            <button class="btn btnQuiter" routerLink="/home">Quitter</button>
+        <div class="container-fluid containerWhiteBg">
+          <div class="row">
+            <div class="contenu">
+              <div class="scoress text-center">
+                <p><span class="scorePiont">{{totalPoints}}</span>points</p>
+                
+              </div>
+
+              <div class="container">
+                <div class="contourCardTotalReponse mb-2">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-8">
+                      <p class="txtContent">Total des questions</p>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                      <div class="bgNumber">
+                        <span class="txtNumberTatalReponse">{{questionListe.length}}</span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container">
+                <div class="contourCardBonneReponse mb-2">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-8">
+                      <p class="txtContent">Bonnes réponses</p>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                      <div class="bgNumber">
+                        <span class="txtNumberBonneReponse">{{correctAnswer}}</span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container">
+                <div class="contourCardMauvaiseReponse mb-2">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-8">
+                      <p class="txtContent">Mauvaises réponses</p>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                      <div class="bgNumber">
+                        <span class="txtNumberMauvaisReponse">{{incorrectAnswer}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+             <div class="container">
+              <div class="col-12 pt-3">
+                <button class="btn btnQuiter" routerLink="/home">Quitter</button>
+              </div>
+             </div>
+            </div>
           </div>
         </div>
       </div>
-     </div>
     </ng-container>
 
   </div>

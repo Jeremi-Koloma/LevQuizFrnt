@@ -179,7 +179,10 @@ export class GamePage implements OnInit {
       this.j = this.currentQuestion
       // Vérifions si le conter reviens à 0, on passe directement à la question suivante
       if (this.counter[this.currentQuestion] === 0) {
+        // On part à la questions Suivante
         this.currentQuestion++;
+         // on incremente ses mauvaises reponses
+         this.incorrectAnswer++;
         if (this.currentQuestion === this.questionListe.length) {
           // on met fin au quiz
           this.isQuizCompleted = true;
