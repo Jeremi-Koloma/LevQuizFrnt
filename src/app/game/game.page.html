@@ -49,7 +49,7 @@
         </div>
       </div>
     </ng-container>
-  
+
     <ng-container *ngIf="isQuizCompleted">
       <div class="container-fluid bgTop">
         <div class="imageCintainer mb-4">
@@ -58,13 +58,12 @@
         <div class="container-fluid containerWhiteBg">
           <div class="row">
             <div class="contenu">
-              <div class="scoress text-center">
-                <p><span class="scorePiont">{{totalPoints}}</span>points</p>
-                
+              <div class="scoress text-center pt-2">
+                <p><span class="scorePiont">{{totalPoints}}</span> points</p>
               </div>
 
               <div class="container">
-                <div class="contourCardTotalReponse mb-2">
+                <div class="contourCardTotalReponse mb-3">
                   <div class="row justify-content-center align-items-center">
                     <div class="col-8">
                       <p class="txtContent">Total des questions</p>
@@ -80,7 +79,7 @@
               </div>
 
               <div class="container">
-                <div class="contourCardBonneReponse mb-2">
+                <div class="contourCardBonneReponse mb-3">
                   <div class="row justify-content-center align-items-center">
                     <div class="col-8">
                       <p class="txtContent">Bonnes réponses</p>
@@ -89,14 +88,13 @@
                       <div class="bgNumber">
                         <span class="txtNumberBonneReponse">{{correctAnswer}}</span>
                       </div>
-
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="container">
-                <div class="contourCardMauvaiseReponse mb-2">
+                <div class="contourCardMauvaiseReponse mb-3">
                   <div class="row justify-content-center align-items-center">
                     <div class="col-8">
                       <p class="txtContent">Mauvaises réponses</p>
@@ -110,11 +108,11 @@
                 </div>
               </div>
 
-             <div class="container">
-              <div class="col-12 pt-3">
-                <button class="btn btnQuiter" routerLink="/home">Quitter</button>
+              <div class="container">
+                <div class="col-12 pt-2">
+                  <button class="btn btnQuiter" routerLink="/home">Quitter</button>
+                </div>
               </div>
-             </div>
             </div>
           </div>
         </div>
