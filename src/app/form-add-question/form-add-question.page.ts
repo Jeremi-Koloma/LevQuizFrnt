@@ -55,9 +55,9 @@ export class FormAddQuestionPage implements OnInit , OnDestroy {
   }
 
     
-  GotoReponse(){
-    this.router.navigate(['/add-reponse',this.questionId])
-  }
+  // GotoReponse(){
+  //   this.router.navigate(['/add-reponse',this.questionId])
+  // }
 
   
   // Une fonctions pour avoir la liste de tout les quiz

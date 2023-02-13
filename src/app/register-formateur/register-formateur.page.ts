@@ -79,8 +79,10 @@ export class RegisterFormateurPage implements OnInit {
           // on affiche une message à l'utilisateur
           this.alertServiceRegister.showAlert(
             'Inscrit avec succès ! Merci de vérifier votre boîte mail.',
-            AlertType.SUCCESS
+            AlertType.SUCCESS            
           );
+          this.registerForm.reset();
+          this.routerRegister.navigateByUrl("/register-formateur");
           // Affichons la reponse dans la console
           console.log(response);
         },

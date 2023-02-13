@@ -75,7 +75,8 @@
           <button class="btn btnAjouter" [disabled]="!quizForm.valid || fileInput.invalid">Ajouter</button>
         </div>
         <div class="col-12 mt-2">
-          <button class="btn btnAjouterQuest" [disabled]="isclick==false" (click)="GoToQuestionPage()">Attribuer des
+          <button class="btn btnAjouterQuest" [disabled]="isclick==false" [routerLink]="['/form-add-question', quizId]"
+            routerLinkActive="router-link-active">Attribuer des
             questions</button>
         </div>
 

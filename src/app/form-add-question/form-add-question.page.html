@@ -27,8 +27,9 @@
       <div class="form-group col-12 mb-2">
         <label for="title">Selectionner le quiz</label>
         <select class="form-select" aria-label="Selectionner le quiz" [(ngModel)]="quizId" name="quizId">
-          <option [ngValue]="null" >Selectionner le quiz</option>
-          <option   *ngFor="let quiz of quizs; let i = index" [ngValue]="quizselect"  [selected]="quizselect">{{quiz.titre}}</option>
+          <option [ngValue]="null">Selectionner le quiz</option>
+          <option *ngFor="let quiz of quizs; let i = index" [ngValue]="quizselect" [selected]="quizselect">
+            {{quiz.titre}}</option>
         </select>
       </div>
 
@@ -58,7 +59,7 @@
         <input [(ngModel)]="question.duree" type="number" name="duree" id="duree" min="1" step="1" class="form-control"
           id="duree" placeholder="15" required />
       </div>
-      
+
       <!-- ------------------- BOUTTONS ------------------------
               ------------------------------------------------------
             -->
@@ -68,7 +69,8 @@
       </div>
 
       <div class="col-12">
-        <button class="btn btnAjouterReponse" (click)="GotoReponse()">Attribuer des reponses</button>
+        <button class="btn btnAjouterReponse" [routerLink]="['/add-reponse', questionId]">Attribuer des
+          reponses</button>
       </div>
 
     </form>
