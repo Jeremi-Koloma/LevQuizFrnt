@@ -279,7 +279,14 @@ export class LoginPage implements OnInit, OnDestroy {
               "Cette adresse e-mail existe déjà ! Veuillez essayer avec une autre adresse e-mail",
               AlertType.DANGER
             );
-          } else {
+          }
+          else if (errorMsg === 'connexionProblemeRessayer') {
+            this.alertServiceRegister.showAlert(
+              "Oups ! vous avez un problème de connexion, veuillez ressayer encore !",
+              AlertType.DANGER
+            );
+          }
+           else {
             this.alertServiceRegister.showAlert(
               "Un problème est survenu. Veuillez réessayer !",
               AlertType.DANGER
