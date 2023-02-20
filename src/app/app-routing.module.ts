@@ -59,11 +59,11 @@ const routes: Routes = [
   },
   {
     path: 'game/:id',
-    loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
+    loadChildren: () => import('./game/game.module').then( m => m.GamePageModule), canActivate:[AuthenticationGuard]
   },
   {
     path: 'assigner-apprenant/:id',
-    loadChildren: () => import('./assigner-apprenant/assigner-apprenant.module').then( m => m.AssignerApprenantPageModule)
+    loadChildren: () => import('./assigner-apprenant/assigner-apprenant.module').then( m => m.AssignerApprenantPageModule) , canActivate:[AuthenticationGuard]
   },
   {
     path: 'register-formateur',

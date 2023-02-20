@@ -142,7 +142,7 @@ export class LoginPage implements OnInit, OnDestroy {
     // on appel le service loadingService le chargement de la page
     this.loadingService.presentLoading();
     // Affichons les informations de l'utilisateur dans la console
-    console.log(user);
+    //console.log(user);
     // On l'ajout dans la liste de subscriptions
     this.subscriptions.push(
       // on envoie les identifiants de l'utilisateur à méthode login dans notre serviceAccount
@@ -155,8 +155,8 @@ export class LoginPage implements OnInit, OnDestroy {
           this.accountService.saveToken(token);
           this.accountService.getUserInformation(user.username).subscribe(data => {
             this.persoconnecter = data;
-            console.log("--- User Recupérer ---")
-            console.log(this.persoconnecter)
+            //console.log("--- User Recupérer ---")
+            //console.log(this.persoconnecter)
             // Vérifier si l'utilisateur a un compte formateur et si son status est activé
             if (this.persoconnecter.status == true) {
               // On vérifie s'il a un bon url de la page qu'il veut acceder et que l'authentification a réussi

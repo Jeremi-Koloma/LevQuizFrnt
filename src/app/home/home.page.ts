@@ -68,8 +68,8 @@ export class HomePage implements OnInit, OnDestroy {
           this.user = response;
           // comptons le nombre de notification de l'utilisateur
           this.nombreNotification = this.user.notificationsList.length;
-          console.log(this.user)
-          console.log(this.nombreNotification)
+          //console.log(this.user)
+          //console.log(this.nombreNotification)
         },
         error => {
           // si ya erreur on affiche l'erreur dans la console
@@ -121,7 +121,7 @@ export class HomePage implements OnInit, OnDestroy {
           // on envoie cette liste de reposonse à notre variable quizs déclaré
           this.quizs = response;
           // on affiche la liste des quizs dans la console
-          console.log(this.quizs);
+          //console.log(this.quizs);
           // on stop l'effet de chargement
           this.loadingService.isLoading.next(false);
         },
