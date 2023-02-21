@@ -82,7 +82,7 @@ export class QuizDetailPage implements OnInit,OnDestroy {
     const resolvedQuiz: Quiz = this.route.snapshot.data['resolvedQuiz'];
     // vérifions si le quiz existe
     if (resolvedQuiz != null) {
-      console.log(resolvedQuiz);
+      //console.log(resolvedQuiz);
       // On affecte ce resolvedQuiz à notre variable quiz
       this.quiz = resolvedQuiz;
 
@@ -106,7 +106,7 @@ export class QuizDetailPage implements OnInit,OnDestroy {
       this.accountService.getUserInformation(username).subscribe(
         (response: User) => {
           this.user = response;
-          console.log(this.user);
+          //console.log(this.user);
 
           // Vérifions si l'utilisateur a un Role Formateur, il peut faire des Ajout
           for (let i = 0; i < this.user.userRoles.length; i++) {
@@ -132,18 +132,18 @@ export class QuizDetailPage implements OnInit,OnDestroy {
   // une fonction qui va retourner le profil
   getUserProfile(username: string): void {
     this.router.navigate(['/profile', username]);
-    console.log(username);
+    //console.log(username);
   }
 
 
   GoToGamePage(): void{
     this.router.navigate(['/game', this.quizId]);
-    console.log(this.quizId);
+    //console.log(this.quizId);
   }
 
   GoToAssignePage(): void{
     this.router.navigate(['/assigner-apprenant', this.quizId]);
-    console.log(this.quizId);
+    //console.log(this.quizId);
   }
 
 
@@ -152,7 +152,7 @@ export class QuizDetailPage implements OnInit,OnDestroy {
     this.subscriptions.push(
       this.quizService.delete(quizId).subscribe(
         response => {
-          console.log(response);
+          //console.log(response);
           this.alertService.showAlert(
             'Quiz supprimer avec succès !',
             AlertType.SUCCESS

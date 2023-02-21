@@ -10,7 +10,7 @@
   <div class="content_page">
 
     <ng-container *ngIf="!isQuizCompleted">
-      <div class="quizContainerBg">
+      <div class="quizContainerBg mb-3">
         <div class="container titleQuiz">
           <h4 class="text-center text-uppercase">{{quiz.titre}}</h4>
         </div>
@@ -42,7 +42,7 @@
             <div appChangeBackgroundcolor [isCorrect]="reponse.iscorrect" (click)="answer(currentQuestion+1, reponse)"
               *ngFor="let reponse of questionListe[currentQuestion].responseList ; let i = index" class="answer">
               <span class="number">{{i+1}}</span>
-              <span class="answer_text">{{reponse.reponse}}</span>
+              <button class="answer_text" [disabled]="clicked">{{reponse.reponse}}</button>
             </div>
           </div>
 
@@ -74,7 +74,8 @@
         </ng-container>
 
         <ng-container>
-          <div class="imageCintainer mb-4"  *ngIf="correctAnswer > incorrectAnswer && correctAnswer < questionListe.length">
+          <div class="imageCintainer mb-4"
+            *ngIf="correctAnswer > incorrectAnswer && correctAnswer < questionListe.length">
             <div class="divImg">
               <p class="txtFelicitaion text-uppercase">Cool !</p>
               <img src="../../assets/image/correct.gif" alt="Trophet excellent">
@@ -84,7 +85,7 @@
 
 
         <ng-container>
-          <div class="imageCintainer mb-4"  *ngIf="correctAnswer < incorrectAnswer">
+          <div class="imageCintainer mb-4" *ngIf="correctAnswer < incorrectAnswer">
             <div class="divImg">
               <p class="txtFelicitaion text-uppercase">insuffisant !</p>
               <img src="../../assets/image/wrong.gif" alt="photo insuffisant">
@@ -151,7 +152,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>  
         </div>
       </div>
     </ng-container>

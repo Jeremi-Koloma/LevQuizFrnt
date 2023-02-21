@@ -53,6 +53,8 @@ export class GamePage implements OnInit {
   // un Object d'utilisateur
   user = new User();
 
+  clicked !: any
+
 
 
 
@@ -65,7 +67,7 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.getOneQuiz(this.quizId = this.route.snapshot.params["id"])
-    console.log("quiz id" + this.quizId)
+    //console.log("quiz id" + this.quizId)
 
     // Appelons la fonctions qui nous permette d'avoir la liste des quiz
     this.getAllQuestion()
@@ -109,7 +111,7 @@ export class GamePage implements OnInit {
 
 
   getAllQuestion() {
-    console.log(this.quiz.questionsList.length);
+    //console.log(this.quiz.questionsList.length);
     for (let i = 0; i < this.quiz.questionsList.length; i++) {
       this.i = i;
       this.counter.push(this.quiz.questionsList[i].duree)
@@ -117,7 +119,7 @@ export class GamePage implements OnInit {
       // console.log(this.questionListe)
     }
 
-    console.log(this.counter);
+    //console.log(this.counter);
   }
 
 
@@ -151,6 +153,7 @@ export class GamePage implements OnInit {
     // Vérifions si la reponse est correct
     if (reponse.iscorrect) {
       // si la reponse est correct, on gagne le point
+      this.clicked = true;
       this.totalPoints += this.questionListe[currentQuestNumber - 1].points
       this.correctAnswer++;
       // Avant d'aller à la question suivante, utilisons setTimeOut pour voir le change de backgound
@@ -161,10 +164,12 @@ export class GamePage implements OnInit {
         this.resetCounter();
         // on appel la fonction qui donne le niveau de progressbar
         this.getProgressPourcent();
+        this.clicked = false;
 
       }, 1000) // 1s avant go to next quest
     }
     else {
+      this.clicked = true;
       setTimeout(() => {
         // Et on part à la question suivante encore
         this.currentQuestion++;
@@ -174,6 +179,7 @@ export class GamePage implements OnInit {
         this.resetCounter();
         // on appel la fonction qui donne le niveau de progressbar
         this.getProgressPourcent();
+        this.clicked = false;
 
       }, 1000)
 
@@ -265,7 +271,7 @@ export class GamePage implements OnInit {
       this.accountService.getUserInformation(username).subscribe(
         (response: User) => {
           this.user = response;
-          console.log(this.user);
+          //console.log(this.user);
           // recupérons l'id de user pour connaître qui a jouer
           this.userId = this.user.id;
         },
@@ -282,7 +288,8 @@ export class GamePage implements OnInit {
   getUserPaying() {
     this.quizService.getUserPalyingQuiz(this.userId, this.quizId).subscribe(
       (data) => {
-        console.log(data)
+        const userPalyed = data;
+        //console.log(data)
       },
       error => {
         console.log(error);

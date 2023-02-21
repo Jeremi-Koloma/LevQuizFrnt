@@ -26,7 +26,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   quizListe!: Quiz[];
 
   user!: User;
-  
+
   username!: any;
 
   quizId!: number;
@@ -37,7 +37,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   userHost!: string;
 
   quizHost!: any;
-  
+
   showOwnerQuiz!: any;
 
   // Déclarons des variables
@@ -94,7 +94,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
           // on envoie cette liste de reposonse à notre variable quizs déclaré
           this.quizs = response;
           // on affiche la liste des quizs dans la console
-          console.log(this.quizs);
+          //console.log(this.quizs);
           // on stop l'effet de chargement
           this.loadingService.isLoading.next(false);
         },
@@ -117,7 +117,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
         (response: User) => {
           // on affecte cet reponse à notre variable user qui represente l'utilisateur
           this.user = response;
-          console.log(this.user);
+          //console.log(this.user);
 
           // **********  Cette boucle marche ***
 
@@ -131,12 +131,12 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
           for (let i = 0; i < this.user.userRoles.length; i++) {
             if (this.user.userRoles[i].role.name.includes("FORMATEUR")) {
               this.showOwnerQuiz = true;
-              console.log("---- Compte Formateur ----")
+              //console.log("---- Compte Formateur ----")
             }
             // Sinon si l'utilisateur a un compte Apprenant, on caches les Ajouts
             else {
               this.showOwnerQuiz = false;
-              console.log("--- Compte Apprenant ------")
+              //console.log("--- Compte Apprenant ------")
             }
           }
           this.quizListe = response.quizList
@@ -164,7 +164,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
           // affectons cette liste à quizList
           this.user.quizList = response;
 
-          console.log(this.user.quizList);
+          //console.log(this.user.quizList);
         },
         error => {
           console.log(error);
@@ -179,7 +179,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
   seeOneQuiz(quizId: number): void {
     // on appel le path qui permet d'acceder à un seul Quiz
     this.router.navigate(['/quizdetails', quizId]);
-    console.log(quizId);
+    //console.log(quizId);
   }
 
 
@@ -193,7 +193,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
         // on prend la reponse
         response => {
           // on affiche dans la reponse ou le quiz dans la console
-          console.log('Quiz supprimer: ', response);
+          //console.log('Quiz supprimer: ', response);
           // on l'affiche un message
           this.alertService.showAlert(
             'Quiz supprimer avec succès !.',
@@ -215,7 +215,7 @@ export class AjouterQuizPage implements OnInit, OnDestroy {
       ));
   }
 
-  
+
 
 
 

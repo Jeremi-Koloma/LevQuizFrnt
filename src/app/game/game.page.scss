@@ -113,7 +113,7 @@ ion-back-button {
 }
 
 div .answer:hover {
-    border: 2px solid orange;
+    border: 2px solid green;
 }
 
 .number {
@@ -354,4 +354,10 @@ div .answer:hover {
 .txtPoint {
     margin-top: -10px;
     position: relative;
+}
+
+button{
+    border: none;
+    background: none;
+    outline: none;
 }
