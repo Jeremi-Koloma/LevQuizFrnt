@@ -3,6 +3,14 @@ ion-content {
     --color: black;
 }
 
+ion-toolbar {
+    --background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%)
+}
+
+ion-back-button {
+    --color: #ffffff;
+}
+
 
 .quizContainerBg {
     position: relative;
@@ -12,29 +20,7 @@ ion-content {
     color: black;
 }
 
-.bgTop {
-    background: #274F8A;
-    padding: 0;
-    margin: 0;
-}
 
-.containerWhiteBg {
-    width: 100%;
-    background: #fff; // #939fab
-    border-top-right-radius: 75px;
-    position: relative;
-    z-index: 10;
-    margin-top: -45px;
-    padding: 0;
-}
-
-ion-toolbar {
-    --background: linear-gradient(90deg, rgba(39, 79, 138, 1)0%, rgb(0, 161, 247)100%)
-}
-
-ion-back-button {
-    --color: #ffffff;
-}
 
 
 .content_page {
@@ -186,12 +172,31 @@ div .answer:hover {
     margin-bottom: 20px;
 }
 
+.containerAllCompleted{
+    margin: 0;
+}
+
+.containerWhiteBg {
+    width: 100%;
+    background: #25426F; // #939fab
+    border-top-right-radius: 75px;
+    position: relative;
+    z-index: 10;
+    margin-top: -80px;
+    padding: 0;
+}
 
 .imageCintainer {
-    height: 30vh;
-    display: flex;
-    justify-content: center;
+    height: 40vh;
     text-align: center;
+    background: #fff;
+}
+
+.divImg{
+    width: 200px !important;
+    position: relative;
+    top: -25px;
+    margin-left: 19%;
 }
 
 .imageCintainer img {
@@ -199,8 +204,17 @@ div .answer:hover {
     height: 100%;
 }
 
+.txtFelicitaion{
+    color: #C28900;
+    margin: 0;
+    top: 46px;
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
 .contenu {
-    height: 55vh;
+    height: 60vh;
 }
 
 .contenu p {
@@ -275,7 +289,8 @@ div .answer:hover {
 .scorePiont {
     font-size: 2.4rem;
     font-weight: 600;
-    color: #C28900;
+    //color: #C28900;
+    color: #fff;
     margin: 0;
     padding: 0;
 }

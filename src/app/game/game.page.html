@@ -46,14 +46,14 @@
             </div>
           </div>
 
-          <div class="containerBtn d-flex justify-content-between">
+          <!-- <div class="containerBtn d-flex justify-content-between">
             <button [disabled]="currentQuestion===0" class="btn btnback" (click)="previousQuestion()"><i
                 class="fa fa-chevron-left" aria-hidden="true"></i>Précédent
             </button>
             <button class="btn btnNext" (click)="nextQuestion()">Suivant <i class="fa fa-chevron-right"
                 aria-hidden="true"></i>
             </button>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -62,15 +62,41 @@
     </ng-container>
 
     <ng-container *ngIf="isQuizCompleted">
-      <div class="container-fluid bgTop">
-        <div class="imageCintainer mb-4">
-          <img src="../../assets/image/pngegg.png" alt="">
-        </div>
-        <div class="container-fluid containerWhiteBg">
+      <div class="containerAllCompleted">
+
+        <ng-container>
+          <div class="imageCintainer mb-4" *ngIf="correctAnswer === questionListe.length">
+            <div class="divImg">
+              <p class="txtFelicitaion text-uppercase">Excellent</p>
+              <img src="../../assets/image/trohyExcellent.gif" alt="Trophet excellent">
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container>
+          <div class="imageCintainer mb-4"  *ngIf="correctAnswer > incorrectAnswer && correctAnswer < questionListe.length">
+            <div class="divImg">
+              <p class="txtFelicitaion text-uppercase">Cool !</p>
+              <img src="../../assets/image/correct.gif" alt="Trophet excellent">
+            </div>
+          </div>
+        </ng-container>
+
+
+        <ng-container>
+          <div class="imageCintainer mb-4"  *ngIf="correctAnswer < incorrectAnswer">
+            <div class="divImg">
+              <p class="txtFelicitaion text-uppercase">insuffisant !</p>
+              <img src="../../assets/image/wrong.gif" alt="photo insuffisant">
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="container-fluid containerWhiteBg mb-3">
           <div class="row">
             <div class="contenu">
               <div class="scoress text-center pt-2">
-                <p><span class="scorePiont">{{totalPoints}}</span> points</p>
+                <p class="text-light"><span class="scorePiont">{{totalPoints}}</span> points</p>
               </div>
 
               <div class="container">
