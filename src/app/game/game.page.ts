@@ -21,7 +21,7 @@ export class GamePage implements OnInit {
   // une variable pour recupérer l'id qui sera dans le param
   quizId!: number
   // recupérons id de user
-  userId !: number
+  userId !: any
 
   // Instance qe Quiz
   quiz = new Quiz()
@@ -205,8 +205,11 @@ export class GamePage implements OnInit {
         if (this.currentQuestion === this.questionListe.length) {
           // on met fin au quiz
           this.isQuizCompleted = true;
+          // Appelons la fonctions pour enregister le score
+          this.saveUserScore();
           // Appelons la fonctions qui permettre de connaître l'utilsateur qui a joué au quiz
           this.getUserPaying();
+          
           // on appel la fonction pour stoper le compteur
           this.stopCounter()
         }
@@ -291,13 +294,26 @@ export class GamePage implements OnInit {
         const userPalyed = data;
         //console.log(data)
       },
-      error => {
+
+      (error) => {
         console.log(error);
       }
     )
   }
 
 
+
+  saveUserScore(){
+    this.accountService.saveUserScore(this.totalPoints, this.userId, this.quizId).subscribe(
+      data=>{
+        console.log(data)
+      },
+
+      (err) =>{
+        console.log(err)
+      }
+    )
+  }
 
 
 

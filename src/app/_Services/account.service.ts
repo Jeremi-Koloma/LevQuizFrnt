@@ -216,4 +216,10 @@ export class AccountService {
 
 
 
+    // *****************************     Enregister le Score de user   *******************************
+  saveUserScore(score: number, userid:number, quizid: number): Observable<any> {
+    return this.http.post<any>(`${this.host}/score/save/${score}/${userid}/${quizid}`, {});
+  }
+
+
 }

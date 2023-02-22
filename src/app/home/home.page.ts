@@ -31,6 +31,7 @@ export class HomePage implements OnInit, OnDestroy {
   quizHost!: string;
   userphoto!: string;
   nombreNotification!: number;
+  userid !: any
 
   // Injections des dépendances
   constructor(
@@ -66,6 +67,7 @@ export class HomePage implements OnInit, OnDestroy {
         (response: User) => {
           // on affecte cet reponse à notre variable user qui represente l'utilisateur
           this.user = response;
+          this.userid = this.user.id;
           // comptons le nombre de notification de l'utilisateur
           this.nombreNotification = this.user.notificationsList.length;
           //console.log(this.user)
@@ -178,6 +180,12 @@ export class HomePage implements OnInit, OnDestroy {
   // une méthode qui pour nous rediriger ver la page Quiz
   goToQuiz() {
     this.router.navigate(['/ajouter-quiz']);
+  }
+
+  
+  // une méthode qui pour nous rediriger ver la page Score
+  goToScore() {
+    this.router.navigate(['/score',this.userid]);
   }
 
 

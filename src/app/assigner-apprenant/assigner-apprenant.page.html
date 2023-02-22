@@ -16,7 +16,7 @@
 
 <ion-content>
  
-  <div class="">
+  <div class="#">
     <p class="text-primary text-center" *ngIf="searchUsersForm?.value.length > 0">List Of Users Found</p>
     <div *ngFor="let userSearch of searchedUser" class="list-group">
       <a (click)="getSearchUserProfile(userSearch.username)" class="list-group-item list-group-item-action">
@@ -28,9 +28,9 @@
 
   <div class="container-fluid container background p-3">
     <div *ngFor="let user of userList ;let i=index" class="contourBg mb-3 p-2">
-      <div class="row  justify-content-center align-items-center">
+      <div class="row align-items-center">
         <div class="col-8">
-          <div class="d-flex justify-content-center align-items-center">
+          <div class="d-flex align-items-center">
             <img src="{{userphoto}}/{{user.id}}.png" alt="" class="justify-content-center align-items-center">
             <p class="justify-content-center align-items-center m-0  username">{{user.firstname +' '+user.lastname}}</p>
           </div>

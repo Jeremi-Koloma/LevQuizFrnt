@@ -60,14 +60,14 @@ export class QuizService {
   // *****************************      AFFECTER UN QUIZ A UN UTILISATEUR   ******************************
   // Une fonction qui va te permettre d'affecter un quiz un utilsateur
   addQuizToSutudent(quizId: number, username: string): Observable<any> {
-    return this.http.post<any>(`${this.host}/quiz/addQuizToStudent/${quizId}/${username}`, null);
+    return this.http.post<any>(`${this.host}/quiz/addQuizToStudent/${quizId}/${username}`, {});
   }
 
 
   // *****************************      CONNAITRE UTILISATEUR QUI A JOUER      *******************************
   // Une fonction qui permettrade connaître l'utilisateur qui a participer à un quiz
   getUserPalyingQuiz(iduser: number, idquiz: number): Observable<any> {
-    return this.http.post<any>(`${this.host}/user/playQuiz/${iduser}/${idquiz}`, null);
+    return this.http.post<any>(`${this.host}/user/playQuiz/${iduser}/${idquiz}`, {});
   }
 
 

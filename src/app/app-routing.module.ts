@@ -69,6 +69,11 @@ const routes: Routes = [
     path: 'register-formateur',
     loadChildren: () => import('./register-formateur/register-formateur.module').then( m => m.RegisterFormateurPageModule)
   },
+  {
+    path: 'score/:userid',
+    loadChildren: () => import('./score/score.module').then( m => m.ScorePageModule), canActivate:[AuthenticationGuard]
+  },
+
 
 
 
