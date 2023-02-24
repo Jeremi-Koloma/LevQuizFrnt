@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ScorePageRoutingModule } from './score-routing.module';
+import { HistoriquePageRoutingModule } from './historique-routing.module';
 
-import { ScorePage } from './score.page';
+import { HistoriquePage } from './historique.page';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     IonicModule,
     NgxPaginationModule,
-    ScorePageRoutingModule
+    HistoriquePageRoutingModule
   ],
-  declarations: [ScorePage]
+  declarations: [HistoriquePage]
 })
-export class ScorePageModule {}
+export class HistoriquePageModule {}

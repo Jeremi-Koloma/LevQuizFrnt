@@ -47,7 +47,7 @@
         {{quiz.description}}
       </p>
 
-      <button class="btn btnPays mb-2" (click)="GoToGamePage()">Jouer le Quiz</button>
+      <button class="btn btnPays mb-2" (click)="GoToGamePage()" *ngIf="btnPlayGame">Jouer le Quiz</button>
 
     </div>
 

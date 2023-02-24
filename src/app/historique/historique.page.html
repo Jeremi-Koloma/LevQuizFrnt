@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Retour" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container-fluid container background p-3">
+    <h3 class="text-center display-6 text-uppercase">Vos historiques</h3>
+    <hr>
+    <div class="contourBg mb-3 p-2"
+      *ngFor="let userS of userScoreList | paginate: {itemsPerPage:2, currentPage:p}">
+      <div class="container bgCard">
+        <div class="row align-items-center">
+            <p class="justify-content-center align-items-center m-0 username">{{userS.username}}</p>
+            <p class="align-items-center titleQuiz">{{userS.quiztire}}</p>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+  <!-- <pagination-controls (pageChange)="p =$event" class="text-center" nextLabel="Suivants"
+    previousLabel="Précédents">
+  </pagination-controls> -->
+
+</ion-content>

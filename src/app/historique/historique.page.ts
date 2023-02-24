@@ -5,20 +5,20 @@ import { User } from '../_Models/user';
 import { AccountService } from '../_Services/account.service';
 
 @Component({
-  selector: 'app-score',
-  templateUrl: './score.page.html',
-  styleUrls: ['./score.page.scss'],
+  selector: 'app-historique',
+  templateUrl: './historique.page.html',
+  styleUrls: ['./historique.page.scss'],
 })
-export class ScorePage implements OnInit {
+export class HistoriquePage implements OnInit {
 
- 
+  
    // Déclarons une variable liste de subscriptions
    private subscriptions: Subscription[] = [];
    // un object d'utilisateur
    user = new User();
    userScoreList !: any
    userphoto!: string;
-   paginateNumber : number = 1;
+   p: number = 1;
 
 
   constructor(
@@ -49,6 +49,7 @@ export class ScorePage implements OnInit {
         }
       ));
   }
+
 
 
 }

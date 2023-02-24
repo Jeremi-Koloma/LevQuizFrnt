@@ -70,9 +70,13 @@ const routes: Routes = [
     loadChildren: () => import('./register-formateur/register-formateur.module').then( m => m.RegisterFormateurPageModule)
   },
   {
-    path: 'score/:userid',
+    path: 'score',
     loadChildren: () => import('./score/score.module').then( m => m.ScorePageModule), canActivate:[AuthenticationGuard]
+  },  {
+    path: 'historique',
+    loadChildren: () => import('./historique/historique.module').then( m => m.HistoriquePageModule)
   },
+
 
 
 

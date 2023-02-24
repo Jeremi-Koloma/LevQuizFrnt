@@ -54,6 +54,8 @@ export class QuizDetailPage implements OnInit,OnDestroy {
   // Pour cacher le boutons Assigner quand on a un compte Apprenant
   showbtnAddQuizToStudent!: any;
 
+  btnPlayGame !: any
+
  
 
   // Injections des dépendances
@@ -112,10 +114,12 @@ export class QuizDetailPage implements OnInit,OnDestroy {
           for (let i = 0; i < this.user.userRoles.length; i++) {
             if (this.user.userRoles[i].role.name.includes("FORMATEUR")) {
               this.showbtnAddQuizToStudent = true;
+              this.btnPlayGame = false;
             }
             // Sinon si l'utilisateur a un compte Apprenant, on caches les Ajouts
             else {
               this.showbtnAddQuizToStudent = false;
+              this.btnPlayGame = true;
             }
           }
 

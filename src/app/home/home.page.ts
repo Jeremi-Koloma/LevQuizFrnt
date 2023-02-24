@@ -185,9 +185,13 @@ export class HomePage implements OnInit, OnDestroy {
   
   // une méthode qui pour nous rediriger ver la page Score
   goToScore() {
-    this.router.navigate(['/score',this.userid]);
+    this.router.navigate(['/score']);
   }
 
+    // une méthode qui pour nous rediriger ver la page Score
+    goToHistorique() {
+      this.router.navigate(['/historique']);
+    }
 
 
   // On Desinscrit en parcourant la liste des subscriptions

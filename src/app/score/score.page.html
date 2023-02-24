@@ -9,23 +9,31 @@
 <ion-content>
 
   <div class="container-fluid container background p-3">
-    <div class="contourBg mb-3 p-2">
+    <h3 class="text-center display-6 text-uppercase">Vos scores</h3>
+    <hr>
+    <div class="contourBg mb-3 p-2"
+      *ngFor="let userScore of userScoreList | paginate: {itemsPerPage:5, currentPage:paginateNumber}">
       <div class="row align-items-center">
         <div class="col-8">
           <div class="d-flex  align-items-center">
-            <img src="../../assets/image/profil 2.jpg" alt="" class="justify-content-center align-items-center">
-           <div class="row">
-            <p class="justify-content-center align-items-center m-0  username">Jeremi</p>
-            <p class="align-items-center titleQuiz">Quiz en HTML</p>
-           </div>
+            <img src="{{userphoto}}/{{user.id}}.png" alt="photo profil"
+              class="justify-content-center align-items-center">
+            <div class="row">
+              <p class="justify-content-center align-items-center m-0  username">{{user.username}}</p>
+              <p class="align-items-center titleQuiz">{{userScore.quiztire}}</p>
+              <span class="scoreDate">{{userScore.scoreDate| date:"dd/MM/yyyy"}}</span>
+            </div>
           </div>
         </div>
         <div class="col-4">
-          <button class="btn btnScore">500pts</button>
+          <button class="btn btnScore">{{userScore.score}} pts</button>
         </div>
       </div>
     </div>
 
+    <pagination-controls (pageChange)="paginateNumber =$event" class="text-center" nextLabel="Suivants"
+    previousLabel="Précédents">
+  </pagination-controls>
 
 
   </div>
