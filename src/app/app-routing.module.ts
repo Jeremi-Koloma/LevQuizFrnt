@@ -76,6 +76,10 @@ const routes: Routes = [
     path: 'historique',
     loadChildren: () => import('./historique/historique.module').then( m => m.HistoriquePageModule)
   },
+  {
+    path: 'splashlogo',
+    loadChildren: () => import('./splashlogo/splashlogo.module').then( m => m.SplashlogoPageModule)
+  },
 
 
 

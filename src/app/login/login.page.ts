@@ -72,7 +72,7 @@ export class LoginPage implements OnInit, OnDestroy {
     }
     // Sinon si la connexion n'a pas réussi, on le redirige vers la page de connexion
     else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/splashlogo');
     }
 
     /* ***********************
@@ -108,7 +108,7 @@ export class LoginPage implements OnInit, OnDestroy {
     }
     // Sinon si la l'inscription n'a pas réussi, on le redirige vers la page de d'inscription 
     else {
-      this.routerRegister.navigateByUrl('/login');
+      this.routerRegister.navigateByUrl('/splashlogo');
     }
 
 
