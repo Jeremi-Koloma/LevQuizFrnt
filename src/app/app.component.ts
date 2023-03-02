@@ -65,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
     this.userphoto = this.accountService.userHost;
 
-    // this.getUserInfo(this.accountService.loggInUsername)
+    //this.getUserInfo(this.accountService.loggInUsername);
 
   }
 
@@ -94,7 +94,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
 
-  //  // Une fonctions qui va retourné les informations d'un utilisateur qui va prendre le nom de user en param
+  // //  // Une fonctions qui va retourné les informations d'un utilisateur qui va prendre le nom de user en param
   //  getUserInfo(username: string): void {
   //   // On l'ajout dans la liste de subscriptions
   //   this.subscriptions.push(

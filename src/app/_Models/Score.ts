@@ -5,5 +5,9 @@ export class Score {
 
     username !: string
     quiztire !: string
+    correctanswer !: number;
+    incorrectanswer !: number;
+    totalquestions !: number;
+    
     scoreDate !: Date
 }

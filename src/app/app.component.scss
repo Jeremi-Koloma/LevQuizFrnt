@@ -1,7 +1,7 @@
 * {
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;1,700&display=swap%27');
     font-family: 'Poppins', sans-serif;
- }
+}
 
 
 ion-icon{
@@ -9,13 +9,6 @@ ion-icon{
     margin: 10px;
 }
 
-
-// ion-content{
-//     --background: #25503F;
-// }
-// ion-list{
-//     --background: #25503F;
-// }
 
 .menu-header-bg{
     height: 150px;
@@ -64,11 +57,12 @@ ion-icon{
         margin-bottom: 10px;
         --background: #1b345a;
     }
-    // .active{
-    //     border-left: 5px solid ;
-    //     color: #FBC201;
-    //     padding-left: 15px;
-    // }
+
+    .active{
+        border-left: 5px solid ;
+        color: #FBC201;
+        padding-left: 15px;
+    }
 
   
 }

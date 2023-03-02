@@ -53,7 +53,7 @@ export class AccountService {
 
 
 
-   // *****************************      INSCRIPTION FORMATEUR        ******************************* 
+  // *****************************      INSCRIPTION FORMATEUR        ******************************* 
   // Une fonction pour le le Register
   registerForamteur(userFormateur: UserFormateur): Observable<User | HttpErrorResponse> {
     return this.http.post<User>(`${this.host}/user/registerFormateur`, userFormateur);
@@ -209,16 +209,16 @@ export class AccountService {
   }
 
 
-   //  La méthode qui nous permet d'afficher la liste des employés
-   getUserList() : Observable<User[]>{
+  //  La méthode qui nous permet d'afficher la liste des employés
+  getUserList(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}/user/listUsers`);
   }
 
 
 
-    // *****************************     Enregister le Score de user   *******************************
-  saveUserScore(score: number, userid:number, quizid: number): Observable<any> {
-    return this.http.post<any>(`${this.host}/score/save/${score}/${userid}/${quizid}`, {});
+  // *****************************     Enregister le Score de user   *******************************
+  saveUserScore(score: number, correctanswer: number, incorrectanswer: number, totalquestions: number, userid: number, quizid: number): Observable<any> {
+    return this.http.post<any>(`${this.host}/score/save/${score}/${correctanswer}/${incorrectanswer}/${totalquestions}/${userid}/${quizid}`, {});
   }
 
 

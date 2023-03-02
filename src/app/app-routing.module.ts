@@ -72,13 +72,18 @@ const routes: Routes = [
   {
     path: 'score',
     loadChildren: () => import('./score/score.module').then( m => m.ScorePageModule), canActivate:[AuthenticationGuard]
-  },  {
+  },
+  {
     path: 'historique',
-    loadChildren: () => import('./historique/historique.module').then( m => m.HistoriquePageModule)
+    loadChildren: () => import('./historique/historique.module').then( m => m.HistoriquePageModule), canActivate:[AuthenticationGuard]
   },
   {
     path: 'splashlogo',
     loadChildren: () => import('./splashlogo/splashlogo.module').then( m => m.SplashlogoPageModule)
+  },
+  {
+    path: 'emailsend',
+    loadChildren: () => import('./emailsend/emailsend.module').then( m => m.EmailsendPageModule)
   },
 
 

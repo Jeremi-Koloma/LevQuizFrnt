@@ -148,16 +148,12 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   // une fonction pour changer le mots de passe de l'utilisateur
   onChangePassword(passwordChange: PasswordChange) {
-    console.log(passwordChange);
-    const element: HTMLElement = document.getElementById(
-      'changePasswordDismiss'
-    ) as HTMLElement;
-    element.click();
+    //console.log(passwordChange);
     this.loadingService.isLoading.next(true);
     this.subscriptions.push(
       this.accountService.changePassword(passwordChange).subscribe(
         response => {
-          console.log(response);
+          //console.log(response);
           this.loadingService.isLoading.next(false);
           this.alertService.showAlert(
             "Le mot de passe a été mis à jour avec succès !",

@@ -6,6 +6,7 @@ import { LoadingService } from '../_Services/loading.service';
 import { AccountService } from '../_Services/account.service';
 import { AlertType } from '../_Enum/alert-type';
 import { AlertService } from '../_Services/alert.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -18,13 +19,20 @@ export class ResetPasswordPage implements OnInit, OnDestroy{
   // Déclarons une variable liste de subscriptions
   private subscriptions: Subscription[] = [];
 
+   // une variable pour la validation de type FormGroup
+   resetpasswordForm!: FormGroup
+
+  // C'est-à-dire que par defaut le formulaire n'est pas valider
+  submitted = false;
+
   
   // Injections des dépendances
   constructor(
     private accountService: AccountService,
     private loadingService: LoadingService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private formBulder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -44,7 +52,20 @@ export class ResetPasswordPage implements OnInit, OnDestroy{
       this.router.navigateByUrl('/resetpassword');
     }
 
+
+     /* ***********************
+      validation des formulaire ResetPassword
+    ************************* */
+    // Lorsque le component est initialiser, on utilise notre loginForm pour avoir accèss aux Groupe de FormBuilder qui est dans le constructeur;
+    this.resetpasswordForm = this.formBulder.group({
+      // Déclarons les champs ou validations qu'on souhaite avoir
+      // Le première validation est required
+      // maintenant d'éclarons les variables qui seront binder avec le formulaire avec formControlName puis ngClass dans le html au niveau des input
+      email: ["", [Validators.required, Validators.email]]
+    })
+
   }
+
 
 
     /* ***********************
@@ -74,6 +95,7 @@ export class ResetPasswordPage implements OnInit, OnDestroy{
                 "Un nouveau mot de passe a été envoyé à votre adresse e-mail",
                 AlertType.SUCCESS
               );
+              this.router.navigateByUrl('/emailsend')
             }, // Sinon s'il ya Erreur
             (error: HttpErrorResponse) => {
               // on affiche l'Erreur dans la console
@@ -98,6 +120,26 @@ export class ResetPasswordPage implements OnInit, OnDestroy{
           )
         );
       }
+
+
+
+    // Boutons qui de validation RessetPassword
+    onSubmitForm() {
+    // changeons la variable de submitted à true;
+    this.submitted = true
+
+    // Vérions si les champs sont invalid
+    if (this.resetpasswordForm.invalid) {
+      return
+    }
+    else {
+      // sinon si tous les champs sont remplis,
+      // alert("Succes !")
+      // Quand le formualire est rempli, appelons la méthode onLogin(), on passe le formulaire
+      this.onResetpassword(this.resetpasswordForm.value);
+    }
+  }
+
 
 
     // on le Desinscrit

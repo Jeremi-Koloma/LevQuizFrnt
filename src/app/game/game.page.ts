@@ -209,7 +209,7 @@ export class GamePage implements OnInit {
           this.saveUserScore();
           // Appelons la fonctions qui permettre de connaître l'utilsateur qui a joué au quiz
           this.getUserPaying();
-          
+
           // on appel la fonction pour stoper le compteur
           this.stopCounter()
         }
@@ -303,16 +303,22 @@ export class GamePage implements OnInit {
 
 
 
-  saveUserScore(){
-    this.accountService.saveUserScore(this.totalPoints, this.userId, this.quizId).subscribe(
-      data=>{
-        console.log(data)
-      },
+  saveUserScore() {
+    this.accountService.saveUserScore(
+      this.totalPoints,
+      this.correctAnswer,
+      this.incorrectAnswer,
+      this.questionListe.length,
+      this.userId,
+      this.quizId).subscribe(
+        data => {
+          console.log(data)
+        },
 
-      (err) =>{
-        console.log(err)
-      }
-    )
+        (err) => {
+          console.log(err)
+        }
+      )
   }
 
 

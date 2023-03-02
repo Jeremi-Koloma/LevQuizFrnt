@@ -39,10 +39,11 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
 
-    if (req.url.includes(`${this.accountService.host}/user/resetPassword/`)) {
+    if (req.url.includes(`${this.accountService.host}/user/resetPassword`)) {
         // on laisse passer la requête
       return next.handle(req);
     }
+    
 
 
     if (req.url.includes('https://maps.googleapis.com/')) {

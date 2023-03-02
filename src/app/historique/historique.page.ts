@@ -42,6 +42,7 @@ export class HistoriquePage implements OnInit {
         (response: User) => {
           this.user = response;
           this.userScoreList = this.user.scoresList;
+          console.log(this.userScoreList)
         },
         error => {
           console.log(error);

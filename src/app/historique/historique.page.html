@@ -8,19 +8,27 @@
 
 <ion-content>
 
-  <div class="container-fluid container background p-3">
+  <div class="container-fluid containerTout background p-3">
     <h3 class="text-center display-6 text-uppercase">Vos historiques</h3>
     <hr>
-    <div class="contourBg mb-3 p-2"
-      *ngFor="let userS of userScoreList | paginate: {itemsPerPage:2, currentPage:p}">
+    <div class="contourBg mb-3 p-2" *ngFor="let userHisto of userScoreList | paginate: {itemsPerPage:3, currentPage:p}">
       <div class="container bgCard">
         <div class="row align-items-center">
-            <p class="justify-content-center align-items-center m-0 username">{{userS.username}}</p>
-            <p class="align-items-center titleQuiz">{{userS.quiztire}}</p>
+          <div class="entete text-light mb-2">
+            <p class="align-items-center m-0 titleQuiz">{{userHisto.quiztire}}</p>
+            <span class="align-items-center m-0 histDate">{{userHisto.scoreDate| date:"dd/MM/yyyy"}}</span>
+          </div>
+          <p class="align-items-center txtDescription">{{userHisto.description}}</p>
+          <p class="align-items-center totalQuestion">{{userHisto.totalquestions}} Questions</p>
+          <p class="align-items-center ReponseObtenu">Bonnes réponses obténues : <span class="obtenu">{{userHisto.correctanswer}}/{{userHisto.totalquestions}}</span>
+          </p>
         </div>
       </div>
-  
+
     </div>
+    <pagination-controls (pageChange)="p =$event" class="text-center text-dark" nextLabel="Suivants"
+    previousLabel="Précédents">
+  </pagination-controls>
   </div>
 
   <!-- <pagination-controls (pageChange)="p =$event" class="text-center" nextLabel="Suivants"

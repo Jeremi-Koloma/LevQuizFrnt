@@ -7,26 +7,26 @@
         <div class="header-content">
           <img src="{{userphoto}}/{{user.id}}.png" class=" float-right " alt="profil">
           <ion-label>
-            <h2 class="my-2 mb-3">{{user.firstname}}</h2>
+            <h2 class="my-2 mb-3">{{user.username}}</h2>
           </ion-label>
         </div>
         <!-- ELEMENTS DU MENU -->
         <ion-list class="menu-items" lines="none" style="background: #1b345a;">
-          <ion-item routerLinkActive="active">
+          <ion-item routerLinkActive="active" routerLink="ajouter-quiz">
             <ion-icon name="help-circle-outline"></ion-icon>
             <ion-label >Mes quizs</ion-label>
           </ion-item>
-          <ion-item routerLinkActive="active">
+          <ion-item routerLinkActive="active" routerLink="score">
             <ion-icon name="star-half-outline"></ion-icon>
             <ion-label>Mon score</ion-label>
           </ion-item>
-          <ion-item routerLinkActive="active">
+          <ion-item routerLinkActive="active" routerLink="historique">
             <ion-icon name="time-outline"></ion-icon>
             <ion-label>Historique</ion-label>
           </ion-item>
           <ion-item routerLinkActive="active">
             <ion-icon name="notifications-circle-outline"></ion-icon>
-            <ion-label>Notifications</ion-label>
+            <ion-label>Notifications <span class="ion-badge">{{nombreNotification}}</span> </ion-label>
           </ion-item>
         
          

@@ -50,7 +50,7 @@ export class CacheInterceptor implements HttpInterceptor {
         Grâce avec la méthode (.includes) de URL, nous allons vérifier si la requête contient ces méthode
     ************************* */
 
-    if (req.url.includes(`${this.host}/user/resetPassword/`)) {
+    if (req.url.includes(`${this.host}/user/resetPassword`)) {
         //une nouvelle quête vers le backend
       return next.handle(req);
     }
