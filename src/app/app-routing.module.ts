@@ -84,7 +84,11 @@ const routes: Routes = [
   {
     path: 'emailsend',
     loadChildren: () => import('./emailsend/emailsend.module').then( m => m.EmailsendPageModule)
+  },  {
+    path: 'thankformateurregistred',
+    loadChildren: () => import('./thankformateurregistred/thankformateurregistred.module').then( m => m.ThankformateurregistredPageModule)
   },
+
 
 
 

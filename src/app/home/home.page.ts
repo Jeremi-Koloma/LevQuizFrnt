@@ -89,13 +89,14 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
 
+  // Une function pour avoir la liste des Notications non consulter
   getNotificationsEtatTrue(){
     for (let i = 0; i < this.user.notificationsList.length; i++) {
       this.i = i;
       if(this.user.notificationsList[i].etat==true){
         this.notifListe.push(this.user.notificationsList[i]);
       }      
-       console.log(this.notifListe)
+       //console.log(this.notifListe)
     }
     // comptons le nombre de notification de l'utilisateur    
       this.nombreNotification = this.notifListe.length;

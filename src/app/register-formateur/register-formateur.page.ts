@@ -76,13 +76,8 @@ export class RegisterFormateurPage implements OnInit {
         response => {
           // on stop le chargement de la page
           this.loadingServiceRegister.isLoading.next(false);
-          // on affiche une message à l'utilisateur
-          this.alertServiceRegister.showAlert(
-            'Inscrit avec succès ! Merci de vérifier votre boîte mail.',
-            AlertType.SUCCESS            
-          );
           this.registerForm.reset();
-          this.routerRegister.navigateByUrl("/register-formateur");
+          this.routerRegister.navigateByUrl("/thankformateurregistred");
           // Affichons la reponse dans la console
           console.log(response);
         },
