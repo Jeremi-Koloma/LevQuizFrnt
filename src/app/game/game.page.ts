@@ -61,6 +61,7 @@ export class GamePage implements OnInit {
   constructor(
     private quizService: QuizService,
     private route: ActivatedRoute,
+    private router : Router,
     private accountService: AccountService
   ) { }
 
@@ -321,6 +322,9 @@ export class GamePage implements OnInit {
       )
   }
 
+  goToHomePage(){
+    this.router.navigateByUrl("/home");
+  }
 
 
 

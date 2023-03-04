@@ -7,6 +7,7 @@ import { Quiz } from '../_Models/quiz'; // Importation de la classe Quiz
 import { User } from '../_Models/user'; // Importation de la classe User
 import { Observable } from 'rxjs'; // pour l'utilisation des observable
 import { UserFormateur } from '../_Models/user-formateur';
+import { Notifications } from '../_Models/notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -219,6 +220,12 @@ export class AccountService {
   // *****************************     Enregister le Score de user   *******************************
   saveUserScore(score: number, correctanswer: number, incorrectanswer: number, totalquestions: number, userid: number, quizid: number): Observable<any> {
     return this.http.post<any>(`${this.host}/score/save/${score}/${correctanswer}/${incorrectanswer}/${totalquestions}/${userid}/${quizid}`, {});
+  }
+
+
+   // ************   Une fonction pour Activer le status de formateur   ******************************
+   ChangeEtatNotification(id: number): Observable<Notifications> {
+    return this.http.put<Notifications>(`${this.host}/notification/changeEtatNotification/${id}`, {});
   }
 
 

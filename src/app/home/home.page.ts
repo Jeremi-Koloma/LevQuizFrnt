@@ -9,6 +9,7 @@ import { AlertType } from '../_Enum/alert-type';  // importation de AlertType En
 import { Quiz } from '../_Models/quiz'; // importation de Quiz le Model
 import { User } from '../_Models/user';  // importation de User le Model
 import { CustomDatePipe } from '../custom-date.pipe';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -32,6 +33,9 @@ export class HomePage implements OnInit, OnDestroy {
   userphoto!: string;
   nombreNotification!: number;
   userid !: any
+  i!: number;
+  public notifListe: any = [];
+
 
   // Injections des dépendances
   constructor(
@@ -39,7 +43,8 @@ export class HomePage implements OnInit, OnDestroy {
     private accountService: AccountService,
     private quizService: QuizService,
     private loadingService: LoadingService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private alertController: AlertController
   ) { }
 
 
@@ -56,7 +61,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
 
-
   // Une fonctions qui va retourné les informations d'un utilisateur qui va prendre le nom de user en param
   getUserInfo(username: string): void {
     // On l'ajout dans la liste de subscriptions
@@ -68,10 +72,9 @@ export class HomePage implements OnInit, OnDestroy {
           // on affecte cet reponse à notre variable user qui represente l'utilisateur
           this.user = response;
           this.userid = this.user.id;
-          // comptons le nombre de notification de l'utilisateur
-          this.nombreNotification = this.user.notificationsList.length;
+          this.getNotificationsEtatTrue()
           //console.log(this.user)
-          //console.log(this.nombreNotification)
+          console.log(this.user.notificationsList)
         },
         error => {
           // si ya erreur on affiche l'erreur dans la console
@@ -84,6 +87,66 @@ export class HomePage implements OnInit, OnDestroy {
         }
       ));
   }
+
+
+  getNotificationsEtatTrue(){
+    for (let i = 0; i < this.user.notificationsList.length; i++) {
+      this.i = i;
+      if(this.user.notificationsList[i].etat==true){
+        this.notifListe.push(this.user.notificationsList[i]);
+      }      
+       console.log(this.notifListe)
+    }
+    // comptons le nombre de notification de l'utilisateur    
+      this.nombreNotification = this.notifListe.length;
+  }
+
+
+   // Une fonction pour Activer le formateur
+   ToChangeEtatNotifications(id: number) {
+    this.accountService.ChangeEtatNotification(id).subscribe(
+      (data) => {
+        const notificationRead = data;
+        //window.location.reload()
+      }
+    )
+    this.notifListe;
+  }
+
+
+  // Notification click
+  async presentAlert() {
+   
+      const alert = await this.alertController.create({
+        header: 'Notification !',
+        subHeader: '' +this.notifListe[0].titrequiz,
+        message: '' + this.notifListe[0].notification,
+        buttons: [
+          {
+            text: 'Quitter',
+            role: 'cancel',
+            handler: () => { this.handlerMessage = 'Notification canceled'; }
+          },
+          {
+            text: 'Consulter',
+            role: 'confirm',
+  
+            handler: () => {
+              this.handlerMessage = 'Notification confirmed';
+              this.ToChangeEtatNotifications(this.notifListe[0].id);
+              this.router.navigateByUrl('/ajouter-quiz');
+            }
+          }
+        ],
+  
+      });
+  
+      await alert.present();
+
+  }
+
+  handlerMessage = '';
+  roleMessage = '';
 
 
 
@@ -182,16 +245,16 @@ export class HomePage implements OnInit, OnDestroy {
     this.router.navigate(['/ajouter-quiz']);
   }
 
-  
+
   // une méthode qui pour nous rediriger ver la page Score
   goToScore() {
     this.router.navigate(['/score']);
   }
 
-    // une méthode qui pour nous rediriger ver la page Score
-    goToHistorique() {
-      this.router.navigate(['/historique']);
-    }
+  // une méthode qui pour nous rediriger ver la page Score
+  goToHistorique() {
+    this.router.navigate(['/historique']);
+  }
 
 
   // On Desinscrit en parcourant la liste des subscriptions

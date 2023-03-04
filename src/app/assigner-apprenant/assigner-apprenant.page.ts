@@ -136,8 +136,7 @@ export class AssignerApprenantPage implements OnInit {
   TogetOneQuizById() {
     this.quizService.getOneQuizById(this.quizId).subscribe(
       (data) => {
-        this.quizTitre = data.titre
-        console.log(data)
+        this.quizTitre = data.titre;
       })
   }
 

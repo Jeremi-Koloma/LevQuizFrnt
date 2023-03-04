@@ -4,4 +4,5 @@ export class Notifications {
     titrequiz !: string;
     notification !: string;
     notificationDate !: Date;
+    etat!: boolean
 }
