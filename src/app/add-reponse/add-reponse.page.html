@@ -13,7 +13,7 @@
       <i class="bi bi-arrow-left-circle" [routerLink]="['/form-add-question',idQuestin]"></i>
     </div> -->
 
-    <h5 class="topTextTilePage">Ajouter des Reponses</h5>
+    <h5 class="topTextTilePage">Ajouter des Réponses</h5>
   </div>
 
 
@@ -24,7 +24,7 @@
           ------------------------------------------------------
       -->
       <div class="form-group col-12 mb-1">
-        <label for="title">Selectionner la question</label>
+        <label for="title">Sélectionner la question</label>
         <select class="form-select" aria-label="Selectionner le quiz" [(ngModel)]="questionId" name="questionId">
           <option [ngValue]="null">Selectionner la question</option>
           <option  *ngFor="let question of questionList ; let i = index"  [ngValue]="questionSelect" [selected]="questionSelect">{{question.question}}</option>
@@ -39,19 +39,19 @@
         <div class="form-group col-12 mb-1">
           <label for="question">Choix 1</label>
           <textarea [(ngModel)]="reponse1.reponse"  name="reponse" id="reponse" cols="30" rows="10"
-            placeholder="1ère reponse ici..." required ngModel>
+            placeholder="1ère réponse ici..." required ngModel>
           </textarea>
         </div>
         <div class="form-group col-12 mb-1">
           <label for="question">Choix 2</label>
           <textarea [(ngModel)]="reponse2.reponse" name="reponse" id="reponse" cols="30" rows="10"
-            placeholder="2ème reponse ici..." required ngModel>
+            placeholder="2ème réponse ici..." required ngModel>
           </textarea>
         </div>
         <div class="form-group col-12 mb-1">
           <label for="question">Choix 3</label>
           <textarea [(ngModel)]="reponse3.reponse" name="reponse" id="reponse" cols="30" rows="10"
-            placeholder="3ème reponse ici..." required ngModel>
+            placeholder="3ème réponse ici..." required ngModel>
           </textarea>
         </div>
 

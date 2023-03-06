@@ -20,19 +20,16 @@
           </div>
           <p class="align-items-center txtDescription">{{userHisto.description}}</p>
           <p class="align-items-center totalQuestion">{{userHisto.totalquestions}} Questions</p>
-          <p class="align-items-center ReponseObtenu">Bonnes réponses obténues : <span class="obtenu">{{userHisto.correctanswer}}/{{userHisto.totalquestions}}</span>
+          <p class="align-items-center ReponseObtenu">Bonnes réponses obtenues : <span class="obtenu">{{userHisto.correctanswer}}/{{userHisto.totalquestions}}</span>
           </p>
         </div>
       </div>
 
     </div>
-    <pagination-controls (pageChange)="p =$event" class="text-center text-dark" nextLabel="Suivants"
+    <pagination-controls (pageChange)="p =$event" class="text-dark" nextLabel="Suivants"
     previousLabel="Précédents">
   </pagination-controls>
   </div>
 
-  <!-- <pagination-controls (pageChange)="p =$event" class="text-center" nextLabel="Suivants"
-    previousLabel="Précédents">
-  </pagination-controls> -->
 
 </ion-content>
